@@ -10,6 +10,7 @@ import HeroSection from "@/components/Home/HeroSection";
 import StatsSection from "@/components/Home/StatsSection";
 import WhoWeAre from "@/components/Home/WhoAreWeSection";
 import WorkflowSection from "@/components/Home/WorkflowSection";
+import PriceSection from "@/components/Home/PriceSection";
 
 export default function RootPage() {
   return (
@@ -20,6 +21,7 @@ export default function RootPage() {
         <StatsSection />
         <WhoWeAre />
         <WorkflowSection />
+        <PriceSection />
         <FAQSection />
         <BlogSection />
         <ContactSection />

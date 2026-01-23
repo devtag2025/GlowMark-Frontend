@@ -59,7 +59,6 @@ const StatsSection = () => {
 
     return (
       <span ref={ref} className="tabular-nums">
-        {/* FIXED: Added .toLocaleString() to display the comma back to the user */}
         {count.toLocaleString()}
         <span className="text-2xl md:text-3xl opacity-80 ml-0.5">{suffix}</span>
       </span>
@@ -75,7 +74,7 @@ const StatsSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-4">
+          <h2 className="text-4xl md:text-6xl font-extrabold mb-4">
             {t("stats.title")}{" "}
             <span className="text-gradient-purple">
               {t("stats.titleHighlight")}

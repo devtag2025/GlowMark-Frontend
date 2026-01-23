@@ -1,26 +1,32 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Instagram,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const ContactSection = () => {
   const { t } = useLanguage();
 
-  return (
-    <section className="relative bg-[#050505] py-24 overflow-hidden">
-      {/* Background Decorative Glows */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#6B207A]/20 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-[100px] -z-10" />
+  const contacts = [
+    {
+      icon: Mail,
+      label: t("contact.labelEmail"),
+      value: "hello@glowmark.agency",
+    },
+    {
+      icon: Phone,
+      label: t("contact.labelPhone"),
+      value: "+32 3 434 36 35",
+    },
+    {
+      icon: MapPin,
+      label: t("contact.labelVisit"),
+      value: "Antwerp",
+    },
+  ];
 
+  return (
+    <section id="contact" className="relative py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -30,35 +36,19 @@ const ContactSection = () => {
             className="space-y-12"
           >
             <div>
-              <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-6">
+              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">
                 {t("contact.titleLine1")} <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-red-500">
+                <span className="text-gradient-purple">
                   {t("contact.titleHighlight")}
                 </span>
               </h2>
-              <p className="text-gray-400 text-lg max-w-md leading-relaxed">
+              <p className="text-gray-400 text-base sm:text-lg lg:text-xls max-w-md leading-relaxed">
                 {t("contact.description")}
               </p>
             </div>
 
             <div className="space-y-6">
-              {[
-                {
-                  icon: Mail,
-                  label: t("contact.labelEmail"),
-                  value: "hello@glowmark.agency",
-                },
-                {
-                  icon: Phone,
-                  label: t("contact.labelPhone"),
-                  value: "+1 (555) 000-GLOW",
-                },
-                {
-                  icon: MapPin,
-                  label: t("contact.labelVisit"),
-                  value: "Digital Nomad HQ, Web 3.0",
-                },
-              ].map((item, i) => (
+              {contacts.map((item, i) => (
                 <div key={i} className="flex items-center gap-6 group">
                   <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-purple-400 group-hover:bg-[#6B207A] group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(107,32,122,0)] group-hover:shadow-[0_0_20px_rgba(107,32,122,0.4)]">
                     <item.icon size={22} />
@@ -74,69 +64,48 @@ const ContactSection = () => {
                 </div>
               ))}
             </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4 pt-6">
-              {[Instagram, Linkedin, Twitter].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500 transition-all"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Right Side: Contact Form */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Glass Card Form */}
             <div className="bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-12 rounded-[3rem] shadow-2xl">
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-400 ml-1">
-                      {t("contact.formName")}
+                      {t("contact.formFirstName")}
                     </label>
                     <input
                       type="text"
-                      placeholder={t("contact.formNamePlaceholder")}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                      placeholder={t("contact.formFirstNamePlaceholder")}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-400 ml-1">
-                      {t("contact.formEmail")}
+                      {t("contact.formLastName")}
                     </label>
                     <input
-                      type="email"
-                      placeholder={t("contact.formEmailPlaceholder")}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                      type="text"
+                      placeholder={t("contact.formLastNamePlaceholder")}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500  transition-all"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-400 ml-1">
-                    {t("contact.formSubject")}
+                    {t("contact.formEmail")}
                   </label>
-                  <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all appearance-none">
-                    <option className="bg-[#050505]">
-                      {t("contact.formSubjectAudit")}
-                    </option>
-                    <option className="bg-[#050505]">
-                      {t("contact.formSubjectCampaign")}
-                    </option>
-                    <option className="bg-[#050505]">
-                      {t("contact.formSubjectGeneral")}
-                    </option>
-                  </select>
+                  <input
+                    type="text"
+                    placeholder={t("contact.formEmailPlaceholder")}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all"
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -156,7 +125,7 @@ const ContactSection = () => {
                     boxShadow: "0 0 20px rgba(107,32,122,0.4)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-[#6B207A] to-[#FF1A1A] text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all"
+                  className="w-full gradient-purple text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all"
                 >
                   {t("contact.sendMessage")}
                   <Send
