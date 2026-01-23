@@ -2,22 +2,24 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, HelpCircle, BarChart3, Zap, FileText } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const PricingSection = () => {
+  const { t } = useLanguage();
   const features = [
-    { icon: BarChart3, text: "In-depth analysis of your site" },
-    { icon: Zap, text: "Keyword BOOST" },
-    { icon: FileText, text: "Creation of optimized content" },
-    { icon: Check, text: "Free Quote & Consultation" },
+    { icon: BarChart3, text: t("pricing.feature1") },
+    { icon: Zap, text: t("pricing.feature2") },
+    { icon: FileText, text: t("pricing.feature3") },
+    { icon: Check, text: t("pricing.feature4") },
   ];
 
   const points = [
-    "Boosted keyword numbers",
-    "Keyword competitiveness",
-    "Market competition",
-    "Specific industry sector",
-    "Optimized page creation",
-    "Strategic blog articles",
+    t("pricing.point1"),
+    t("pricing.point2"),
+    t("pricing.point3"),
+    t("pricing.point4"),
+    t("pricing.point5"),
+    t("pricing.point6"),
   ];
 
   return (
@@ -34,13 +36,15 @@ const PricingSection = () => {
           >
             <div>
               <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-                Pricing for <br />
-                <span className="text-gradient-purple">Maximum </span>Impact
+                {t("pricing.title")} <br />
+                <span className="text-gradient-purple">
+                  {t("pricing.titleHighlight")}{" "}
+                </span>
+                {t("pricing.titleSuffix")}
               </h2>
 
               <p className="text-gray-400 text-base sm:text-lg lg:text-xlss leading-relaxed">
-                The price depends on several key factors to ensure we deliver
-                the best for your specific niche.
+                {t("pricing.description")}
               </p>
             </div>
 
@@ -58,8 +62,7 @@ const PricingSection = () => {
             <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 max-w-md">
               <HelpCircle className="text-purple-400 shrink-0 mt-1" size={20} />
               <p className="text-xs text-gray-500 italic">
-                Our team analyzes your current standing to provide a quote that
-                matches your growth goals exactly.
+                {t("pricing.helpText")}
               </p>
             </div>
           </motion.div>
@@ -75,19 +78,19 @@ const PricingSection = () => {
             <div className="relative bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden">
               <div className="mb-8">
                 <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">
-                  Campaign Plans
+                  {t("pricing.badge")}
                 </span>
                 <h3 className="text-2xl font-bold text-white mt-2">
-                  Custom Strategy
+                  {t("pricing.subtitle")}
                 </h3>
                 <p className="text-gray-500 text-sm mt-1">
-                  Campaigns of 3, 6, or 12 months.
+                  {t("pricing.subtitleDescription")}
                 </p>
               </div>
 
               <div className="mb-8">
                 <div className="text-white text-2xl md:text-4xl font-bold">
-                  Price After Analysis
+                  {t("pricing.priceLabel")}
                 </div>
               </div>
 
@@ -105,7 +108,7 @@ const PricingSection = () => {
               </div>
 
               <button className="w-full py-4 rounded-2xl text-white font-bold gradient-purple glow-card transition-all">
-                Get More Information
+                {t("pricing.button")}
               </button>
 
               <div className="absolute top-[-10%] right-[-10%] opacity-[0.03] rotate-12">
