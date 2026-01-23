@@ -44,8 +44,8 @@ const Header = () => {
       className={`z-100 fixed top-0 w-full transition-all duration-300 shadow-md
       ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl shadow-md border-b border-purple-100"
-          : "bg-white/70"
+          ? "bg-white/30 backdrop-blur-xl shadow-md border-b border-purple-100"
+          : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
@@ -91,7 +91,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="relative text-purple-900 font-medium group"
+                  className="relative font-semibold group"
                 >
                   {item.name}
                   <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-purple-600 group-hover:w-full transition-all" />
