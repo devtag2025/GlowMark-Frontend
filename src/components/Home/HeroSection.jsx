@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative py-28 lg:py-32 overflow-hidden text-white">
+    <section className="relative py-28 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -15,19 +15,19 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          <div className="inline-flex items-center px-4 py-1 rounded-full bg-purple-600 backdrop-blur-md shadow-[0_0_15px_rgba(107,32,122,0.3)]">
-            <Sparkles className="w-4 h-4 text-white mr-2" />
-            <span className="text-sm md:text-base font-semibold text-white">
+          <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
+            <Sparkles className="w-4 h-4 mr-2" />
+            <span className="text-sm md:text-base font-semibold">
               Boost Your Online Visibility
             </span>
           </div>
 
-          <h1 className="text-4xl text-slate-900 md:text-6xl font-extrabold leading-[1.1] tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
             Attract More <span className="text-gradient-purple">Qualified</span>{" "}
             Visitors <br />
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
+          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl">
             Discover for yourself the impact of{" "}
             <strong>Glow Mark Agency</strong> - your site climbs in Google
             rankings quickly and easily
@@ -48,7 +48,6 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Right Visual (The Image with Glass Decorations) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

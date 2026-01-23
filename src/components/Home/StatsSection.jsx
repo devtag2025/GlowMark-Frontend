@@ -65,7 +65,7 @@ const StatsSection = () => {
   }
 
   return (
-    <section className="py-10 md:py-20 bg-white relative">
+    <section className="py-10 md:py-10  relative">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,11 +73,11 @@ const StatsSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-slate-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-4">
             Our Impact in
             <span className="text-gradient-purple"> Numbers</span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-5xl">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-5xl">
             We help brands grow and shine online. These numbers tell the story
             of our results-driven approach.
           </p>
@@ -93,10 +93,10 @@ const StatsSection = () => {
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -8, scale: 1.02 }}
               className="
-                relative overflow-hidden rounded-2xl p-8 text-center gradient-purple shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_20px_40px_-15px_rgba(20,184,166,0.25)]
+                relative overflow-hidden rounded-2xl p-8 text-center gradient-block shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_20px_40px_-15px_rgba(20,184,166,0.25)]
               "
             >
-              <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-24 -left-24 w-48 h-48 bg-white rounded-full blur-3xl pointer-events-none" />
 
               <div className="relative z-10">
                 <div className="text-5xl md:text-6xl font-bold text-white drop-shadow-sm mb-3">

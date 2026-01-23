@@ -16,82 +16,90 @@ const WorkflowSection = () => {
     {
       no: "1",
       title: "Free trial",
-      sub: "You can see for yourself the effectiveness of our solution: your site climbs in Google results, and all this without spending a single euro.",
+      sub: "You can see for yourself the effectiveness of our solution: your site climbs in Google results without spending a single euro.",
       icon: CircleCheck,
     },
     {
       no: "2",
       title: "Analysis",
-      sub: "We start by identifying the strategic keywords for your industry, then you can use our solution to significantly improve your positioning in search results.",
+      sub: "We start by identifying strategic keywords for your industry to significantly improve your positioning.",
       icon: Flag,
     },
     {
       no: "3",
       title: "Free Quote",
-      sub: "We will send you a free, no-obligation quote with the so-called “boostable” keywords for your site, as well as the price of each of them per campaign.",
+      sub: "We send a no-obligation quote with boostable keywords and transparent pricing per campaign.",
       icon: Eye,
     },
     {
       no: "4",
       title: "Tracking",
-      sub: "You will receive a monthly report on your site's Google ranking for your chosen keywords, as well as for other related keywords. Your site's overall ranking by Google will also be improved.",
+      sub: "Receive monthly reports on your ranking for chosen and related keywords. Overall authority will improve.",
       icon: CircleArrowRight,
     },
     {
       no: "5",
       title: "Campaigns",
-      sub: "At Glow Mark Agency, we've decided to work on a campaign basis. Once you're satisfied with your test, you can choose a 3, 6, or 12-month campaign.",
+      sub: "Once satisfied with the test, choose a 3, 6, or 12-month campaign tailored to your goals.",
       icon: SquareCheck,
     },
     {
       no: "6",
       title: "Authority",
-      sub: "Glow Mark Agency improves your website's visibility in search engines by generating high-quality backlinks. These links strengthen your credibility and boost your site's ranking in Google search results.",
+      sub: "We generate high-quality backlinks that strengthen credibility and boost your site's ranking.",
       icon: Star,
     },
   ];
 
   return (
-    <section className="bg-white py-24 text-slate-900 overflow-hidden">
-      <div className="flex flex-col gap-5 justify-center max-w-4xl mx-auto px-6">
-        <div className="bg-purple-600 inline-flex w-fit  text-white font-semibold px-4 py-1 rounded-full text-sm sm:text-base mx-auto">
+    <section className="py-20 overflow-hidden">
+      <div className="flex flex-col gap-5 justify-center max-w-5xl mx-auto px-6">
+        {/* Badge */}
+        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
           How we work
-        </div>{" "}
+        </div>
+
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-slate-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center mt-2">
             Our
-            <span className="text-gradient-purple"> Digital </span>Flow
+            <span className="text-gradient-purple"> Digital</span> Flow
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600">
+
+          <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center mt-4 max-w-5xl">
             Where strategy meets execution, and visibility turns into growth
           </p>
         </div>
+
+        {/* Icons Row */}
         <div className="grid grid-cols-3 md:grid-cols-6 gap-4 relative z-10">
           {steps.map((step, i) => (
-            <div key={i} className="flex flex-col items-center gap-2">
-              <step.icon className="text-purple-600 w-8 h-8" />
-              <p className="text-sm text-slate-600 tracking-tighter text-center">
+            <div key={i} className="flex flex-col items-center gap-3 group">
+              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-purple-500/50 transition-colors duration-500">
+                <step.icon className="text-purple-500 w-6 h-6" />
+              </div>
+              <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest text-center">
                 {step.title}
               </p>
             </div>
           ))}
         </div>
-        <div className="relative h-[250px] w-full mt-2">
+
+        <div className="relative h-[250px] w-full mt-2 flex justify-center">
           <svg
-            className="max-w-3xl h-full"
+            className="w-full max-w-4xl h-full"
             viewBox="0 0 1000 250"
             fill="none"
-            preserveAspectRatio="none"
+            preserveAspectRatio="xMidYMid meet"
           >
             <defs>
               <filter
-                id="purpleGlow"
-                x="-20%"
-                y="-20%"
-                width="140%"
-                height="140%"
+                id="darkPurpleGlow"
+                x="-50%"
+                y="-50%"
+                width="200%"
+                height="200%"
               >
-                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feGaussianBlur stdDeviation="6" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
             </defs>
@@ -101,34 +109,33 @@ const WorkflowSection = () => {
               const endX = 500;
               const pathData = `M ${startX} 0 C ${startX} 150, ${endX} 150, ${endX} 240`;
 
-              const pathLength = 350;
+              // Calculate specific length for smoothness
+              const distance = Math.abs(startX - endX);
+              const calculatedLength = 280 + distance * 0.4;
 
               return (
                 <g key={i}>
                   <path
                     d={pathData}
-                    stroke="#cbd5e1"
+                    stroke="rgba(255,255,255,0.05)" // Subtle dark lines
                     strokeWidth="2"
                     fill="none"
-                    strokeLinecap="round"
                   />
-
                   <motion.path
                     d={pathData}
-                    stroke="#6B207A"
-                    strokeWidth="1"
+                    stroke="#A855F7" // Vibrant purple
+                    strokeWidth="2"
                     strokeLinecap="round"
                     fill="none"
-                    filter="url(#purpleGlow)"
-                    strokeDasharray={pathLength}
-                    initial={{ strokeDashoffset: pathLength }}
-                    animate={{ strokeDashoffset: -pathLength }}
+                    filter="url(#darkPurpleGlow)"
+                    strokeDasharray={calculatedLength}
+                    initial={{ strokeDashoffset: calculatedLength }}
+                    animate={{ strokeDashoffset: -calculatedLength }}
                     transition={{
-                      duration: 1,
+                      duration: 2.5,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      repeatDelay: 1,
-                      delay: 0,
+                      repeatDelay: 0.5,
                     }}
                   />
                 </g>
@@ -138,20 +145,26 @@ const WorkflowSection = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto px-6">
         {steps.map((step) => (
-          <div
+          <motion.div
             key={step.no}
-            className="group flex items-start gap-4 p-6 rounded-2xl bg-white border border-slate-200 hover:border-purple-400 hover:shadow-lg transition-all duration-300"
+            whileHover={{ y: -5 }}
+            className="group flex items-start gap-5 p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-white/[0.08] transition-all duration-500 shadow-2xl"
           >
-            <span className="flex-shrink-0 gradient-purple w-12 h-12 flex items-center justify-center rounded-full text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+            <span className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#6B207A] to-purple-500 text-white font-black text-xl shadow-lg shadow-purple-900/20">
               {step.no}
             </span>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              {step.sub}
-            </p>
-          </div>
+            <div className="space-y-2">
+              <h4 className="text-white font-bold text-lg leading-none">
+                {step.title}
+              </h4>
+              <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                {step.sub}
+              </p>
+            </div>
+          </motion.div>
         ))}
       </div>
     </section>
