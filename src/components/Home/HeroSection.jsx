@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Sparkles, ArrowRight, ChartNoAxesCombined } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative py-28 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
@@ -18,19 +21,21 @@ export default function HeroSection() {
           <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
             <Sparkles className="w-4 h-4 mr-2" />
             <span className="text-sm md:text-base font-semibold">
-              Boost Your Online Visibility
+              {t("hero.badge")}
             </span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
-            Attract More <span className="text-gradient-purple">Qualified</span>{" "}
-            Visitors <br />
+            {t("hero.titlePrefix")}{" "}
+            <span className="text-gradient-purple">
+              {t("hero.titleHighlight")}
+            </span>{" "}
+            {t("hero.titleSuffix")}
+            <br />
           </h1>
 
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl">
-            Discover for yourself the impact of{" "}
-            <strong>Glow Mark Agency</strong> - your site climbs in Google
-            rankings quickly and easily
+            {t("hero.description")}
           </p>
 
           <Link href="/login">
@@ -42,7 +47,7 @@ export default function HeroSection() {
               whileTap={{ scale: 0.95 }}
               className="gradient-purple text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 group transition-all"
             >
-              Book A Demo
+              {t("common.bookADemo")}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </Link>
@@ -72,7 +77,7 @@ export default function HeroSection() {
                 99%
               </div>
               <div className="text-[10px] uppercase tracking-widest font-bold text-gray-300">
-                Search Visibility Reach
+                {t("hero.statLabel")}
               </div>
             </motion.div>
 

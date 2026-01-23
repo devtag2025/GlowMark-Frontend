@@ -2,52 +2,47 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const FAQSection = () => {
+  const { t } = useLanguage();
   const [activeId, setActiveId] = useState(null);
 
   const faqs = [
     {
       id: "1",
-      question: "Can I hope to reach the top spot on Google?",
-      answer:
-        "Reaching the top spot on Google is a bit like aiming for the summit of Mount Everest: it's ambitious, difficult, and requires considerable effort. But with a solid and well-developed SEO strategy, you can truly maximize your chances of ending up at the very top of search results. Nothing is guaranteed, because Google is unpredictable. But by working intelligently on all aspects of your SEO, you increase your chances of becoming one of the 'big players' on the web. 🚀",
+      question: t("faq.q1"),
+      answer: t("faq.a1"),
     },
     {
       id: "2",
-      question: "How long should I expect to wait for a response from you?",
-      answer:
-        "Our team strives to respond as quickly as possible. We are committed to contacting you within 2 business days of receiving your request.",
+      question: t("faq.q2"),
+      answer: t("faq.a2"),
     },
     {
       id: "3",
-      question: "Does requesting a test/quote commit me to anything?",
-      answer:
-        "Don't worry, the test and quote for your site are completely free and without obligation.",
+      question: t("faq.q3"),
+      answer: t("faq.a3"),
     },
     {
       id: "4",
-      question: "Can you promise me a result?",
-      answer:
-        "No one in the industry can realistically promise guaranteed results—Google alone controls its rankings. What we can promise is to do the job properly, apply proven best practices, and work tirelessly to improve your site's visibility and performance in search results.",
+      question: t("faq.q4"),
+      answer: t("faq.a4"),
     },
     {
       id: "5",
-      question: "How can I know if your solution is working?",
-      answer:
-        "You can find it yourself by searching for the keyword we worked on on Google. And of course, you will receive regular reports on the progress of your website's ranking for the chosen keywords.",
+      question: t("faq.q5"),
+      answer: t("faq.a5"),
     },
     {
       id: "6",
-      question: "How long does it take to analyze my website?",
-      answer:
-        "This depends on several factors, such as the number of keywords. Generally, you will receive a quote within 10 business days of our initial contact.",
+      question: t("faq.q6"),
+      answer: t("faq.a6"),
     },
     {
       id: "7",
-      question: "How long does a campaign last?",
-      answer:
-        "We recommend an initial period of 3 months, ideally 6, to achieve stable positions. Afterward, you choose the renewal period: 3, 6, or 12 months.",
+      question: t("faq.q7"),
+      answer: t("faq.a7"),
     },
   ];
 
@@ -64,11 +59,11 @@ const FAQSection = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-6">
-            Frequently Asked{" "}
-            <span className="text-gradient-purple">Questions</span>
+            {t("faq.title")}{" "}
+            <span className="text-gradient-purple">{t("faq.titleHighlight")}</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl">
-            Transparency is the soul of Glow Mark Agency.
+            {t("faq.subtitle")}
           </p>
         </motion.div>
 

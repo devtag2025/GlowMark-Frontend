@@ -1,3 +1,8 @@
+"use client";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 import BlogSection from "@/components/Home/BlogSection";
 import ContactSection from "@/components/Home/ContactSection";
 import FAQSection from "@/components/Home/FAQSection";
@@ -6,16 +11,20 @@ import StatsSection from "@/components/Home/StatsSection";
 import WhoWeAre from "@/components/Home/WhoAreWeSection";
 import WorkflowSection from "@/components/Home/WorkflowSection";
 
-export default function Home() {
+export default function RootPage() {
   return (
-    <div className="min-h-screen overflow-hidden">
-      <HeroSection />
-      <StatsSection />
-      <WhoWeAre />
-      <WorkflowSection />
-      <FAQSection />
-      <BlogSection />
-      <ContactSection />
-    </div>
+    <LanguageProvider initialLang="en">
+      <Header />
+      <div className="min-h-screen overflow-hidden">
+        <HeroSection />
+        <StatsSection />
+        <WhoWeAre />
+        <WorkflowSection />
+        <FAQSection />
+        <BlogSection />
+        <ContactSection />
+      </div>
+      <Footer />
+    </LanguageProvider>
   );
 }

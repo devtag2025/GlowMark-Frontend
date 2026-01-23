@@ -10,8 +10,11 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const ContactSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative bg-[#050505] py-24 overflow-hidden">
       {/* Background Decorative Glows */}
@@ -28,14 +31,13 @@ const ContactSection = () => {
           >
             <div>
               <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-6">
-                Let’s build your <br />
+                {t("contact.titleLine1")} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-red-500">
-                  Digital Authority.
+                  {t("contact.titleHighlight")}
                 </span>
               </h2>
               <p className="text-gray-400 text-lg max-w-md leading-relaxed">
-                Ready to dominate search results? Reach out and let’s start your
-                free audit.
+                {t("contact.description")}
               </p>
             </div>
 
@@ -43,13 +45,17 @@ const ContactSection = () => {
               {[
                 {
                   icon: Mail,
-                  label: "Email us",
+                  label: t("contact.labelEmail"),
                   value: "hello@glowmark.agency",
                 },
-                { icon: Phone, label: "Call us", value: "+1 (555) 000-GLOW" },
+                {
+                  icon: Phone,
+                  label: t("contact.labelPhone"),
+                  value: "+1 (555) 000-GLOW",
+                },
                 {
                   icon: MapPin,
-                  label: "Visit us",
+                  label: t("contact.labelVisit"),
                   value: "Digital Nomad HQ, Web 3.0",
                 },
               ].map((item, i) => (
@@ -96,21 +102,21 @@ const ContactSection = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-400 ml-1">
-                      Name
+                      {t("contact.formName")}
                     </label>
                     <input
                       type="text"
-                      placeholder="John Doe"
+                      placeholder={t("contact.formNamePlaceholder")}
                       className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-400 ml-1">
-                      Email
+                      {t("contact.formEmail")}
                     </label>
                     <input
                       type="email"
-                      placeholder="john@company.com"
+                      placeholder={t("contact.formEmailPlaceholder")}
                       className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                     />
                   </div>
@@ -118,22 +124,28 @@ const ContactSection = () => {
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-400 ml-1">
-                    Subject
+                    {t("contact.formSubject")}
                   </label>
                   <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all appearance-none">
-                    <option className="bg-[#050505]">Free SEO Audit</option>
-                    <option className="bg-[#050505]">Campaign Inquiry</option>
-                    <option className="bg-[#050505]">General Question</option>
+                    <option className="bg-[#050505]">
+                      {t("contact.formSubjectAudit")}
+                    </option>
+                    <option className="bg-[#050505]">
+                      {t("contact.formSubjectCampaign")}
+                    </option>
+                    <option className="bg-[#050505]">
+                      {t("contact.formSubjectGeneral")}
+                    </option>
                   </select>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-400 ml-1">
-                    Message
+                    {t("contact.formMessage")}
                   </label>
                   <textarea
                     rows="4"
-                    placeholder="How can we help?"
+                    placeholder={t("contact.formMessagePlaceholder")}
                     className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all resize-none"
                   ></textarea>
                 </div>
@@ -146,7 +158,7 @@ const ContactSection = () => {
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-gradient-to-r from-[#6B207A] to-[#FF1A1A] text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all"
                 >
-                  Send Message
+                  {t("contact.sendMessage")}
                   <Send
                     size={18}
                     className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
