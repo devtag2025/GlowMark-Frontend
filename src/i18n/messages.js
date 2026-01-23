@@ -104,15 +104,36 @@
        a7:
          "We recommend an initial period of 3 months, ideally 6, to achieve stable positions. Afterward, you choose the renewal period: 3, 6, or 12 months.",
      },
-     blog: {
-       badge: "Blog packed with value",
-       title: "Read Our",
-       titleHighlight: "Latest",
-       titleSuffix: "Articles",
-       description:
-         "Stay ahead of the curve: latest trends, actionable tips, and deep dives into SEO for digital products.",
-     },
-     contact: {
+    blog: {
+      badge: "Blog packed with value",
+      title: "Read Our",
+      titleHighlight: "Latest",
+      titleSuffix: "Articles",
+      description:
+        "Stay ahead of the curve: latest trends, actionable tips, and deep dives into SEO for digital products.",
+      viewAll: "View All Articles",
+    },
+    blogPage: {
+      titlePrefix: "Our",
+      titleHighlight: "Blogs",
+      description: "Discover insights, tips, and strategies to grow your online presence",
+    },
+    blogPost: {
+      backToBlogs: "Back to all blogs",
+      overview: "Overview",
+      published: "Published",
+      readTime: "Read time",
+      tags: "Tags",
+      ctaText: "Want to implement these strategies for your business?",
+      ctaButton: "Get a Free Audit",
+      fallbackIntro: "In this article, we explore {title} and how you can apply these ideas to create a stronger, more memorable online presence.",
+      fallbackBody: "We'll break down the key concepts behind this topic, walk through real-world examples, and highlight common pitfalls to avoid. Our goal is to give you a practical, implementation-focused guide so you can ship better experiences, faster.",
+      fallbackOutro: "If you're looking for support implementing strategies like these, Glow Mark Agency can help you plan, design, and launch high-performing pages tailored to your goals.",
+      bottomCtaTitle: "Ready to boost your online presence?",
+      bottomCtaDescription: "Let our experts help you implement these strategies and achieve measurable results.",
+      bottomCtaButton: "Start Your Free Trial",
+    },
+    contact: {
        titleLine1: "Let’s build your",
        titleHighlight: "Digital Authority.",
        description:
@@ -238,16 +259,37 @@
        a7:
          "Nous recommandons une première période de 3 mois, idéalement 6, pour stabiliser les positions. Ensuite, vous choisissez la durée de renouvellement : 3, 6 ou 12 mois.",
      },
-     blog: {
-       badge: "Un blog plein de valeur",
-       title: "Lisez nos",
-       titleHighlight: "derniers",
-       titleSuffix: "articles",
-       description:
-         "Restez en avance : dernières tendances, conseils actionnables et analyses approfondies du SEO pour les produits digitaux.",
-     },
-     contact: {
-       titleLine1: "Construisons votre",
+    blog: {
+      badge: "Un blog plein de valeur",
+      title: "Lisez nos",
+      titleHighlight: "derniers",
+      titleSuffix: "articles",
+      description:
+        "Restez en avance : dernières tendances, conseils actionnables et analyses approfondies du SEO pour les produits digitaux.",
+      viewAll: "Voir tous les articles",
+    },
+    blogPage: {
+      titlePrefix: "Nos",
+      titleHighlight: "Blogs",
+      description: "Découvrez des conseils, astuces et stratégies pour développer votre présence en ligne",
+    },
+    blogPost: {
+      backToBlogs: "Retour aux blogs",
+      overview: "Aperçu",
+      published: "Publié",
+      readTime: "Temps de lecture",
+      tags: "Tags",
+      ctaText: "Vous souhaitez mettre en œuvre ces stratégies pour votre entreprise ?",
+      ctaButton: "Obtenez un audit gratuit",
+      fallbackIntro: "Dans cet article, nous explorons {title} et comment vous pouvez appliquer ces idées pour créer une présence en ligne plus forte et plus mémorable.",
+      fallbackBody: "Nous décomposerons les concepts clés de ce sujet, parcourrons des exemples concrets et mettrons en lumière les erreurs courantes à éviter. Notre objectif est de vous donner un guide pratique et orienté vers la mise en œuvre.",
+      fallbackOutro: "Si vous cherchez un accompagnement pour mettre en œuvre des stratégies comme celles-ci, Glow Mark Agency peut vous aider à planifier, concevoir et lancer des pages performantes adaptées à vos objectifs.",
+      bottomCtaTitle: "Prêt à booster votre présence en ligne ?",
+      bottomCtaDescription: "Laissez nos experts vous aider à mettre en œuvre ces stratégies et à obtenir des résultats mesurables.",
+      bottomCtaButton: "Commencez votre essai gratuit",
+    },
+    contact: {
+      titleLine1: "Construisons votre",
        titleHighlight: "autorité digitale.",
        description:
          "Prêt à dominer les résultats de recherche ? Contactez‑nous et commençons votre audit gratuit.",
@@ -372,16 +414,37 @@
        a7:
          "We raden een eerste periode van 3 maanden aan, idealiter 6, om stabiele posities te bereiken. Daarna kies je zelf de verlengingsduur: 3, 6 of 12 maanden.",
      },
-     blog: {
-       badge: "Een blog vol waarde",
-       title: "Lees onze",
-       titleHighlight: "laatste",
-       titleSuffix: "artikelen",
-       description:
-         "Blijf voorop: de nieuwste trends, praktische tips en diepgaande inzichten in SEO voor digitale producten.",
-     },
-     contact: {
-       titleLine1: "Laten we jouw",
+    blog: {
+      badge: "Een blog vol waarde",
+      title: "Lees onze",
+      titleHighlight: "laatste",
+      titleSuffix: "artikelen",
+      description:
+        "Blijf voorop: de nieuwste trends, praktische tips en diepgaande inzichten in SEO voor digitale producten.",
+      viewAll: "Bekijk alle artikelen",
+    },
+    blogPage: {
+      titlePrefix: "Onze",
+      titleHighlight: "Blogs",
+      description: "Ontdek inzichten, tips en strategieën om je online aanwezigheid te laten groeien",
+    },
+    blogPost: {
+      backToBlogs: "Terug naar alle blogs",
+      overview: "Overzicht",
+      published: "Gepubliceerd",
+      readTime: "Leestijd",
+      tags: "Tags",
+      ctaText: "Wil je deze strategieën toepassen voor jouw bedrijf?",
+      ctaButton: "Krijg een gratis audit",
+      fallbackIntro: "In dit artikel verkennen we {title} en hoe je deze ideeën kunt toepassen om een sterkere, meer memorabele online aanwezigheid te creëren.",
+      fallbackBody: "We ontleden de belangrijkste concepten achter dit onderwerp, doorlopen praktijkvoorbeelden en belichten veelgemaakte fouten die je kunt vermijden. Ons doel is je een praktische, implementatiegerichte gids te geven.",
+      fallbackOutro: "Als je ondersteuning zoekt bij het implementeren van strategieën zoals deze, kan Glow Mark Agency je helpen bij het plannen, ontwerpen en lanceren van goed presterende pagina's, afgestemd op jouw doelen.",
+      bottomCtaTitle: "Klaar om je online aanwezigheid te boosten?",
+      bottomCtaDescription: "Laat onze experts je helpen deze strategieën te implementeren en meetbare resultaten te behalen.",
+      bottomCtaButton: "Start je gratis proefperiode",
+    },
+    contact: {
+      titleLine1: "Laten we jouw",
        titleHighlight: "digitale autoriteit opbouwen.",
        description:
          "Klaar om de zoekresultaten te domineren? Neem contact op en laten we starten met je gratis audit.",

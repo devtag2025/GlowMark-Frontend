@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
 }
 
 @layer utilities {
@@ -43,6 +45,24 @@
       0 0 20px rgba(124, 58, 237, 0.3),
       0 0 40px rgba(168, 85, 247, 0.2);
     transform: translateY(-4px);
+  }
+
+  .morphism-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    box-shadow: 
+      0 20px 40px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .morphism-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 
+      0 24px 60px rgba(124, 58, 237, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
 }
 
@@ -129,6 +149,9 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background: #6b207a;
   }
+}
+.soft-blur {
+  filter: blur(30px);
 }
 
 body {
