@@ -50,7 +50,7 @@ const FAQSection = () => {
 
   return (
     <section id="faq" className="py-24">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="px-6">
         <motion.div
           className="text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
@@ -58,11 +58,13 @@ const FAQSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-6">
+          <h2 className="text-4xl md:text-6xl font-extrabold mb-6">
             {t("faq.title")}{" "}
-            <span className="text-gradient-purple">{t("faq.titleHighlight")}</span>
+            <span className="text-gradient-purple">
+              {t("faq.titleHighlight")}
+            </span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center">
             {t("faq.subtitle")}
           </p>
         </motion.div>
@@ -78,7 +80,7 @@ const FAQSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: Number(faq.id) * 0.05 }}
-                className={`overflow-hidden rounded-2xl border transition-all duration-300 hover:bg-purple-200 ${
+                className={`max-w-3xl mx-auto overflow-hidden rounded-2xl border transition-all duration-300 hover:bg-purple-200 ${
                   isOpen
                     ? "border-purple-200 bg-purple-200 shadow-md shadow-purple-300"
                     : "border-slate-300 bg-white"
