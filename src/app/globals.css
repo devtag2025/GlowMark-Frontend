@@ -69,6 +69,9 @@
     background: #6b207a;
   }
 }
+.soft-blur {
+  filter: blur(30px);
+}
 
 body {
   background: var(--background);

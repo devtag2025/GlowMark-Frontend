@@ -56,8 +56,7 @@ const Header = () => {
     },
     {
       key: "header.blog",
-      href: (currentLang) =>
-        currentLang === "en" ? "/blog" : `/${currentLang}/blog`,
+      href: (currentLang) => `/${currentLang}/blog`,
     },
     {
       key: "header.pricing",
