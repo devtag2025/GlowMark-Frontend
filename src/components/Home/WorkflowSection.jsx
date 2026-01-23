@@ -10,43 +10,45 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import React from "react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const WorkflowSection = () => {
+  const { t } = useLanguage();
   const steps = [
     {
       no: "1",
-      title: "Free trial",
-      sub: "You can see for yourself the effectiveness of our solution: your site climbs in Google results without spending a single euro.",
+      title: t("workflow.step1Title"),
+      sub: t("workflow.step1Sub"),
       icon: CircleCheck,
     },
     {
       no: "2",
-      title: "Analysis",
-      sub: "We start by identifying strategic keywords for your industry to significantly improve your positioning.",
+      title: t("workflow.step2Title"),
+      sub: t("workflow.step2Sub"),
       icon: Flag,
     },
     {
       no: "3",
-      title: "Free Quote",
-      sub: "We send a no-obligation quote with boostable keywords and transparent pricing per campaign.",
+      title: t("workflow.step3Title"),
+      sub: t("workflow.step3Sub"),
       icon: Eye,
     },
     {
       no: "4",
-      title: "Tracking",
-      sub: "Receive monthly reports on your ranking for chosen and related keywords. Overall authority will improve.",
+      title: t("workflow.step4Title"),
+      sub: t("workflow.step4Sub"),
       icon: CircleArrowRight,
     },
     {
       no: "5",
-      title: "Campaigns",
-      sub: "Once satisfied with the test, choose a 3, 6, or 12-month campaign tailored to your goals.",
+      title: t("workflow.step5Title"),
+      sub: t("workflow.step5Sub"),
       icon: SquareCheck,
     },
     {
       no: "6",
-      title: "Authority",
-      sub: "We generate high-quality backlinks that strengthen credibility and boost your site's ranking.",
+      title: t("workflow.step6Title"),
+      sub: t("workflow.step6Sub"),
       icon: Star,
     },
   ];
@@ -56,17 +58,20 @@ const WorkflowSection = () => {
       <div className="flex flex-col gap-5 justify-center max-w-5xl mx-auto px-6">
         {/* Badge */}
         <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
-          How we work
+          {t("workflow.badge")}
         </div>
 
         <div className="text-center mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center mt-2">
-            Our
-            <span className="text-gradient-purple"> Digital</span> Flow
+            {t("workflow.title")}{" "}
+            <span className="text-gradient-purple">
+              {t("workflow.titleHighlight")}
+            </span>{" "}
+            {t("workflow.titleSuffix")}
           </h2>
 
           <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center mt-4 max-w-5xl">
-            Where strategy meets execution, and visibility turns into growth
+            {t("workflow.description")}
           </p>
         </div>
 

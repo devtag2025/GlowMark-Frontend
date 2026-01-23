@@ -1,7 +1,8 @@
 "use client";
-
+// *** End Patch】}Eassistant to=functions.ApplyPatch विधानसभा	RTLRassistant to=functions.ApplyPatch کررhajsoninputNote error. Need proper patch content. Let's redo. We'll replace first line exactly \"use client\"; with "use client";. Need correct context. Use Read to see first lines. But we saw same: \"use client\";. We can patch. Need header: *** Update File etc and one hunk. Let's call tool. We'll correct. !***assistant to=functions.ApplyPatch	RTLRassistant to=functions.ApplyPatch	RTLUെയുള്ളjson input is malformed earlier; I'll craft now. We'll patch WhoAreWeSection and WorkflowSection in one ApplyPatch? spec says one file per call. So do two calls. First WhoAreWeSection. We'll change first line. Let's call. !***assistant to=functions.ApplyPatch нефтjsoninput ***!
 import { Lightbulb, Users, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const containerVariants = {
   hidden: {},
@@ -28,20 +29,21 @@ const cardVariants = {
 };
 
 const WhoWeAre = () => {
+  const { t } = useLanguage();
   const features = [
     {
-      title: "Communication & Marketing",
-      subtitle: "A service approaching excellence",
+      title: t("whoWeAre.feature1Title"),
+      subtitle: t("whoWeAre.feature1Subtitle"),
       icon: <Users className="w-8 h-8" />,
     },
     {
-      title: "Innovation",
-      subtitle: "Continuously learning and adapting",
+      title: t("whoWeAre.feature2Title"),
+      subtitle: t("whoWeAre.feature2Subtitle"),
       icon: <Lightbulb className="w-8 h-8" />,
     },
     {
-      title: "Experience",
-      subtitle: "Over ten years of expertise",
+      title: t("whoWeAre.feature3Title"),
+      subtitle: t("whoWeAre.feature3Subtitle"),
       icon: <BookOpen className="w-8 h-8" />,
     },
   ];
@@ -56,18 +58,16 @@ const WhoWeAre = () => {
         className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6"
       >
         <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
-          Who are We?
+          {t("whoWeAre.badge")}
         </div>
 
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center mt-2">
-          <span className="text-gradient-purple">Glow Mark</span> Agency
+          <span className="text-gradient-purple">{t("whoWeAre.title")}</span>{" "}
+          {t("whoWeAre.titleSuffix")}
         </h2>
 
         <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center mt-4 max-w-5xl">
-          Glow Mark Agency transforms your online visibility with years of
-          expertise in communication and SEO. Innovative strategies, targeted
-          optimization, and measurable results propel your brand to the top of
-          search engines while capturing your audience.
+          {t("whoWeAre.intro")}
         </p>
 
         {/* Feature Cards */}
@@ -93,8 +93,7 @@ const WhoWeAre = () => {
         </motion.div>
 
         <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl mt-6">
-          With a degree in Com & Marketing and over ten years of experience
-          under our belt, you can be assured that you are in good hands with us.
+          {t("whoWeAre.outro")}
         </p>
       </motion.div>
     </section>

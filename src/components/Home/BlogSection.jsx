@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const containerVariants = {
   hidden: {},
@@ -28,6 +29,7 @@ const cardVariants = {
 };
 
 const BlogSection = () => {
+  const { t } = useLanguage();
   const blogs = [
     {
       id: "1",
@@ -62,16 +64,18 @@ const BlogSection = () => {
         className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6"
       >
         <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
-          Blog packed with value
+          {t("blog.badge")}
         </div>
 
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center">
-          Read Our <span className="text-gradient-purple">Latest </span>{" "}
-          Articles
+          {t("blog.title")}{" "}
+          <span className="text-gradient-purple">
+            {t("blog.titleHighlight")}{" "}
+          </span>
+          {t("blog.titleSuffix")}
         </h2>
         <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl">
-          Stay ahead of the curve: latest trends, actionable tips, and deep
-          dives into SEO for digital products.
+          {t("blog.description")}
         </p>
         <motion.div
           variants={containerVariants}

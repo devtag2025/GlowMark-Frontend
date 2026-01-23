@@ -2,23 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const StatsSection = () => {
+  const { t } = useLanguage();
   const stats = [
     {
       value: 98,
       suffix: "%",
-      desc: "Boosted To the First Page of Google",
+      desc: t("stats.card1Desc"),
     },
     {
       value: 99,
       suffix: "%",
-      desc: "Higher in Google Rankings",
+      desc: t("stats.card2Desc"),
     },
     {
-      value: 20000, // FIXED: Changed "20,000" (string) to 20000 (number)
+      value: 20000,
       suffix: "+",
-      desc: "Free Trials Requested",
+      desc: t("stats.card3Desc"),
     },
   ];
 
@@ -74,12 +76,13 @@ const StatsSection = () => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-4">
-            Our Impact in
-            <span className="text-gradient-purple"> Numbers</span>
+            {t("stats.title")}{" "}
+            <span className="text-gradient-purple">
+              {t("stats.titleHighlight")}
+            </span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-5xl">
-            We help brands grow and shine online. These numbers tell the story
-            of our results-driven approach.
+            {t("stats.description")}
           </p>
         </motion.div>
 
