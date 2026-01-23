@@ -4,10 +4,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function BlogCard({ blog, index, locale = "en" }) {
+  const { t } = useLanguage();
+  
   // Build the link path based on whether locale is provided
   const blogLink = locale ? `/${locale}/blog/${blog.slug}` : `/blog/${blog.slug}`;
+
+  // Get translated title and excerpt if available
+  const title = blog.titles?.[locale] || blog.title;
+  const excerpt = blog.excerpts?.[locale] || blog.excerpt;
 
   return (
     <motion.article
@@ -50,7 +57,7 @@ export default function BlogCard({ blog, index, locale = "en" }) {
         >
           <Image
             src={blog.image}
-            alt={blog.title}
+            alt={title}
             fill
             className="object-cover transition-all duration-300 group-hover/image:scale-110 group-hover/image:soft-blur"
           />
@@ -59,7 +66,7 @@ export default function BlogCard({ blog, index, locale = "en" }) {
           {/* "View Post" text overlay - appears on hover */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 z-10">
             <span className="text-white font-semibold text-lg px-4 py-2 bg-black/40 backdrop-blur-sm rounded-lg">
-              View Post
+              {t("blogCard.viewPost")}
             </span>
           </div>
         </motion.div>
@@ -80,12 +87,12 @@ export default function BlogCard({ blog, index, locale = "en" }) {
 
         {/* Title */}
         <h3 className="text-lg font-semibold text-white mb-1 leading-snug line-clamp-2 group-hover:text-gradient-purple transition-colors">
-          {blog.title}
+          {title}
         </h3>
 
         {/* Excerpt */}
         <p className="text-sm text-gray-300 leading-relaxed line-clamp-2 flex-grow">
-          {blog.excerpt}
+          {excerpt}
         </p>
       </div>
     </motion.article>
