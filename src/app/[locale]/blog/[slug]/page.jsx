@@ -25,8 +25,8 @@ export default function BlogPostPage() {
   // Parse content into sections for better rendering
   const renderContent = (text) => {
     if (!text) return null;
-    
-    const lines = text.split('\n');
+
+    const lines = text.split("\n");
     const elements = [];
     let currentList = [];
     let listType = null;
@@ -41,7 +41,7 @@ export default function BlogPostPage() {
                 <span>{item}</span>
               </li>
             ))}
-          </ul>
+          </ul>,
         );
         currentList = [];
         listType = null;
@@ -50,14 +50,16 @@ export default function BlogPostPage() {
 
     lines.forEach((line, index) => {
       const trimmedLine = line.trim();
-      
+
       if (!trimmedLine) {
         flushList();
         return;
       }
 
       // Check for list items (various formats)
-      const listMatch = trimmedLine.match(/^(?:[-•✅✔❌💡🚀💰🎯🔥🔎]|\d+\.)\s*(.+)/);
+      const listMatch = trimmedLine.match(
+        /^(?:[-•✅✔❌💡🚀💰🎯🔥🔎]|\d+\.)\s*(.+)/,
+      );
       if (listMatch) {
         currentList.push(listMatch[1] || trimmedLine.slice(2));
         return;
@@ -68,9 +70,12 @@ export default function BlogPostPage() {
       // Check for main title (first line, usually)
       if (index === 0 && trimmedLine.length > 20) {
         elements.push(
-          <h1 key={`title-${index}`} className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h1
+            key={`title-${index}`}
+            className="text-3xl md:text-4xl font-bold text-white mb-6"
+          >
             {trimmedLine}
-          </h1>
+          </h1>,
         );
         return;
       }
@@ -79,19 +84,29 @@ export default function BlogPostPage() {
       const headerMatch = trimmedLine.match(/^(\d+)\.\s*(.+)/);
       if (headerMatch && trimmedLine.length < 80) {
         elements.push(
-          <h2 key={`h2-${index}`} className="text-xl md:text-2xl font-semibold text-white mt-10 mb-4">
-            <span className="text-gradient-purple">{headerMatch[1]}.</span> {headerMatch[2]}
-          </h2>
+          <h2
+            key={`h2-${index}`}
+            className="text-xl md:text-2xl font-semibold text-white mt-10 mb-4"
+          >
+            <span className="text-gradient-purple">{headerMatch[1]}.</span>{" "}
+            {headerMatch[2]}
+          </h2>,
         );
         return;
       }
 
       // Check for subheaders (questions or short impactful lines)
-      if (trimmedLine.endsWith('?') || (trimmedLine.length < 60 && !trimmedLine.includes('.'))) {
+      if (
+        trimmedLine.endsWith("?") ||
+        (trimmedLine.length < 60 && !trimmedLine.includes("."))
+      ) {
         elements.push(
-          <h3 key={`h3-${index}`} className="text-lg md:text-xl font-semibold text-white mt-8 mb-3">
+          <h3
+            key={`h3-${index}`}
+            className="text-lg md:text-xl font-semibold text-white mt-8 mb-3"
+          >
             {trimmedLine}
-          </h3>
+          </h3>,
         );
         return;
       }
@@ -100,7 +115,7 @@ export default function BlogPostPage() {
       elements.push(
         <p key={`p-${index}`} className="text-gray-300 leading-relaxed mb-4">
           {trimmedLine}
-        </p>
+        </p>,
       );
     });
 
@@ -116,7 +131,7 @@ export default function BlogPostPage() {
 
         <article className="max-w-6xl mx-auto px-6 pb-24 pt-6">
           {/* Back link */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4 }}
@@ -132,7 +147,7 @@ export default function BlogPostPage() {
           </motion.div>
 
           {/* Hero section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -150,7 +165,7 @@ export default function BlogPostPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
               {/* Category pill */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -172,7 +187,7 @@ export default function BlogPostPage() {
             {/* Meta + quick info */}
             <div className="flex flex-col gap-6">
               {/* Overview card */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -188,7 +203,7 @@ export default function BlogPostPage() {
               </motion.div>
 
               {/* Meta info card */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -227,7 +242,7 @@ export default function BlogPostPage() {
               </motion.div>
 
               {/* CTA card */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
@@ -236,7 +251,7 @@ export default function BlogPostPage() {
                 <p className="text-sm text-gray-300 mb-4">
                   {t("blogPost.ctaText")}
                 </p>
-                <Link 
+                <Link
                   href={`/${lang}#contact`}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gradient-purple text-white text-sm font-medium hover:opacity-90 transition-opacity"
                 >
@@ -247,7 +262,7 @@ export default function BlogPostPage() {
           </motion.div>
 
           {/* Body content */}
-          <motion.section 
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -270,7 +285,7 @@ export default function BlogPostPage() {
             </div>
 
             {/* Bottom CTA */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -282,7 +297,7 @@ export default function BlogPostPage() {
               <p className="text-gray-400 mb-6 max-w-lg mx-auto">
                 {t("blogPost.bottomCtaDescription")}
               </p>
-              <Link 
+              <Link
                 href={`/${lang}#contact`}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full gradient-purple text-white font-medium hover:opacity-90 transition-opacity"
               >

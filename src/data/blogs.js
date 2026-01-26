@@ -234,7 +234,8 @@ Wil je jouw website naar een hoger niveau tillen met een sterke SEO-strategie? W
       fr: "SEO à Bruxelles : Boostez la visibilité de votre entreprise locale",
       nl: "SEO in Brussel: Vergroot de zichtbaarheid van uw lokale bedrijf",
     },
-    excerpt: "In a dynamic and competitive city like Brussels, it's essential for businesses to stand out online. Discover how local SEO can help you attract customers in your region.",
+    excerpt:
+      "In a dynamic and competitive city like Brussels, it's essential for businesses to stand out online. Discover how local SEO can help you attract customers in your region.",
     excerpts: {
       en: "In a dynamic and competitive city like Brussels, it's essential for businesses to stand out online. Discover how local SEO can help you attract customers in your region.",
       fr: "Dans une ville aussi dynamique et compétitive que Bruxelles, il est essentiel pour les entreprises de se démarquer en ligne. Découvrez comment le SEO local peut vous aider à attirer des clients dans votre région.",
@@ -532,7 +533,8 @@ Laat uw concurrenten u niet inhalen. Investeer vandaag in SEO en maak van uw web
       fr: "Les bases du SEO : Comment bien débuter ?",
       nl: "De basisprincipes van SEO: Hoe goed beginnen?",
     },
-    excerpt: "SEO is essential for anyone who wants to improve their website's visibility on search engines like Google. Learn the fundamentals and start building a solid SEO foundation.",
+    excerpt:
+      "SEO is essential for anyone who wants to improve their website's visibility on search engines like Google. Learn the fundamentals and start building a solid SEO foundation.",
     excerpts: {
       en: "SEO is essential for anyone who wants to improve their website's visibility on search engines like Google. Learn the fundamentals and start building a solid SEO foundation.",
       fr: "Le SEO est essentiel pour toute personne souhaitant améliorer la visibilité de son site web sur les moteurs de recherche. Apprenez les fondamentaux et commencez à construire une base SEO solide.",
@@ -836,7 +838,8 @@ SEO kan in het begin complex lijken, maar met de juiste praktijken en wat geduld
       fr: "Pourquoi le SEO local est crucial pour les petites entreprises ?",
       nl: "Waarom is lokale SEO cruciaal voor kleine bedrijven?",
     },
-    excerpt: "In an increasingly digital world, small businesses must be inventive to attract local customers. Discover why local SEO is essential and how it can transform your online visibility.",
+    excerpt:
+      "In an increasingly digital world, small businesses must be inventive to attract local customers. Discover why local SEO is essential and how it can transform your online visibility.",
     excerpts: {
       en: "In an increasingly digital world, small businesses must be inventive to attract local customers. Discover why local SEO is essential and how it can transform your online visibility.",
       fr: "Dans un monde de plus en plus digitalisé, les petites entreprises doivent rivaliser d'ingéniosité pour attirer les clients locaux. Découvrez pourquoi le SEO local est essentiel.",
@@ -1085,7 +1088,8 @@ Wat wacht je nog op om de lokale ster op Google te worden? 🚀`,
       fr: "Comment le SEO peut améliorer la conversion",
       nl: "Hoe SEO de conversie verbetert",
     },
-    excerpt: "In today's digital world, having a website is not enough. You need to attract visitors and convert them into customers. Discover how SEO can transform your website into a lead and sales machine.",
+    excerpt:
+      "In today's digital world, having a website is not enough. You need to attract visitors and convert them into customers. Discover how SEO can transform your website into a lead and sales machine.",
     excerpts: {
       en: "In today's digital world, having a website is not enough. You need to attract visitors and convert them into customers. Discover how SEO can transform your website into a lead and sales machine.",
       fr: "Dans le monde digital d'aujourd'hui, avoir un site web ne suffit pas. Vous devez attirer des visiteurs et les convertir en clients. Découvrez comment le SEO peut transformer votre site en machine à leads.",
@@ -1311,7 +1315,8 @@ Hulp nodig bij het optimaliseren van je site? Neem vandaag nog contact met ons o
       fr: "Optimisation du taux de conversion : Stratégies basées sur les données",
       nl: "Conversie-optimalisatie: Data-gedreven strategieën",
     },
-    excerpt: "Transform your website visitors into customers with proven CRO techniques backed by real data and analytics.",
+    excerpt:
+      "Transform your website visitors into customers with proven CRO techniques backed by real data and analytics.",
     excerpts: {
       en: "Transform your website visitors into customers with proven CRO techniques backed by real data and analytics.",
       fr: "Transformez les visiteurs de votre site web en clients grâce à des techniques de CRO éprouvées, soutenues par des données réelles et des analyses.",
