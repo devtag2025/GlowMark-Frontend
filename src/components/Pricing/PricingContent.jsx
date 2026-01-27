@@ -25,7 +25,7 @@ const PricingContent = () => {
         elements.push(
           <ul key={`list-${elements.length}`} className="space-y-2 my-4">
             {currentList.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-gray-300">
+              <li key={i} className="flex items-start gap-3 text-theme-secondary">
                 <span className="text-purple-400 mt-1">•</span>
                 <span>{item}</span>
               </li>
@@ -50,7 +50,7 @@ const PricingContent = () => {
         elements.push(
           <h2
             key={`h2-${index}`}
-            className="text-xl md:text-2xl font-semibold text-white mt-10 mb-4"
+            className="text-xl md:text-2xl font-semibold text-theme mt-10 mb-4"
           >
             <span className="text-gradient-purple">{headerMatch[1]}.</span>{" "}
             {headerMatch[2]}
@@ -76,7 +76,7 @@ const PricingContent = () => {
         elements.push(
           <h3
             key={`h3-${index}`}
-            className="text-lg md:text-xl font-semibold text-white mt-8 mb-3"
+            className="text-lg md:text-xl font-semibold text-theme mt-8 mb-3"
           >
             {trimmedLine}
           </h3>,
@@ -86,7 +86,7 @@ const PricingContent = () => {
 
       // ✅ Paragraph
       elements.push(
-        <p key={`p-${index}`} className="text-gray-300 leading-relaxed mb-4">
+        <p key={`p-${index}`} className="text-theme-secondary leading-relaxed mb-4">
           {trimmedLine}
         </p>,
       );
@@ -97,14 +97,14 @@ const PricingContent = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-white">
+    <main className="min-h-screen bg-[var(--background)] text-theme">
       <div className="h-24" />
 
       <article className="max-w-5xl mx-auto px-6 pb-24 pt-6">
         <div className="mb-8 flex items-center gap-2 text-sm text-gray-400">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-theme-secondary hover:text-theme transition-colors"
           >
             <span className="text-lg">&#8592;</span>
             <span>Back to Home</span>
@@ -112,7 +112,7 @@ const PricingContent = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr,1fr] gap-10 mb-12">
-          <div className="relative w-full h-72 sm:h-80 lg:h-96 rounded-3xl overflow-hidden border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.9)]">
+          <div className="relative w-full h-72 sm:h-80 lg:h-96 rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-lg">
             <Image
               src="/pricing.png"
               alt="Pricing"
@@ -155,10 +155,10 @@ const PricingContent = () => {
               viewport={{ once: true }}
               className="mt-16 p-8 rounded-3xl glow-card text-center"
             >
-              <h3 className="text-2xl font-bold text-white mb-3">
+              <h3 className="text-2xl font-bold text-theme mb-3">
                 {t("blogPost.bottomCtaTitle")}
               </h3>
-              <p className="text-gray-400 mb-6 max-w-lg mx-auto">
+              <p className="text-theme-muted mb-6 max-w-lg mx-auto">
                 {t("blogPost.bottomCtaDescription")}
               </p>
               <Link

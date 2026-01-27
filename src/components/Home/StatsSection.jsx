@@ -80,7 +80,7 @@ const StatsSection = () => {
               {t("stats.titleHighlight")}
             </span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-5xl">
+          <p className="text-base sm:text-lg lg:text-xl text-theme-muted max-w-5xl">
             {t("stats.description")}
           </p>
         </motion.div>

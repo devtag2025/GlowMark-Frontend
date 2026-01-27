@@ -156,6 +156,44 @@ export const messages = {
       titleHighlight: "Pricing",
       description: "How much does an SEO service cost at Glow Mark Agency?",
     },
+    blogPage: {
+      titlePrefix: "Our",
+      titleHighlight: "Blog",
+      description:
+        "Insights, tips, and strategies to boost your online presence and dominate search results.",
+    },
+    blogCard: {
+      viewPost: "View Post",
+    },
+    blogPost: {
+      backToBlogs: "Back to all articles",
+      overview: "Overview",
+      published: "Published",
+      readTime: "Read time",
+      tags: "Tags",
+      ctaText: "Want to improve your SEO and climb the rankings?",
+      ctaButton: "Get in touch",
+      fallbackIntro:
+        "This article about {title} explores key strategies and insights for improving your online presence.",
+      fallbackBody:
+        "At Glow Mark Agency, we specialize in helping businesses like yours achieve better visibility and attract more qualified visitors through proven SEO techniques.",
+      fallbackOutro:
+        "Contact us today to learn how we can help you reach your digital marketing goals.",
+      bottomCtaTitle: "Ready to boost your visibility?",
+      bottomCtaDescription:
+        "Let our experts analyze your site and create a custom strategy to get you to the top of Google.",
+      bottomCtaButton: "Start your free audit",
+    },
+    seo: {
+      sidebarTitle: "SEO Articles",
+      backToHome: "Back to home",
+      previous: "Previous",
+      next: "Next",
+      ctaTitle: "Ready to boost your visibility?",
+      ctaDescription:
+        "Let our experts analyze your site and create a custom strategy to get you to the top of Google.",
+      ctaButton: "Start your free audit",
+    },
   },
 
   fr: {
@@ -315,6 +353,44 @@ export const messages = {
       titleHighlight: "Tarifs",
       description: "Combien coûte une prestation SEO chez Glow Mark Agency ?",
     },
+    blogPage: {
+      titlePrefix: "Notre",
+      titleHighlight: "Blog",
+      description:
+        "Conseils, astuces et stratégies pour booster votre présence en ligne et dominer les résultats de recherche.",
+    },
+    blogCard: {
+      viewPost: "Voir l'article",
+    },
+    blogPost: {
+      backToBlogs: "Retour aux articles",
+      overview: "Aperçu",
+      published: "Publié le",
+      readTime: "Temps de lecture",
+      tags: "Tags",
+      ctaText: "Vous souhaitez améliorer votre SEO et grimper dans les classements ?",
+      ctaButton: "Contactez-nous",
+      fallbackIntro:
+        "Cet article sur {title} explore des stratégies et des informations clés pour améliorer votre présence en ligne.",
+      fallbackBody:
+        "Chez Glow Mark Agency, nous aidons les entreprises comme la vôtre à obtenir une meilleure visibilité et à attirer des visiteurs plus qualifiés grâce à des techniques SEO éprouvées.",
+      fallbackOutro:
+        "Contactez-nous dès aujourd'hui pour découvrir comment nous pouvons vous aider à atteindre vos objectifs de marketing digital.",
+      bottomCtaTitle: "Prêt à booster votre visibilité ?",
+      bottomCtaDescription:
+        "Laissez nos experts analyser votre site et créer une stratégie sur mesure pour vous propulser en haut de Google.",
+      bottomCtaButton: "Commencer votre audit gratuit",
+    },
+    seo: {
+      sidebarTitle: "Articles SEO",
+      backToHome: "Retour à l'accueil",
+      previous: "Précédent",
+      next: "Suivant",
+      ctaTitle: "Prêt à booster votre visibilité ?",
+      ctaDescription:
+        "Laissez nos experts analyser votre site et créer une stratégie sur mesure pour vous propulser en haut de Google.",
+      ctaButton: "Commencer votre audit gratuit",
+    },
   },
 
   nl: {
@@ -473,6 +549,44 @@ export const messages = {
       title: "Onze",
       titleHighlight: "Prijzen",
       description: "Wat kost een SEO-dienst bij Glow Mark Agency?",
+    },
+    blogPage: {
+      titlePrefix: "Onze",
+      titleHighlight: "Blog",
+      description:
+        "Inzichten, tips en strategieën om je online aanwezigheid te versterken en de zoekresultaten te domineren.",
+    },
+    blogCard: {
+      viewPost: "Bekijk artikel",
+    },
+    blogPost: {
+      backToBlogs: "Terug naar alle artikelen",
+      overview: "Overzicht",
+      published: "Gepubliceerd",
+      readTime: "Leestijd",
+      tags: "Tags",
+      ctaText: "Wil je je SEO verbeteren en hoger scoren in de rankings?",
+      ctaButton: "Neem contact op",
+      fallbackIntro:
+        "Dit artikel over {title} verkent belangrijke strategieën en inzichten om je online aanwezigheid te verbeteren.",
+      fallbackBody:
+        "Bij Glow Mark Agency helpen we bedrijven zoals het jouwe om betere zichtbaarheid te krijgen en meer gekwalificeerde bezoekers aan te trekken met bewezen SEO-technieken.",
+      fallbackOutro:
+        "Neem vandaag nog contact met ons op om te ontdekken hoe we je kunnen helpen je digitale marketingdoelen te bereiken.",
+      bottomCtaTitle: "Klaar om je zichtbaarheid te vergroten?",
+      bottomCtaDescription:
+        "Laat onze experts je site analyseren en een strategie op maat maken om je naar de top van Google te brengen.",
+      bottomCtaButton: "Start je gratis audit",
+    },
+    seo: {
+      sidebarTitle: "SEO Artikelen",
+      backToHome: "Terug naar home",
+      previous: "Vorige",
+      next: "Volgende",
+      ctaTitle: "Klaar om je zichtbaarheid te vergroten?",
+      ctaDescription:
+        "Laat onze experts je site analyseren en een strategie op maat maken om je naar de top van Google te brengen.",
+      ctaButton: "Start je gratis audit",
     },
   },
 };

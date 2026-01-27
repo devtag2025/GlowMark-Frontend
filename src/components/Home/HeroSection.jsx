@@ -34,7 +34,7 @@ export default function HeroSection() {
             <br />
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl">
+          <p className="text-lg md:text-xl text-theme-muted leading-relaxed max-w-xl">
             {t("hero.description")}
           </p>
 
@@ -71,12 +71,12 @@ export default function HeroSection() {
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute bottom-2 md:bottom-10 -left-8 bg-black/60 backdrop-blur-xl border border-white/20 p-2 md:p-5 rounded-2xl shadow-2xl"
+              className="absolute bottom-2 md:bottom-10 -left-8 bg-[var(--card-bg-solid)] backdrop-blur-xl border border-[var(--border-color)] p-2 md:p-5 rounded-2xl shadow-lg"
             >
               <div className="text-purple-600 font-black text-lg md:text-2xl">
                 99%
               </div>
-              <div className="text-[10px] uppercase tracking-widest font-bold text-gray-300">
+              <div className="text-[10px] uppercase tracking-widest font-bold text-theme-secondary">
                 {t("hero.statLabel")}
               </div>
             </motion.div>
@@ -84,7 +84,7 @@ export default function HeroSection() {
             <motion.div
               animate={{ y: [0, 15, 0] }}
               transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-              className="absolute top-5 md:top-10 -right-6 bg-white/10 backdrop-blur-xl border border-white/20 p-2 md:p-4 rounded md:rounded-2xl"
+              className="absolute top-5 md:top-10 -right-6 bg-[var(--card-bg-solid)] backdrop-blur-xl border border-[var(--border-color)] p-2 md:p-4 rounded md:rounded-2xl"
             >
               <div className="w-8 h-8 md:w-10 md:h-10 bg-red-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.5)]">
                 <ChartNoAxesCombined className="text-white h-5 w-5 md:w-6 md:h-6" />

@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag, Folder } from "lucide-react";
 import { blogs } from "@/data/blogs";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import SmoothScroll from "@/components/SmoothScroll";
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -36,7 +35,7 @@ export default function BlogPostPage() {
         elements.push(
           <ul key={`list-${elements.length}`} className="space-y-2 my-4">
             {currentList.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-gray-300">
+              <li key={i} className="flex items-start gap-3 text-theme-secondary">
                 <span className="text-purple-400 mt-1">•</span>
                 <span>{item}</span>
               </li>
@@ -72,7 +71,7 @@ export default function BlogPostPage() {
         elements.push(
           <h1
             key={`title-${index}`}
-            className="text-3xl md:text-4xl font-bold text-white mb-6"
+            className="text-3xl md:text-4xl font-bold text-theme mb-6"
           >
             {trimmedLine}
           </h1>,
@@ -86,7 +85,7 @@ export default function BlogPostPage() {
         elements.push(
           <h2
             key={`h2-${index}`}
-            className="text-xl md:text-2xl font-semibold text-white mt-10 mb-4"
+            className="text-xl md:text-2xl font-semibold text-theme mt-10 mb-4"
           >
             <span className="text-gradient-purple">{headerMatch[1]}.</span>{" "}
             {headerMatch[2]}
@@ -103,7 +102,7 @@ export default function BlogPostPage() {
         elements.push(
           <h3
             key={`h3-${index}`}
-            className="text-lg md:text-xl font-semibold text-white mt-8 mb-3"
+            className="text-lg md:text-xl font-semibold text-theme mt-8 mb-3"
           >
             {trimmedLine}
           </h3>,
@@ -113,7 +112,7 @@ export default function BlogPostPage() {
 
       // Regular paragraph
       elements.push(
-        <p key={`p-${index}`} className="text-gray-300 leading-relaxed mb-4">
+        <p key={`p-${index}`} className="text-theme-secondary leading-relaxed mb-4">
           {trimmedLine}
         </p>,
       );
@@ -124,8 +123,7 @@ export default function BlogPostPage() {
   };
 
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[var(--background)] text-white">
+    <main className="min-h-screen bg-[var(--background)] text-theme">
         {/* Spacer for global header */}
         <div className="h-24" />
 
@@ -139,7 +137,7 @@ export default function BlogPostPage() {
           >
             <Link
               href={`/${lang}/blog`}
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
+              className="inline-flex items-center gap-2 text-theme-muted hover:text-theme transition-colors group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               <span>{t("blogPost.backToBlogs")}</span>
@@ -154,7 +152,7 @@ export default function BlogPostPage() {
             className="grid grid-cols-1 lg:grid-cols-[1.6fr,1fr] gap-10 mb-12"
           >
             {/* Hero Image */}
-            <div className="relative w-full h-72 sm:h-80 lg:h-[420px] rounded-3xl overflow-hidden border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.9)]">
+            <div className="relative w-full h-72 sm:h-80 lg:h-[420px] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-lg">
               <Image
                 src={blog.image}
                 alt={blog.title}
@@ -197,7 +195,7 @@ export default function BlogPostPage() {
                   <Folder className="w-4 h-4" />
                   {t("blogPost.overview")}
                 </h2>
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <p className="text-sm text-theme-secondary leading-relaxed">
                   {blog.excerpt}
                 </p>
               </motion.div>
@@ -210,21 +208,21 @@ export default function BlogPostPage() {
                 className="glow-card rounded-3xl p-6 grid grid-cols-2 gap-5 text-sm"
               >
                 <div>
-                  <p className="text-gray-500 mb-1 flex items-center gap-1.5">
+                  <p className="text-theme-light mb-1 flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     {t("blogPost.published")}
                   </p>
-                  <p className="font-medium text-white">{blog.date}</p>
+                  <p className="font-medium text-theme">{blog.date}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500 mb-1 flex items-center gap-1.5">
+                  <p className="text-theme-light mb-1 flex items-center gap-1.5">
                     <Clock className="w-3.5 h-3.5" />
                     {t("blogPost.readTime")}
                   </p>
-                  <p className="font-medium text-white">{blog.readTime}</p>
+                  <p className="font-medium text-theme">{blog.readTime}</p>
                 </div>
                 <div className="col-span-2">
-                  <p className="text-gray-500 mb-2 flex items-center gap-1.5">
+                  <p className="text-theme-light mb-2 flex items-center gap-1.5">
                     <Tag className="w-3.5 h-3.5" />
                     {t("blogPost.tags")}
                   </p>
@@ -232,7 +230,7 @@ export default function BlogPostPage() {
                     {blog.tags?.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 hover:border-purple-500/50 hover:text-purple-300 transition-colors"
+                        className="px-3 py-1 rounded-full bg-[var(--background-secondary)] border border-[var(--border-color)] text-xs text-theme-secondary hover:border-purple-500/50 hover:text-purple-300 transition-colors"
                       >
                         {tag}
                       </span>
@@ -248,7 +246,7 @@ export default function BlogPostPage() {
                 transition={{ delay: 0.4 }}
                 className="glow-card rounded-3xl p-6 bg-gradient-to-br from-purple-900/20 to-transparent border-purple-500/20"
               >
-                <p className="text-sm text-gray-300 mb-4">
+                <p className="text-sm text-theme-secondary mb-4">
                   {t("blogPost.ctaText")}
                 </p>
                 <Link
@@ -274,7 +272,7 @@ export default function BlogPostPage() {
                   {renderContent(content)}
                 </div>
               ) : (
-                <div className="text-gray-300 space-y-6">
+                <div className="text-theme-secondary space-y-6">
                   <p>
                     {t("blogPost.fallbackIntro").replace("{title}", blog.title)}
                   </p>
@@ -291,10 +289,10 @@ export default function BlogPostPage() {
               viewport={{ once: true }}
               className="mt-16 p-8 rounded-3xl glow-card text-center"
             >
-              <h3 className="text-2xl font-bold text-white mb-3">
+              <h3 className="text-2xl font-bold text-theme mb-3">
                 {t("blogPost.bottomCtaTitle")}
               </h3>
-              <p className="text-gray-400 mb-6 max-w-lg mx-auto">
+              <p className="text-theme-muted mb-6 max-w-lg mx-auto">
                 {t("blogPost.bottomCtaDescription")}
               </p>
               <Link
@@ -307,6 +305,5 @@ export default function BlogPostPage() {
           </motion.section>
         </article>
       </main>
-    </SmoothScroll>
   );
 }
