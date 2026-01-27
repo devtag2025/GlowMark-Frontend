@@ -64,7 +64,7 @@ const FAQSection = () => {
               {t("faq.titleHighlight")}
             </span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center">
+          <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed text-center">
             {t("faq.subtitle")}
           </p>
         </motion.div>

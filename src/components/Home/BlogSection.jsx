@@ -75,7 +75,7 @@ const BlogSection = () => {
           </span>
           {t("blog.titleSuffix")}
         </h2>
-        <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl">
+        <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed text-center max-w-5xl">
           {t("blog.description")}
         </p>
         <motion.div
@@ -91,7 +91,7 @@ const BlogSection = () => {
                 key={blog.id}
                 variants={cardVariants}
                 whileHover={{ y: -6, scale: 1.03 }}
-                className="flex flex-col text-left gap-4 p-4 rounded-2xl bg-white/5 transition-all duration-300 overflow-hidden cursor-pointer border border-white/10"
+                className="flex flex-col text-left gap-4 p-4 rounded-2xl bg-[var(--card-bg)] transition-all duration-300 overflow-hidden cursor-pointer border border-[var(--border-color)]"
               >
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
@@ -106,8 +106,8 @@ const BlogSection = () => {
                     {blog.date}
                   </div>
                 </div>
-                <h4 className="font-semibold text-xl">{blog.title}</h4>
-                <p className="text-sm md:text-base text-gray-400">{blog.sub}</p>
+                <h4 className="font-semibold text-xl text-theme">{blog.title}</h4>
+                <p className="text-sm md:text-base text-theme-muted">{blog.sub}</p>
               </motion.div>
             </Link>
           ))}

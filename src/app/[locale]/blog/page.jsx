@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import BlogCard from "@/components/Blog/BlogCard";
-import SmoothScroll from "@/components/SmoothScroll";
 import { blogs } from "@/data/blogs";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -20,42 +19,40 @@ export default function BlogPage() {
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[var(--background)]">
-        {/* Spacer for header */}
-        <div className="h-24" />
+    <main className="min-h-screen bg-[var(--background)]">
+      {/* Spacer for header */}
+      <div className="h-24" />
 
-        <section
-          ref={wrapperRef}
-          className="min-h-screen max-w-7xl mx-auto px-6 py-16 md:py-24"
+      <section
+        ref={wrapperRef}
+        className="min-h-screen max-w-7xl mx-auto px-6 py-16 md:py-24"
+      >
+        {/* Title block that moves slightly upward on scroll */}
+        <motion.div
+          style={{ y: titleY }}
+          className="text-center mb-16"
         >
-          {/* Title block that moves slightly upward on scroll */}
-          <motion.div
-            style={{ y: titleY }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4">
-              <span className="font-bold">{t("blogPage.titlePrefix")}</span>{" "}
-              <span
-                className="font-serif italic text-gradient-purple"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                {t("blogPage.titleHighlight")}
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-              {t("blogPage.description")}
-            </p>
-          </motion.div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-theme mb-4">
+            <span className="font-bold">{t("blogPage.titlePrefix")}</span>{" "}
+            <span
+              className="font-serif italic text-gradient-purple"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              {t("blogPage.titleHighlight")}
+            </span>
+          </h1>
+          <p className="text-lg md:text-xl text-theme-muted max-w-2xl mx-auto">
+            {t("blogPage.description")}
+          </p>
+        </motion.div>
 
-          {/* Static grid of cards below the title */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog, index) => (
-              <BlogCard key={blog.id} blog={blog} index={index} locale={lang} />
-            ))}
-          </div>
-        </section>
-      </main>
-    </SmoothScroll>
+        {/* Static grid of cards below the title */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.map((blog, index) => (
+            <BlogCard key={blog.id} blog={blog} index={index} locale={lang} />
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

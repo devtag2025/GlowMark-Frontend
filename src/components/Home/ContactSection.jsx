@@ -36,13 +36,13 @@ const ContactSection = () => {
             className="space-y-12"
           >
             <div>
-              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">
+              <h2 className="text-4xl md:text-6xl font-black text-theme tracking-tighter mb-6">
                 {t("contact.titleLine1")} <br />
                 <span className="text-gradient-purple">
                   {t("contact.titleHighlight")}
                 </span>
               </h2>
-              <p className="text-gray-400 text-base sm:text-lg lg:text-xls max-w-md leading-relaxed">
+              <p className="text-theme-muted text-base sm:text-lg lg:text-xl max-w-md leading-relaxed">
                 {t("contact.description")}
               </p>
             </div>
@@ -50,14 +50,14 @@ const ContactSection = () => {
             <div className="space-y-6">
               {contacts.map((item, i) => (
                 <div key={i} className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-purple-400 group-hover:bg-[#6B207A] group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(107,32,122,0)] group-hover:shadow-[0_0_20px_rgba(107,32,122,0.4)]">
+                  <div className="w-12 h-12 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] flex items-center justify-center text-purple-400 group-hover:bg-[#6B207A] group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(107,32,122,0)] group-hover:shadow-[0_0_20px_rgba(107,32,122,0.4)]">
                     <item.icon size={22} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                    <p className="text-xs font-bold text-theme-light uppercase tracking-widest">
                       {item.label}
                     </p>
-                    <p className="text-white font-medium text-lg">
+                    <p className="text-theme font-medium text-lg">
                       {item.value}
                     </p>
                   </div>
@@ -72,50 +72,50 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-12 rounded-[3rem] shadow-2xl">
+            <div className="bg-[var(--card-bg)] backdrop-blur-3xl border border-[var(--border-color)] p-8 md:p-12 rounded-[3rem] shadow-lg">
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 ml-1">
+                    <label className="text-sm font-bold text-theme-muted ml-1">
                       {t("contact.formFirstName")}
                     </label>
                     <input
                       type="text"
                       placeholder={t("contact.formFirstNamePlaceholder")}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all"
+                      className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 ml-1">
+                    <label className="text-sm font-bold text-theme-muted ml-1">
                       {t("contact.formLastName")}
                     </label>
                     <input
                       type="text"
                       placeholder={t("contact.formLastNamePlaceholder")}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500  transition-all"
+                      className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 ml-1">
+                  <label className="text-sm font-bold text-theme-muted ml-1">
                     {t("contact.formEmail")}
                   </label>
                   <input
                     type="text"
                     placeholder={t("contact.formEmailPlaceholder")}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all"
+                    className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 ml-1">
+                  <label className="text-sm font-bold text-theme-muted ml-1">
                     {t("contact.formMessage")}
                   </label>
                   <textarea
                     rows="4"
                     placeholder={t("contact.formMessagePlaceholder")}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-all resize-none"
+                    className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all resize-none"
                   ></textarea>
                 </div>
 
