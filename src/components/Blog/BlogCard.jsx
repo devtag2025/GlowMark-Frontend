@@ -26,8 +26,8 @@ export default function BlogCard({ blog, index, locale = "en" }) {
         boxShadow: "0 24px 60px rgba(124, 58, 237, 0.15), 0 0 0 1px rgba(124, 58, 237, 0.1)"
       }}
       whileTap={{ scale: 0.98 }}
-      className="group bg-transparent backdrop-blur-xl border border-white/10
-                 shadow-[0_16px_30px_rgba(0,0,0,0.8)] rounded-2xl overflow-hidden
+      className="group bg-[var(--card-bg-solid)] backdrop-blur-xl border border-[var(--border-color)]
+                 shadow-lg rounded-2xl overflow-hidden
                  transition-all duration-300 h-full flex flex-col
                  hover:border-purple-400/60"
     >
@@ -75,23 +75,23 @@ export default function BlogCard({ blog, index, locale = "en" }) {
       {/* Content Section - not clickable */}
       <div className="px-6 pt-4 pb-5 flex flex-col flex-grow">
         {/* Meta Row: category + date */}
-        <div className="flex items-center justify-between text-xs text-gray-300 mb-3">
-          <span className="px-3 py-1 rounded-full bg-white/10 text-white font-medium">
+        <div className="flex items-center justify-between text-xs text-theme-muted mb-3">
+          <span className="px-3 py-1 rounded-full bg-[var(--background-secondary)] text-theme font-medium">
             {blog.category}
           </span>
           <div className="flex items-center gap-1">
-            <Clock className="w-3 h-3 text-gray-300" />
-            <span className="text-gray-300">{blog.date}</span>
+            <Clock className="w-3 h-3 text-theme-muted" />
+            <span className="text-theme-muted">{blog.date}</span>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold text-white mb-1 leading-snug line-clamp-2 group-hover:text-gradient-purple transition-colors">
+        <h3 className="text-lg font-semibold text-theme mb-1 leading-snug line-clamp-2 group-hover:text-gradient-purple transition-colors">
           {title}
         </h3>
 
         {/* Excerpt */}
-        <p className="text-sm text-gray-300 leading-relaxed line-clamp-2 flex-grow">
+        <p className="text-sm text-theme-secondary leading-relaxed line-clamp-2 flex-grow">
           {excerpt}
         </p>
       </div>

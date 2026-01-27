@@ -69,7 +69,7 @@ const WorkflowSection = () => {
             {t("workflow.titleSuffix")}
           </h2>
 
-          <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center mt-4 max-w-5xl">
+          <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed text-center mt-4 max-w-5xl">
             {t("workflow.description")}
           </p>
         </div>
@@ -77,10 +77,10 @@ const WorkflowSection = () => {
         <div className="hidden md:grid grid-cols-6 gap-4 relative z-10">
           {steps.map((step, i) => (
             <div key={i} className="flex flex-col items-center gap-3 group">
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-purple-500/50 transition-colors duration-500">
+              <div className="p-3 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] group-hover:border-purple-500/50 transition-colors duration-500">
                 <step.icon className="text-purple-500 w-6 h-6" />
               </div>
-              <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest text-center">
+              <p className="text-[10px] md:text-xs font-bold text-theme-light uppercase tracking-widest text-center">
                 {step.title}
               </p>
             </div>
@@ -160,17 +160,17 @@ const WorkflowSection = () => {
           <motion.div
             key={step.no}
             whileHover={{ y: -5 }}
-            className="group flex flex-col md:flex-row items-start gap-5 p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-white/[0.08] transition-all duration-500 shadow-2xl"
+            className="group flex flex-col md:flex-row items-start gap-5 p-8 rounded-3xl bg-[var(--card-bg)] border border-[var(--border-color)] hover:border-purple-500/30 hover:bg-[var(--background-secondary)] transition-all duration-500 shadow-lg"
           >
             <span className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#6B207A] to-purple-500 text-white font-black text-xl shadow-lg shadow-purple-900/20">
               {step.no}
             </span>
 
             <div className="space-y-2">
-              <h4 className="text-white font-bold text-lg leading-none">
+              <h4 className="text-theme font-bold text-lg leading-none">
                 {step.title}
               </h4>
-              <p className="text-sm text-gray-400 leading-relaxed font-medium">
+              <p className="text-sm text-theme-muted leading-relaxed font-medium">
                 {step.sub}
               </p>
             </div>

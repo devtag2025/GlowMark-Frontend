@@ -7,6 +7,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { usePathname, useRouter } from "next/navigation";
+import { getSortedArticles } from "@/data/seo-articles";
 
 const Header = () => {
   const { lang, setLang, t } = useLanguage();
@@ -24,6 +25,9 @@ const Header = () => {
     nl: t("common.dutch"),
   };
 
+  // Get SEO articles for dropdown
+  const seoArticles = getSortedArticles();
+
   const NavigationItem = [
     {
       key: "header.home",
@@ -32,31 +36,19 @@ const Header = () => {
     {
       key: "header.seo",
       href: "#",
-      children: [
-        {
-          key: "header.seoOnPage",
-          href: (currentLang) =>
-            currentLang === "en"
-              ? "/seo/on-page"
-              : `/${currentLang}/seo/on-page`,
-        },
-        {
-          key: "header.seoTechnical",
-          href: (currentLang) =>
-            currentLang === "en"
-              ? "/seo/technical"
-              : `/${currentLang}/seo/technical`,
-        },
-        {
-          key: "header.seoLocal",
-          href: (currentLang) =>
-            currentLang === "en" ? "/seo/local" : `/${currentLang}/seo/local`,
-        },
-      ],
+      children: seoArticles.map((article) => ({
+        slug: article.slug,
+        titles: article.titles,
+        href: (currentLang) =>
+          currentLang === "en"
+            ? `/seo/${article.slug}`
+            : `/${currentLang}/seo/${article.slug}`,
+      })),
     },
     {
       key: "header.blog",
-      href: (currentLang) => `/${currentLang}/blog`,
+      href: (currentLang) =>
+        currentLang === "en" ? "/blog" : `/${currentLang}/blog`,
     },
     {
       key: "header.pricing",
@@ -108,7 +100,7 @@ const Header = () => {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`fixed top-0 w-full z-[100] transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl bg-black/40 border-b border-white/40"
+          ? "backdrop-blur-xl bg-[var(--header-bg)] border-b border-[var(--header-border)]"
           : "bg-transparent"
       }`}
     >
@@ -132,18 +124,18 @@ const Header = () => {
             {NavigationItem.map((item) =>
               item.children ? (
                 <div key={item.key} className="relative group">
-                  <button className="flex items-center gap-1 text-white/80 hover:text-white font-semibold transition-colors">
+                  <button className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold transition-colors">
                     {t(item.key)}
                     <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
                   </button>
-                  <div className="absolute left-0 mt-3 w-48 bg-[#0a0a0a] rounded-xl shadow-2xl border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="absolute left-0 mt-3 w-72 max-h-[70vh] overflow-y-auto bg-[var(--card-bg-solid)] rounded-xl shadow-lg border border-[var(--border-color)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                     {item.children.map((sub) => (
                       <Link
-                        key={sub.key}
+                        key={sub.slug || sub.key}
                         href={buildHref(sub.href)}
-                        className="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors first:rounded-t-xl last:rounded-b-xl"
+                        className="block px-4 py-3 text-sm text-theme-muted hover:text-theme hover:bg-[var(--background-secondary)] transition-colors first:rounded-t-xl last:rounded-b-xl"
                       >
-                        {t(sub.key)}
+                        {sub.titles ? sub.titles[lang] || sub.titles.en : t(sub.key)}
                       </Link>
                     ))}
                   </div>
@@ -152,7 +144,7 @@ const Header = () => {
                 <Link
                   key={item.key}
                   href={buildHref(item.href)}
-                  className="text-white/80 hover:text-white font-semibold transition-colors relative group"
+                  className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group"
                 >
                   {t(item.key)}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
@@ -164,7 +156,7 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setDesktopLangOpen(!desktopLangOpen)}
-                className="flex items-center gap-1 text-white/80 hover:text-white font-semibold"
+                className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold"
               >
                 {LANGUAGE_LABELS[lang]}
                 <ChevronDown
@@ -177,7 +169,7 @@ const Header = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-3 w-32 bg-[#0a0a0a] rounded-xl shadow-2xl border border-white/10"
+                    className="absolute right-0 mt-3 w-32 bg-[var(--card-bg-solid)] rounded-xl shadow-lg border border-[var(--border-color)]"
                   >
                     {["en", "fr", "nl"].map((code) => (
                       <button
@@ -186,7 +178,7 @@ const Header = () => {
                           changeLocale(code);
                           setDesktopLangOpen(false);
                         }}
-                        className="w-full px-4 py-2 text-left text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors first:rounded-t-xl last:rounded-b-xl"
+                        className="w-full px-4 py-2 text-left text-sm text-theme-muted hover:text-theme hover:bg-[var(--background-secondary)] transition-colors first:rounded-t-xl last:rounded-b-xl"
                       >
                         {LANGUAGE_LABELS[code]}
                       </button>
@@ -207,7 +199,7 @@ const Header = () => {
           </div>
 
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-theme"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X /> : <Menu />}
@@ -222,14 +214,14 @@ const Header = () => {
             initial={{ height: 0 }}
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
-            className="md:hidden bg-[#050505] border-t border-white/10 px-6 py-8 space-y-6 overflow-hidden shadow-2xl"
+            className="md:hidden bg-[var(--background)] border-t border-[var(--border-color)] px-6 py-8 space-y-6 overflow-hidden shadow-xl"
           >
             {NavigationItem.map((item) =>
               item.children ? (
                 <div key={item.key} className="space-y-4">
                   <button
                     onClick={() => setMobileSeoOpen(!mobileSeoOpen)}
-                    className="flex justify-between w-full text-white font-bold text-lg"
+                    className="flex justify-between w-full text-theme font-bold text-lg"
                   >
                     {t(item.key)}
                     <ChevronDown
@@ -245,12 +237,12 @@ const Header = () => {
                       >
                         {item.children.map((sub) => (
                           <Link
-                            key={sub.key}
+                            key={sub.slug || sub.key}
                             href={buildHref(sub.href)}
-                            className="block text-gray-400 font-medium"
+                            className="block text-theme-muted font-medium py-1"
                             onClick={() => setMobileOpen(false)}
                           >
-                            {t(sub.key)}
+                            {sub.titles ? sub.titles[lang] || sub.titles.en : t(sub.key)}
                           </Link>
                         ))}
                       </motion.div>
@@ -261,7 +253,7 @@ const Header = () => {
                 <Link
                   key={item.key}
                   href={buildHref(item.href)}
-                  className="block text-white font-bold text-lg"
+                  className="block text-theme font-bold text-lg"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t(item.key)}
@@ -270,10 +262,10 @@ const Header = () => {
             )}
 
             {/* Mobile Lang */}
-            <div className="pt-4 border-t border-white/10">
+            <div className="pt-4 border-t border-[var(--border-color)]">
               <button
                 onClick={() => setMobileLangOpen(!mobileLangOpen)}
-                className="flex justify-between w-full text-gray-400 font-bold uppercase tracking-widest text-xs"
+                className="flex justify-between w-full text-theme-muted font-bold uppercase tracking-widest text-xs"
               >
                 {LANGUAGE_LABELS[lang]}
                 <ChevronDown className={mobileLangOpen ? "rotate-180" : ""} />
@@ -287,7 +279,7 @@ const Header = () => {
                         changeLocale(code);
                         setMobileOpen(false);
                       }}
-                      className="block text-white font-medium"
+                      className="block text-theme font-medium"
                     >
                       {LANGUAGE_LABELS[code]}
                     </button>

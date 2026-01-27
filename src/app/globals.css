@@ -1,10 +1,82 @@
 @import "tailwindcss";
 
+/* ========================================
+   LIGHT THEME (Default)
+   ======================================== */
 :root {
+  /* Backgrounds */
+  --background: #ffffff;
+  --background-secondary: #f8f9fa;
+  --background-tertiary: #f1f3f5;
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-bg-solid: #ffffff;
+  
+  /* Text */
+  --foreground: #1a1a1a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --text-light: #a0aec0;
+  
+  /* Borders */
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-light: rgba(0, 0, 0, 0.05);
+  
+  /* Header */
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --header-border: rgba(0, 0, 0, 0.1);
+  
+  /* Cards & Effects */
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --glow-color: rgba(168, 85, 247, 0.15);
+  
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --input-text: #1a1a1a;
+  --input-placeholder: #a0aec0;
+  
+  /* Scrollbar */
+  --scrollbar-track: #f1f3f5;
+  --scrollbar-thumb: #cbd5e0;
+  --scrollbar-thumb-hover: #a855f7;
+}
+
+/* ========================================
+   DARK THEME (Add class="dark" to html)
+   ======================================== */
+.dark {
   --background: #050505;
-  --foreground: #ffffff;
+  --background-secondary: #0a0a0a;
+  --background-tertiary: #111111;
   --card-bg: rgba(255, 255, 255, 0.05);
+  --card-bg-solid: #0a0a0a;
+  
+  --foreground: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #a0aec0;
+  --text-light: #718096;
+  
   --border-color: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.05);
+  
+  --header-bg: rgba(0, 0, 0, 0.4);
+  --header-border: rgba(255, 255, 255, 0.1);
+  
+  --card-shadow: 0 0 30px rgba(107, 32, 122, 0.2);
+  --card-shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --glow-color: rgba(168, 85, 247, 0.3);
+  
+  --input-bg: #0a0a0a;
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-text: #ffffff;
+  --input-placeholder: #718096;
+  
+  --scrollbar-track: #050505;
+  --scrollbar-thumb: #333;
+  --scrollbar-thumb-hover: #6b207a;
 }
 
 @theme inline {
@@ -44,31 +116,45 @@
     background: var(--card-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .glow-card:hover {
     border-color: rgba(168, 85, 247, 0.4);
-    box-shadow:
-      0 0 30px rgba(107, 32, 122, 0.2),
-      0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--card-shadow-hover);
     transform: translateY(-6px);
   }
+
+  /* Theme utility classes */
+  .bg-theme { background: var(--background); }
+  .bg-theme-secondary { background: var(--background-secondary); }
+  .bg-theme-tertiary { background: var(--background-tertiary); }
+  .bg-theme-card { background: var(--card-bg-solid); }
+  
+  .text-theme { color: var(--text-primary); }
+  .text-theme-secondary { color: var(--text-secondary); }
+  .text-theme-muted { color: var(--text-muted); }
+  .text-theme-light { color: var(--text-light); }
+  
+  .border-theme { border-color: var(--border-color); }
+  .border-theme-light { border-color: var(--border-light); }
 
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #050505;
+    background: var(--scrollbar-track);
   }
   ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: var(--scrollbar-thumb);
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #6b207a;
+    background: var(--scrollbar-thumb-hover);
   }
 }
+
 .soft-blur {
   filter: blur(30px);
 }

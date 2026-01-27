@@ -66,7 +66,7 @@ const WhoWeAre = () => {
           {t("whoWeAre.titleSuffix")}
         </h2>
 
-        <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl">
+        <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed text-center max-w-5xl">
           {t("whoWeAre.intro")}
         </p>
 
@@ -92,7 +92,7 @@ const WhoWeAre = () => {
           ))}
         </motion.div>
 
-        <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-center max-w-5xl mt-6">
+        <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed text-center max-w-5xl mt-6">
           {t("whoWeAre.outro")}
         </p>
       </motion.div>
