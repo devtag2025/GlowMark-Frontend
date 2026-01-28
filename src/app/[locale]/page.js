@@ -6,6 +6,7 @@ import StatsSection from "@/components/Home/StatsSection";
 import WhoWeAre from "@/components/Home/WhoAreWeSection";
 import WorkflowSection from "@/components/Home/WorkflowSection";
 import PriceSection from "@/components/Home/PriceSection";
+import CTASection from "@/components/Home/CTASection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <StatsSection />
       <WhoWeAre />
       <WorkflowSection />
+      <CTASection />
       <PriceSection />
       <FAQSection />
       <BlogSection />
@@ -21,4 +23,3 @@ export default function Home() {
     </div>
   );
 }
-

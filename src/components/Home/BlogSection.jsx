@@ -64,7 +64,7 @@ const BlogSection = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6"
       >
-        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
+        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-900 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
           {t("blog.badge")}
         </div>
 
@@ -106,8 +106,12 @@ const BlogSection = () => {
                     {blog.date}
                   </div>
                 </div>
-                <h4 className="font-semibold text-xl text-theme">{blog.title}</h4>
-                <p className="text-sm md:text-base text-theme-muted">{blog.sub}</p>
+                <h4 className="font-semibold text-xl text-theme">
+                  {blog.title}
+                </h4>
+                <p className="text-sm md:text-base text-theme-muted">
+                  {blog.sub}
+                </p>
               </motion.div>
             </Link>
           ))}

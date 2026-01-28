@@ -57,7 +57,7 @@ const WhoWeAre = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4"
       >
-        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
+        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-900 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
           {t("whoWeAre.badge")}
         </div>
 
@@ -83,7 +83,7 @@ const WhoWeAre = () => {
               key={feature.title}
               variants={cardVariants}
               whileHover={{ y: -6, scale: 1.03 }}
-              className="flex flex-col items-center text-center p-6 rounded-xl transition duration-300 gradient-block"
+              className="flex flex-col items-center text-center p-6 rounded-xl transition duration-300 gradient-block text-white"
             >
               <span className="w-10 h-10 mb-2">{feature.icon}</span>
               <h4 className="font-semibold text-lg ">{feature.title}</h4>

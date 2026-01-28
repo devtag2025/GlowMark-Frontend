@@ -10,33 +10,33 @@
   --background-tertiary: #f1f3f5;
   --card-bg: rgba(0, 0, 0, 0.02);
   --card-bg-solid: #ffffff;
-  
+
   /* Text */
   --foreground: #1a1a1a;
   --text-primary: #1a1a1a;
   --text-secondary: #4a5568;
-  --text-muted: #718096;
+  --text-muted: #334155;
   --text-light: #a0aec0;
-  
+
   /* Borders */
   --border-color: rgba(0, 0, 0, 0.1);
   --border-light: rgba(0, 0, 0, 0.05);
-  
+
   /* Header */
   --header-bg: rgba(255, 255, 255, 0.9);
   --header-border: rgba(0, 0, 0, 0.1);
-  
+
   /* Cards & Effects */
   --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
   --glow-color: rgba(168, 85, 247, 0.15);
-  
+
   /* Inputs */
   --input-bg: #ffffff;
   --input-border: #e2e8f0;
   --input-text: #1a1a1a;
   --input-placeholder: #a0aec0;
-  
+
   /* Scrollbar */
   --scrollbar-track: #f1f3f5;
   --scrollbar-thumb: #cbd5e0;
@@ -52,28 +52,28 @@
   --background-tertiary: #111111;
   --card-bg: rgba(255, 255, 255, 0.05);
   --card-bg-solid: #0a0a0a;
-  
+
   --foreground: #ffffff;
   --text-primary: #ffffff;
   --text-secondary: #e2e8f0;
   --text-muted: #a0aec0;
   --text-light: #718096;
-  
+
   --border-color: rgba(255, 255, 255, 0.1);
   --border-light: rgba(255, 255, 255, 0.05);
-  
+
   --header-bg: rgba(0, 0, 0, 0.4);
   --header-border: rgba(255, 255, 255, 0.1);
-  
+
   --card-shadow: 0 0 30px rgba(107, 32, 122, 0.2);
   --card-shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.5);
   --glow-color: rgba(168, 85, 247, 0.3);
-  
+
   --input-bg: #0a0a0a;
   --input-border: rgba(255, 255, 255, 0.1);
   --input-text: #ffffff;
   --input-placeholder: #718096;
-  
+
   --scrollbar-track: #050505;
   --scrollbar-thumb: #333;
   --scrollbar-thumb-hover: #6b207a;
@@ -127,18 +127,38 @@
   }
 
   /* Theme utility classes */
-  .bg-theme { background: var(--background); }
-  .bg-theme-secondary { background: var(--background-secondary); }
-  .bg-theme-tertiary { background: var(--background-tertiary); }
-  .bg-theme-card { background: var(--card-bg-solid); }
-  
-  .text-theme { color: var(--text-primary); }
-  .text-theme-secondary { color: var(--text-secondary); }
-  .text-theme-muted { color: var(--text-muted); }
-  .text-theme-light { color: var(--text-light); }
-  
-  .border-theme { border-color: var(--border-color); }
-  .border-theme-light { border-color: var(--border-light); }
+  .bg-theme {
+    background: var(--background);
+  }
+  .bg-theme-secondary {
+    background: var(--background-secondary);
+  }
+  .bg-theme-tertiary {
+    background: var(--background-tertiary);
+  }
+  .bg-theme-card {
+    background: var(--card-bg-solid);
+  }
+
+  .text-theme {
+    color: var(--text-primary);
+  }
+  .text-theme-secondary {
+    color: var(--text-secondary);
+  }
+  .text-theme-muted {
+    color: var(--text-muted);
+  }
+  .text-theme-light {
+    color: var(--text-light);
+  }
+
+  .border-theme {
+    border-color: var(--border-color);
+  }
+  .border-theme-light {
+    border-color: var(--border-light);
+  }
 
   ::-webkit-scrollbar {
     width: 8px;

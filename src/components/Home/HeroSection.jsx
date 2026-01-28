@@ -18,7 +18,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
+          <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-900 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
             <Sparkles className="w-4 h-4 mr-2" />
             <span className="text-sm md:text-base font-semibold">
               {t("hero.badge")}
@@ -38,7 +38,7 @@ export default function HeroSection() {
             {t("hero.description")}
           </p>
 
-          <Link href="/login">
+          <Link href="/request">
             <motion.button
               whileHover={{
                 scale: 1.05,

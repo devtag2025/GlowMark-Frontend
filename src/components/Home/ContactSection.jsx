@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Facebook, Instagram } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const ContactSection = () => {
@@ -63,6 +64,53 @@ const ContactSection = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="pt-4">
+              <p className="text-sm font-bold text-theme-light uppercase tracking-widest mb-4">
+                {t("contact.followUs")}
+              </p>
+
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://www.tiktok.com/@glowmarkagency?lang=fr"
+                  aria-label="TikTok"
+                  className="w-12 h-12 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)]
+                 flex items-center justify-center text-purple-400
+                 hover:bg-[#6B207A] hover:text-white
+                 transition-all duration-300
+                 shadow-[0_0_15px_rgba(107,32,122,0)]
+                 hover:shadow-[0_0_20px_rgba(107,32,122,0.4)]"
+                >
+                  <SiTiktok size={20} />
+                </a>
+
+                <a
+                  href="https://www.instagram.com/glowmarkagency/"
+                  aria-label="Instagram"
+                  className="w-12 h-12 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)]
+                 flex items-center justify-center text-purple-400
+                 hover:bg-[#6B207A] hover:text-white
+                 transition-all duration-300
+                 shadow-[0_0_15px_rgba(107,32,122,0)]
+                 hover:shadow-[0_0_20px_rgba(107,32,122,0.4)]"
+                >
+                  <Instagram size={22} />
+                </a>
+
+                <a
+                  href="https://www.facebook.com/profile.php?id=61572785078776"
+                  aria-label="Facebook"
+                  className="w-12 h-12 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)]
+                 flex items-center justify-center text-purple-400
+                 hover:bg-[#6B207A] hover:text-white
+                 transition-all duration-300
+                 shadow-[0_0_15px_rgba(107,32,122,0)]
+                 hover:shadow-[0_0_20px_rgba(107,32,122,0.4)]"
+                >
+                  <Facebook size={22} />
+                </a>
+              </div>
             </div>
           </motion.div>
 
@@ -133,10 +181,13 @@ const ContactSection = () => {
                     className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                   />
                 </motion.button>
+
+                <p className="text-sm text-slate-400">
+                  {t("contact.decleration")}
+                </p>
               </form>
             </div>
 
-            {/* Small decorative glass element */}
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-red-500 rounded-3xl -z-10 blur-2xl opacity-50" />
           </motion.div>
         </div>
