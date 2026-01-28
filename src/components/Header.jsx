@@ -135,7 +135,9 @@ const Header = () => {
                         href={buildHref(sub.href)}
                         className="block px-4 py-3 text-sm text-theme-muted hover:text-theme hover:bg-[var(--background-secondary)] transition-colors first:rounded-t-xl last:rounded-b-xl"
                       >
-                        {sub.titles ? sub.titles[lang] || sub.titles.en : t(sub.key)}
+                        {sub.titles
+                          ? sub.titles[lang] || sub.titles.en
+                          : t(sub.key)}
                       </Link>
                     ))}
                   </div>
@@ -191,7 +193,7 @@ const Header = () => {
 
           <div className="hidden md:block">
             <Link
-              href="#contact"
+              href="/request"
               className="px-6 py-3 rounded-full text-white font-bold gradient-purple transition-transform hover:scale-105 inline-block"
             >
               {t("common.bookDemo")}
@@ -242,7 +244,9 @@ const Header = () => {
                             className="block text-theme-muted font-medium py-1"
                             onClick={() => setMobileOpen(false)}
                           >
-                            {sub.titles ? sub.titles[lang] || sub.titles.en : t(sub.key)}
+                            {sub.titles
+                              ? sub.titles[lang] || sub.titles.en
+                              : t(sub.key)}
                           </Link>
                         ))}
                       </motion.div>

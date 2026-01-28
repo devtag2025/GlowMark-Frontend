@@ -25,7 +25,10 @@ const PricingContent = () => {
         elements.push(
           <ul key={`list-${elements.length}`} className="space-y-2 my-4">
             {currentList.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-theme-secondary">
+              <li
+                key={i}
+                className="flex items-start gap-3 text-theme-secondary"
+              >
                 <span className="text-purple-400 mt-1">•</span>
                 <span>{item}</span>
               </li>
@@ -86,7 +89,10 @@ const PricingContent = () => {
 
       // ✅ Paragraph
       elements.push(
-        <p key={`p-${index}`} className="text-theme-secondary leading-relaxed mb-4">
+        <p
+          key={`p-${index}`}
+          className="text-theme-secondary leading-relaxed mb-4"
+        >
           {trimmedLine}
         </p>,
       );
@@ -124,7 +130,7 @@ const PricingContent = () => {
 
             {/* ✅ SINGLE H1 (SEO correct) */}
             <div className="absolute bottom-6 left-6 right-6">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
                 {t("pricing_page.title")}{" "}
                 <span className="text-gradient-purple">
                   {t("pricing_page.titleHighlight")}

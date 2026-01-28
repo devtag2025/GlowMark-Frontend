@@ -56,7 +56,7 @@ const WorkflowSection = () => {
   return (
     <section className="py-20 overflow-hidden">
       <div className="flex flex-col gap-5 justify-center max-w-5xl mx-auto px-6">
-        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-400 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
+        <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-900 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm">
           {t("workflow.badge")}
         </div>
 
@@ -78,7 +78,7 @@ const WorkflowSection = () => {
           {steps.map((step, i) => (
             <div key={i} className="flex flex-col items-center gap-3 group">
               <div className="p-3 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] group-hover:border-purple-500/50 transition-colors duration-500">
-                <step.icon className="text-purple-500 w-6 h-6" />
+                <step.icon className="text-purple-600 w-6 h-6" />
               </div>
               <p className="text-[10px] md:text-xs font-bold text-theme-light uppercase tracking-widest text-center">
                 {step.title}
@@ -127,13 +127,13 @@ const WorkflowSection = () => {
                 <g key={i}>
                   <path
                     d={pathData}
-                    stroke="rgba(255,255,255,0.05)" // Subtle dark lines
+                    stroke="rgba(255,255,255,0.05)"
                     strokeWidth="2"
                     fill="none"
                   />
                   <motion.path
                     d={pathData}
-                    stroke="#A855F7" // Vibrant purple
+                    stroke="#A855F7"
                     strokeWidth="2"
                     strokeLinecap="round"
                     fill="none"
