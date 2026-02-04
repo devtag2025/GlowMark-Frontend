@@ -2,12 +2,12 @@
 
 import React, { useRef } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const CTASection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const containerRef = useRef(null);
@@ -62,7 +62,7 @@ const CTASection = () => {
             </h2>
 
             <Link
-              href="/request"
+              href={lang === "en" ? "/request" : `/${lang}/request`}
               className="
                   px-10 py-4
                   bg-white text-purple-900

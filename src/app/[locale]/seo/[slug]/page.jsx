@@ -21,7 +21,8 @@ export default function SEOArticlePage() {
   // Get next and previous articles for navigation
   const sortedArticles = getSortedArticles();
   const currentIndex = sortedArticles.findIndex((a) => a.slug === params.slug);
-  const prevArticle = currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
+  const prevArticle =
+    currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
   const nextArticle =
     currentIndex < sortedArticles.length - 1
       ? sortedArticles[currentIndex + 1]
@@ -32,7 +33,6 @@ export default function SEOArticlePage() {
 
   return (
     <>
-      {/* Back link */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
