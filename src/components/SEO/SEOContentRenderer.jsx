@@ -32,7 +32,7 @@ export default function SEOContentRenderer({ article }) {
                 <span>{item}</span>
               </li>
             ))}
-          </ul>
+          </ul>,
         );
         currentList = [];
       }
@@ -46,9 +46,8 @@ export default function SEOContentRenderer({ article }) {
         return;
       }
 
-      // Check for list items (various formats)
       const listMatch = trimmedLine.match(
-        /^(?:[-•✅✔❌💡🚀💰🎯🔥🔎]|\d+\.)\s*(.+)/
+        /^(?:[-•✅✔❌💡🚀💰🎯🔥🔎]|\d+\.)\s*(.+)/,
       );
       if (listMatch && trimmedLine.length < 150) {
         // Check if it's a numbered header vs a list item
@@ -62,7 +61,7 @@ export default function SEOContentRenderer({ article }) {
             >
               <span className="text-gradient-purple">{headerMatch[1]}.</span>{" "}
               {trimmedLine.slice(headerMatch[1].length + 2)}
-            </h2>
+            </h2>,
           );
           return;
         }
@@ -72,7 +71,6 @@ export default function SEOContentRenderer({ article }) {
 
       flushList();
 
-      // Check for main title (first line)
       if (index === 0) {
         elements.push(
           <h1
@@ -80,12 +78,11 @@ export default function SEOContentRenderer({ article }) {
             className="text-3xl md:text-4xl font-bold text-theme mb-6"
           >
             {trimmedLine}
-          </h1>
+          </h1>,
         );
         return;
       }
 
-      // Check for subheaders (questions or short impactful lines)
       if (
         trimmedLine.endsWith("?") ||
         (trimmedLine.length < 60 &&
@@ -98,7 +95,7 @@ export default function SEOContentRenderer({ article }) {
             className="text-lg md:text-xl font-semibold text-theme mt-8 mb-3"
           >
             {trimmedLine}
-          </h3>
+          </h3>,
         );
         return;
       }
@@ -111,19 +108,18 @@ export default function SEOContentRenderer({ article }) {
             className="border-l-4 border-purple-500 pl-4 my-6 italic text-theme-secondary"
           >
             {trimmedLine}
-          </blockquote>
+          </blockquote>,
         );
         return;
       }
 
-      // Regular paragraph
       elements.push(
         <p
           key={`p-${index}`}
           className="text-theme-secondary leading-relaxed mb-4"
         >
           {trimmedLine}
-        </p>
+        </p>,
       );
     });
 
@@ -133,9 +129,10 @@ export default function SEOContentRenderer({ article }) {
 
   return (
     <div className="prose prose-lg max-w-none">
-      <div className="text-[15px] leading-relaxed">{renderContent(content)}</div>
+      <div className="text-[15px] leading-relaxed">
+        {renderContent(content)}
+      </div>
 
-      {/* Bottom CTA */}
       <div className="mt-16 p-8 rounded-3xl glow-card text-center">
         <h3 className="text-2xl font-bold text-theme mb-3">
           {t("seo.ctaTitle")}

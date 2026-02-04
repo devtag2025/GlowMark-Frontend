@@ -53,19 +53,17 @@ const Footer = () => {
 
   return (
     <footer className="relative mt-16 bg-gradient-to-br from-[#6B207A] to-purple-500 text-white overflow-hidden shadow-lg shadow-purple-900/20">
-      {/* Top subtle line */}
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-purple-300 to-transparent opacity-60" />
 
       <div className="max-w-6xl mx-auto px-6 pt-14 pb-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
-          <div className="flex items-center gap-4 text-center md:text-left">
+          <div className="flex items-center gap-6 text-center md:text-left">
             <Link href="/" className="shrink-0">
               <Image
-                src="/logo.jpg"
+                src="/logo-bgremove.png"
                 alt="Logo"
-                width={100}
-                height={100}
-                className="rounded-lg shadow-md shadow-purple-900/30"
+                width={160}
+                height={160}
               />
             </Link>
 

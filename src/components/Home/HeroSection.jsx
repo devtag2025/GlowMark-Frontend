@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section className="relative py-28 lg:py-32 overflow-hidden">
@@ -38,14 +38,14 @@ export default function HeroSection() {
             {t("hero.description")}
           </p>
 
-          <Link href="/request">
+          <Link href={lang === "en" ? "/request" : `/${lang}/request`}>
             <motion.button
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 0 20px rgba(168, 85, 247, 0.4)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="gradient-purple text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 group transition-all"
+              className="gradient-purple text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 group transition-all cursor-pointer"
             >
               {t("common.bookADemo")}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -61,7 +61,7 @@ export default function HeroSection() {
         >
           <div className="relative z-50">
             <Image
-              src="/graph.png"
+              src="/hero.png"
               alt="graph"
               width={600}
               height={700}

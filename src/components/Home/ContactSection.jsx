@@ -12,7 +12,7 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: t("contact.labelEmail"),
-      value: "hello@glowmark.agency",
+      value: "info@glowmarkagency.be",
     },
     {
       icon: Phone,
@@ -22,7 +22,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: t("contact.labelVisit"),
-      value: "Antwerp",
+      value: "Antwerpen",
     },
   ];
 

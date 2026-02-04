@@ -12,7 +12,10 @@ export default function BlogHeader() {
     >
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-4">
         <span className="font-bold">Our</span>{" "}
-        <span className="font-serif italic text-gradient-purple" style={{ fontFamily: "var(--font-playfair)" }}>
+        <span
+          className="font-serif italic text-gradient-purple"
+          style={{ fontFamily: "var(--font-playfair)" }}
+        >
           Blogs
         </span>
       </h1>
