@@ -109,11 +109,11 @@ const PricingContent = () => {
       <article className="max-w-5xl mx-auto px-6 pb-24 pt-6">
         <div className="mb-8 flex items-center gap-2 text-sm text-gray-400">
           <Link
-            href="/"
+            href={lang === "en" ? "/" : `/${lang}`}
             className="inline-flex items-center gap-2 text-theme-secondary hover:text-theme transition-colors"
           >
             <span className="text-lg">&#8592;</span>
-            <span>Back to Home</span>
+            <span>{t("common.backToHome")}</span>
           </Link>
         </div>
 

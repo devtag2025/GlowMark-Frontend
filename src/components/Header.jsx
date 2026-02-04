@@ -25,7 +25,6 @@ const Header = () => {
     nl: t("common.dutch"),
   };
 
-  // Get SEO articles for dropdown
   const seoArticles = getSortedArticles();
 
   const NavigationItem = [
@@ -111,7 +110,7 @@ const Header = () => {
             className="relative z-10"
           >
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Glow Mark Agency"
               width={100}
               height={100}
@@ -193,7 +192,7 @@ const Header = () => {
 
           <div className="hidden md:block">
             <Link
-              href="/request"
+              href={lang === "en" ? "/request" : `/${lang}/request`}
               className="px-6 py-3 rounded-full text-white font-bold gradient-purple transition-transform hover:scale-105 inline-block"
             >
               {t("common.bookDemo")}
@@ -209,7 +208,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -265,7 +263,6 @@ const Header = () => {
               ),
             )}
 
-            {/* Mobile Lang */}
             <div className="pt-4 border-t border-[var(--border-color)]">
               <button
                 onClick={() => setMobileLangOpen(!mobileLangOpen)}
@@ -293,7 +290,7 @@ const Header = () => {
             </div>
 
             <Link
-              href="#contact"
+              href={lang === "en" ? "/request" : `/${lang}/request`}
               className="block text-center px-6 py-4 rounded-2xl text-white font-black gradient-purple"
               onClick={() => setMobileOpen(false)}
             >

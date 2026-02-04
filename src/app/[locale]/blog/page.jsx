@@ -15,7 +15,6 @@ export default function BlogPage() {
     offset: ["start start", "end start"],
   });
 
-  // Title gently moves up as we scroll
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
   return (
@@ -28,10 +27,7 @@ export default function BlogPage() {
         className="min-h-screen max-w-7xl mx-auto px-6 py-16 md:py-24"
       >
         {/* Title block that moves slightly upward on scroll */}
-        <motion.div
-          style={{ y: titleY }}
-          className="text-center mb-16"
-        >
+        <motion.div style={{ y: titleY }} className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-theme mb-4">
             <span className="font-bold">{t("blogPage.titlePrefix")}</span>{" "}
             <span
@@ -46,7 +42,6 @@ export default function BlogPage() {
           </p>
         </motion.div>
 
-        {/* Static grid of cards below the title */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
             <BlogCard key={blog.id} blog={blog} index={index} locale={lang} />
