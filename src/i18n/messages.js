@@ -212,6 +212,7 @@ export const messages = {
       modalSubtitle: "Pick a time that works best for you.",
       privacyNote:
         "Your information is secure and will only be used to contact you for your appointment.",
+      loading: "Loading calendar...",
     },
     request_page: {
       title: "Request a ",
@@ -474,6 +475,7 @@ export const messages = {
       modalSubtitle: "Choisissez le moment qui vous convient le mieux.",
       privacyNote:
         "Vos informations sont sécurisées et ne seront utilisées que pour vous contacter au sujet de votre rendez-vous.",
+      loading: "Chargement du calendrier...",
     },
     request_page: {
       title: "Demande de ",
@@ -736,6 +738,7 @@ export const messages = {
       modalSubtitle: "Kies een tijd die voor jou het beste werkt.",
       privacyNote:
         "Je gegevens zijn veilig en worden alleen gebruikt om contact met je op te nemen voor je afspraak.",
+      loading: "Kalender wordt geladen...",
     },
     request_page: {
       title: "Aanvraag voor ",
