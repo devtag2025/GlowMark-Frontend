@@ -5,13 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { buildBlogUrl } from "@/utils/paths";
 
 export default function BlogCard({ blog, index, locale = "en" }) {
   const { t } = useLanguage();
 
-  const blogLink = locale
-    ? `/${locale}/blog/${blog.slug}`
-    : `/blog/${blog.slug}`;
+  const blogLink = buildBlogUrl(locale, blog);
 
   const title = blog.titles?.[locale] || blog.title;
   const excerpt = blog.excerpts?.[locale] || blog.excerpt;

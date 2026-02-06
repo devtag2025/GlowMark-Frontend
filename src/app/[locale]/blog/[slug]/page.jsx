@@ -8,11 +8,12 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag, Folder } from "lucide-react";
 import { blogs } from "@/data/blogs";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { resolveBlogBySlug, buildBlogUrl } from "@/utils/paths";
 
 export default function BlogPostPage() {
   const params = useParams();
   const { t, lang } = useLanguage();
-  const blog = blogs.find((b) => b.slug === params.slug);
+  const blog = resolveBlogBySlug(lang, params.slug);
 
   if (!blog) {
     notFound();
@@ -142,7 +143,7 @@ export default function BlogPostPage() {
           className="mb-8"
         >
           <Link
-            href={`/${lang}/blog`}
+            href={lang === "en" ? "/blog" : `/${lang}/blog`}
             className="inline-flex items-center gap-2 text-theme-muted hover:text-theme transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

@@ -6,6 +6,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import Link from "next/link";
 import { blogs } from "@/data/blogs";
 import { ArrowRight, Clock } from "lucide-react";
+import { buildBlogUrl } from "@/utils/paths";
 
 const containerVariants = {
   hidden: {},
@@ -47,10 +48,7 @@ const BlogSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.slice(0, 3).map((blog, index) => {
-            const blogLink =
-              locale === "en"
-                ? `/blog/${blog.slug}`
-                : `/${locale}/blog/${blog.slug}`;
+            const blogLink = buildBlogUrl(locale, blog);
 
             const title = blog.titles?.[locale] || blog.title;
             const excerpt = blog.excerpts?.[locale] || blog.excerpt;
