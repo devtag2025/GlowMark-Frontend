@@ -1,6 +1,7 @@
-import {Inter, Playfair_Display , Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { LenisProvider } from "@/providers/LenisProvider";
+
+import AppProviders from "@/providers/AppProviders";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,9 +40,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${inter.variable} ${playfair.variable}`}
       >
-        <LenisProvider>
-          {children}
-        </LenisProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );
