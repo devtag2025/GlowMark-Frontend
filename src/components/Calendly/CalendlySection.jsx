@@ -1,16 +1,18 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Calendar, Clock, CheckCircle, X } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, Calendar, Clock, CheckCircle, X } from 'lucide-react';
+import { useLanguage } from '@/i18n/LanguageProvider';
 
 export default function CalendlySection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Load Calendly widget script
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     document.head.appendChild(script);
 
@@ -24,13 +26,13 @@ export default function CalendlySection() {
   useEffect(() => {
     // Prevent body scroll when modal is open
     if (isModalOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
   }, [isModalOpen]);
 
@@ -38,8 +40,8 @@ export default function CalendlySection() {
     // Reinitialize Calendly widget when modal opens
     if (isModalOpen && window.Calendly) {
       window.Calendly.initInlineWidget({
-        url: "https://calendly.com/glowmarkagency-sales/30min",
-        parentElement: document.getElementById("calendly-container"),
+        url: 'https://calendly.com/glowmarkagency-sales/30min',
+        parentElement: document.getElementById('calendly-container'),
       });
     }
   }, [isModalOpen]);
@@ -47,18 +49,18 @@ export default function CalendlySection() {
   const features = [
     {
       icon: Calendar,
-      title: "Choose Your Time",
-      description: "Select a convenient time slot that fits your schedule",
+      title: t('calendly.feature1Title'),
+      description: t('calendly.feature1Desc'),
     },
     {
       icon: Phone,
-      title: "We'll Call You",
-      description: "Our team will call you at the scheduled time",
+      title: t('calendly.feature2Title'),
+      description: t('calendly.feature2Desc'),
     },
     {
       icon: CheckCircle,
-      title: "No Commitment",
-      description: "Free consultation with no obligations",
+      title: t('calendly.feature3Title'),
+      description: t('calendly.feature3Desc'),
     },
   ];
 
@@ -78,17 +80,18 @@ export default function CalendlySection() {
           >
             <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-900 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm mb-6">
               <Phone className="w-4 h-4 mr-2" />
-              Schedule a Call
+              {t('calendly.badge')}
             </div>
 
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6">
-              Book a{" "}
-              <span className="text-gradient-purple">Phone Appointment</span>
+              {t('calendly.titlePrefix')}{' '}
+              <span className="text-gradient-purple">
+                {t('calendly.titleHighlight')}
+              </span>
             </h2>
 
             <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed max-w-3xl mx-auto">
-              Choose a convenient time and we'll personally call you to discuss
-              your project, requirements, or any questions you may have.
+              {t('calendly.description')}
             </p>
           </motion.div>
 
@@ -135,7 +138,7 @@ export default function CalendlySection() {
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
             >
               <Calendar className="w-5 h-5" />
-              Schedule a Call Now
+              {t('calendly.buttonLabel')}
             </button>
           </motion.div>
 
@@ -148,11 +151,11 @@ export default function CalendlySection() {
             className="mt-12 max-w-2xl mx-auto text-center"
           >
             <div className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-2xl p-6">
-              <h4 className="font-bold text-theme mb-2">What to Expect</h4>
+              <h4 className="font-bold text-theme mb-2">
+                {t('calendly.infoTitle')}
+              </h4>
               <p className="text-sm text-theme-secondary">
-                During the call, we'll discuss your needs, answer your
-                questions, and explore how we can help grow your business. The
-                consultation is completely free with no obligations.
+                {t('calendly.infoDesc')}
               </p>
             </div>
           </motion.div>
@@ -196,10 +199,10 @@ export default function CalendlySection() {
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
                       <Calendar className="w-6 h-6 text-white" />
                     </div>
-                    Schedule Your Call
+                    {t('calendly.modalTitle')}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 ml-15">
-                    Pick a time that works best for you
+                    {t('calendly.modalSubtitle')}
                   </p>
                 </div>
 
@@ -210,8 +213,8 @@ export default function CalendlySection() {
                     className="calendly-inline-widget"
                     data-url="https://calendly.com/glowmarkagency-sales/30min"
                     style={{
-                      minWidth: "100%",
-                      height: "700px",
+                      minWidth: '100%',
+                      height: '700px',
                     }}
                   />
                 </div>
@@ -220,8 +223,7 @@ export default function CalendlySection() {
                 <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                   <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2">
                     <Clock className="w-4 h-4" />
-                    Your information is secure and will only be used to contact
-                    you for your appointment.
+                    {t('calendly.privacyNote')}
                   </p>
                 </div>
               </motion.div>

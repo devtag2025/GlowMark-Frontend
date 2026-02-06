@@ -5,6 +5,7 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { buildPageUrl } from "@/utils/paths";
 
 const CTASection = () => {
   const { t, lang } = useLanguage();
@@ -62,7 +63,7 @@ const CTASection = () => {
             </h2>
 
             <Link
-              href={lang === "en" ? "/request" : `/${lang}/request`}
+              href={buildPageUrl("request", lang)}
               className="
                   px-10 py-4
                   bg-white text-purple-900
