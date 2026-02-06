@@ -32,6 +32,11 @@ export const routeTranslations = {
     fr: 'demande',
     nl: 'aanvraag',
   },
+  scheduleCall: {
+    en: 'schedule-call',
+    fr: 'planifier-appel',
+    nl: 'gesprek-plannen',
+  },
   privacyPolicy: {
     en: 'privacy-policy',
     fr: 'politique-de-confidentialite',
