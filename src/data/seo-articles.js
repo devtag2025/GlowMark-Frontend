@@ -2,6 +2,11 @@ export const seoArticles = [
   {
     id: 1,
     slug: "backlinks",
+    slugs: {
+      en: "backlinks",
+      fr: "liens-retour",
+      nl: "terugverwijzingen",
+    },
     order: 1,
     titles: {
       en: "Backlinks: The Magic Links That Boost Your Site on Google",
@@ -253,6 +258,11 @@ Met de juiste backlinks kan jouw site een referentiepunt worden. 🚀`,
   {
     id: 2,
     slug: "geoptimaliseerde-content",
+    slugs: {
+      en: "optimized-content",
+      fr: "contenu-optimise",
+      nl: "geoptimaliseerde-content",
+    },
     order: 2,
     titles: {
       en: "Optimized Content: The Key to Boost Your Website on Google",
@@ -417,6 +427,11 @@ Geoptimaliseerde content is de toekomst van SEO. Wanneer begin jij?`,
   {
     id: 3,
     slug: "website-optimaliseren",
+    slugs: {
+      en: "optimize-website",
+      fr: "optimiser-site",
+      nl: "website-optimaliseren",
+    },
     order: 3,
     titles: {
       en: "How to Optimize Your Website for Google: The Simple Method to Become Visible!",
@@ -443,6 +458,11 @@ Binnenkort beschikbaar...`,
   {
     id: 4,
     slug: "netlinking",
+    slugs: {
+      en: "netlinking",
+      fr: "netlinking",
+      nl: "netlinking",
+    },
     order: 4,
     titles: {
       en: "Netlinking: The Secret Weapon to Rank Higher on Google",
@@ -469,6 +489,11 @@ Binnenkort beschikbaar...`,
   {
     id: 5,
     slug: "seo-natuurlijke-referencering",
+    slugs: {
+      en: "seo-natural-referencing",
+      fr: "seo-referencement-naturel",
+      nl: "seo-natuurlijke-referencering",
+    },
     order: 5,
     titles: {
       en: "SEO (Natural Referencing): Let Your Website Rise on Google Without Breaking Your Budget",
@@ -495,6 +520,11 @@ Binnenkort beschikbaar...`,
   {
     id: 6,
     slug: "waarde-website-bepalen",
+    slugs: {
+      en: "determine-website-value",
+      fr: "determiner-valeur-site",
+      nl: "waarde-website-bepalen",
+    },
     order: 6,
     titles: {
       en: "How to Determine the Value of a Website?",
@@ -521,6 +551,11 @@ Binnenkort beschikbaar...`,
   {
     id: 7,
     slug: "complete-seo-guide-2026",
+    slugs: {
+      en: "complete-seo-guide-2026",
+      fr: "guide-complet-seo-2026",
+      nl: "complete-seo-gids-2026",
+    },
     order: 7,
     titles: {
       en: "What is Search Engine Optimization (SEO)? A Complete Guide 2026",
@@ -540,8 +575,42 @@ Binnenkort beschikbaar...`,
   },
 ];
 
-export function getArticleBySlug(slug) {
-  return seoArticles.find((article) => article.slug === slug);
+/**
+ * Get an SEO article by slug, supporting both old slugs and per-locale slugs.
+ * Behaviour:
+ * - First, try to match slug for the current locale (if provided)
+ * - If that fails, fall back to searching all locale slugs + canonical slug
+ *
+ * This allows URLs like `/seo/liens-retour` or `/nl/seo/liens-retour`
+ * to still resolve correctly even if the slug belongs to a different locale.
+ *
+ * @param {string} slug   The slug from the URL
+ * @param {string|null} locale Optional locale for better matching
+ * @returns {Object|null} The article if found, null otherwise
+ */
+export function getArticleBySlug(slug, locale = null) {
+  // Try a locale-specific match first when we know the locale
+  if (locale) {
+    const byLocale =
+      seoArticles.find(
+        (a) => a.slugs?.[locale] === slug || a.slug === slug,
+      ) || null;
+
+    if (byLocale) {
+      return byLocale;
+    }
+  }
+
+  // Fallback: search across all known locale slugs plus the canonical slug
+  return (
+    seoArticles.find(
+      (a) =>
+        a.slug === slug ||
+        a.slugs?.en === slug ||
+        a.slugs?.fr === slug ||
+        a.slugs?.nl === slug,
+    ) || null
+  );
 }
 
 export function getSortedArticles() {

@@ -1,26 +1,29 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Phone, Calendar, CheckCircle } from "lucide-react";
-import Link from "next/link";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Phone, Calendar, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
+import { useLanguage } from '@/i18n/LanguageProvider';
+import { buildPageUrl } from '@/utils/paths';
 
 export default function CalendlySection() {
+  const { t, lang } = useLanguage();
   const features = [
     {
       icon: Calendar,
-      title: "Choose Your Time",
-      description: "Select a convenient time slot that fits your schedule",
+      title: t('calendly.feature1Title'),
+      description: t('calendly.feature1Desc'),
     },
     {
       icon: Phone,
-      title: "We'll Call You",
-      description: "Our team will call you at the scheduled time",
+      title: t('calendly.feature2Title'),
+      description: t('calendly.feature2Desc'),
     },
     {
       icon: CheckCircle,
-      title: "No Commitment",
-      description: "Free consultation with no obligations",
+      title: t('calendly.feature3Title'),
+      description: t('calendly.feature3Desc'),
     },
   ];
 
@@ -36,17 +39,18 @@ export default function CalendlySection() {
         >
           <div className="bg-[#6B207A]/20 border border-[#6B207A]/50 inline-flex w-fit text-purple-900 font-semibold px-4 py-1 rounded-full text-sm mx-auto backdrop-blur-sm mb-6">
             <Phone className="w-4 h-4 mr-2" />
-            Schedule a Call
+            {t("calendly.badge")}
           </div>
 
           <h2 className="text-4xl md:text-6xl font-extrabold mb-6">
-            Book a{" "}
-            <span className="text-gradient-purple">Phone Appointment</span>
+            {t("calendly.titlePrefix")}{" "}
+            <span className="text-gradient-purple">
+              {t("calendly.titleHighlight")}
+            </span>
           </h2>
 
           <p className="text-base sm:text-lg lg:text-xl text-theme-muted leading-relaxed max-w-3xl mx-auto">
-            Choose a convenient time and we'll personally call you to discuss
-            your project, requirements, or any questions you may have.
+            {t("calendly.description")}
           </p>
         </motion.div>
 
@@ -89,11 +93,11 @@ export default function CalendlySection() {
           className="text-center"
         >
           <Link
-            href="/schedule-call"
+            href={buildPageUrl('scheduleCall', lang)}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
           >
             <Calendar className="w-5 h-5" />
-            Schedule a Call Now
+            {t("calendly.buttonLabel")}
           </Link>
         </motion.div>
 
@@ -106,11 +110,11 @@ export default function CalendlySection() {
           className="mt-12 max-w-2xl mx-auto text-center"
         >
           <div className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-2xl p-6">
-            <h4 className="font-bold text-theme mb-2">What to Expect</h4>
+            <h4 className="font-bold text-theme mb-2">
+              {t("calendly.infoTitle")}
+            </h4>
             <p className="text-sm text-theme-secondary">
-              During the call, we'll discuss your needs, answer your questions,
-              and explore how we can help grow your business. The consultation
-              is completely free with no obligations.
+              {t("calendly.infoDesc")}
             </p>
           </div>
         </motion.div>

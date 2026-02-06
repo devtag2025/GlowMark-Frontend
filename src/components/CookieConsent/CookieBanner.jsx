@@ -1,12 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Cookie, X, Settings, Check, Shield } from "lucide-react";
-import { useCookieConsent } from "@/hooks/useCookieConsent";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Cookie, X, Settings, Check, Shield } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { useCookieConsent } from '@/hooks/useCookieConsent';
+import { buildPageUrl } from '@/utils/paths';
 
 export default function CookieBanner() {
   const { consent, ready, saveConsent } = useCookieConsent();
+  const pathname = usePathname();
   const [showPreferences, setShowPreferences] = useState(false);
   const [preferences, setPreferences] = useState({
     analytics: false,
@@ -218,20 +221,36 @@ export default function CookieBanner() {
 
                 {/* Privacy Policy Link */}
                 <p className="text-xs text-theme-muted text-center mt-4">
-                  Read our{" "}
-                  <a
-                    href="/privacy-policy"
-                    className="text-purple-500 hover:underline"
-                  >
-                    Privacy Policy
-                  </a>{" "}
-                  and{" "}
-                  <a
-                    href="/cookies-policy"
-                    className="text-purple-500 hover:underline"
-                  >
-                    Cookie Policy
-                  </a>
+                  {/*
+                    Derive locale from the current URL instead of LanguageProvider,
+                    since this component is rendered outside of it.
+                  */}
+                  {(() => {
+                    const segments = pathname.split("/").filter(Boolean);
+                    const localeSegment = segments[0];
+                    const locale = ["en", "fr", "nl"].includes(localeSegment)
+                      ? localeSegment
+                      : "en";
+
+                    return (
+                      <>
+                        Read our{" "}
+                        <a
+                          href={buildPageUrl("privacyPolicy", locale)}
+                          className="text-purple-500 hover:underline"
+                        >
+                          Privacy Policy
+                        </a>{" "}
+                        and{" "}
+                        <a
+                          href={buildPageUrl("cookiesPolicy", locale)}
+                          className="text-purple-500 hover:underline"
+                        >
+                          Cookie Policy
+                        </a>
+                      </>
+                    );
+                  })()}
                 </p>
               </div>
             )}
