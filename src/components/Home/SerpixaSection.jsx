@@ -69,7 +69,7 @@ const SerpixaSection = () => {
               className="inline-block"
             >
               <Link
-                href=""
+                href="https://serpixa-frontend.vercel.app/"
                 className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300"
               >
                 <span className="relative z-10">{t("serpixa.btnText")}</span>
