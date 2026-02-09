@@ -123,10 +123,7 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20 md:h-24">
-          <Link
-            href={buildHomeUrl(lang)}
-            className="relative z-10"
-          >
+          <Link href={buildHomeUrl(lang)} className="relative z-10">
             <Image
               src="/logo.png"
               alt="Glow Mark Agency"
@@ -175,7 +172,7 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setDesktopLangOpen(!desktopLangOpen)}
-                className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold"
+                className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold cursor-pointer"
               >
                 {LANGUAGE_LABELS[lang]}
                 <ChevronDown
