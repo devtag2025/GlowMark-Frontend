@@ -1,36 +1,35 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Calendar, CheckCircle } from 'lucide-react';
-import Link from 'next/link';
-import { useLanguage } from '@/i18n/LanguageProvider';
-import { buildPageUrl } from '@/utils/paths';
+import React from "react";
+import { motion } from "framer-motion";
+import { Phone, Calendar, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import { buildPageUrl } from "@/utils/paths";
 
 export default function CalendlySection() {
   const { t, lang } = useLanguage();
   const features = [
     {
       icon: Calendar,
-      title: t('calendly.feature1Title'),
-      description: t('calendly.feature1Desc'),
+      title: t("calendly.feature1Title"),
+      description: t("calendly.feature1Desc"),
     },
     {
       icon: Phone,
-      title: t('calendly.feature2Title'),
-      description: t('calendly.feature2Desc'),
+      title: t("calendly.feature2Title"),
+      description: t("calendly.feature2Desc"),
     },
     {
       icon: CheckCircle,
-      title: t('calendly.feature3Title'),
-      description: t('calendly.feature3Desc'),
+      title: t("calendly.feature3Title"),
+      description: t("calendly.feature3Desc"),
     },
   ];
 
   return (
     <section id="phone-appointment" className="relative py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +92,7 @@ export default function CalendlySection() {
           className="text-center"
         >
           <Link
-            href={buildPageUrl('scheduleCall', lang)}
+            href={buildPageUrl("scheduleCall", lang)}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
           >
             <Calendar className="w-5 h-5" />

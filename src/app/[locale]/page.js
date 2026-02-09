@@ -8,6 +8,7 @@ import WorkflowSection from "@/components/Home/WorkflowSection";
 import PriceSection from "@/components/Home/PriceSection";
 import CTASection from "@/components/Home/CTASection";
 import CalendlySection from "@/components/Calendly/CalendlySection";
+import SerpixaSection from "@/components/Home/SerpixaSection";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <CTASection />
       <PriceSection />
       <CalendlySection />
+      <SerpixaSection />
       <FAQSection />
       <BlogSection />
       <ContactSection />
