@@ -5,6 +5,8 @@ import BlogHeader from '@/components/Blog/BlogHeader';
 export default async function BlogPage({ params }) {
   const { locale } = params;
   const posts = await getAllPosts(locale);
+  console.log("fetch all posts",posts);
+  
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
