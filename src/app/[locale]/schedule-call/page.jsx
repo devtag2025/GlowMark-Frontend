@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Phone, Clock } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function ScheduleCallPage() {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Load Calendly widget script
@@ -79,7 +81,7 @@ export default function ScheduleCallPage() {
               />
             </div>
             <p className="text-gray-600 dark:text-gray-400 font-medium">
-              Loading calendar...
+              {t("calendly.loading")}
             </p>
           </div>
         </div>
@@ -94,11 +96,10 @@ export default function ScheduleCallPage() {
           className="mb-8"
         >
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-            Book Your Free Consultation
+            {t("calendly.modalTitle")}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
-            Choose a convenient time and we'll personally call you to discuss
-            your project, requirements, or any questions you may have.
+            {t("calendly.description")}
           </p>
 
           {/* Features Grid */}
@@ -109,10 +110,10 @@ export default function ScheduleCallPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">
-                  Choose Your Time
+                  {t("calendly.feature1Title")}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Select a slot that fits your schedule
+                  {t("calendly.feature1Desc")}
                 </p>
               </div>
             </div>
@@ -123,10 +124,10 @@ export default function ScheduleCallPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">
-                  We'll Call You
+                  {t("calendly.feature2Title")}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Our team will reach out at scheduled time
+                  {t("calendly.feature2Desc")}
                 </p>
               </div>
             </div>
@@ -137,10 +138,10 @@ export default function ScheduleCallPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">
-                  30 Minutes
+                  {t("calendly.feature3Title")}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Free consultation, no obligations
+                  {t("calendly.feature3Desc")}
                 </p>
               </div>
             </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSortedArticles } from "@/data/seo-articles";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { buildSEOUrl } from "@/utils/paths";
 
 export default function SEOSidebar() {
   const { lang, t } = useLanguage();
@@ -17,11 +18,15 @@ export default function SEOSidebar() {
       </h3>
       <ul className="space-y-1">
         {articles.map((article) => {
-          const href =
-            lang === "en"
-              ? `/seo/${article.slug}`
-              : `/${lang}/seo/${article.slug}`;
-          const isActive = pathname.includes(article.slug);
+          const href = buildSEOUrl(lang, article);
+          // Check if current pathname includes the article's slug (any locale)
+          const articleSlugs = [
+            article.slug,
+            article.slugs?.en,
+            article.slugs?.fr,
+            article.slugs?.nl,
+          ].filter(Boolean);
+          const isActive = articleSlugs.some((slug) => pathname.includes(slug));
 
           return (
             <li key={article.id}>

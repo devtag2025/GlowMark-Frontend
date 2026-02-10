@@ -5,6 +5,7 @@ import { Sparkles, ArrowRight, ChartNoAxesCombined } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { buildPageUrl } from "@/utils/paths";
 
 export default function HeroSection() {
   const { t, lang } = useLanguage();
@@ -38,7 +39,7 @@ export default function HeroSection() {
             {t("hero.description")}
           </p>
 
-          <Link href={lang === "en" ? "/request" : `/${lang}/request`}>
+          <Link href={buildPageUrl("request", lang)}>
             <motion.button
               whileHover={{
                 scale: 1.05,

@@ -4,8 +4,8 @@ export const blogs = [
     slug: "seo-what-is-it-why-crucial",
     slugs: {
       en: "seo-what-is-it-why-crucial",
-      fr: "seo-what-is-it-why-crucial",
-      nl: "seo-what-is-it-why-crucial",
+      fr: "seo-qu-est-ce-que-c-est-et-pourquoi-c-est-crucial",
+      nl: "seo-wat-is-het-en-waarom-is-het-cruciaal",
     },
     title: "SEO: What It Is and Why It Is Crucial for Your Website",
     titles: {
@@ -235,8 +235,8 @@ Wil je jouw website naar een hoger niveau tillen met een sterke SEO strategie? W
     slug: "seo-in-brussels-boost-local-business-visibility",
     slugs: {
       en: "seo-in-brussels-boost-local-business-visibility",
-      fr: "seo-in-brussels-boost-local-business-visibility",
-      nl: "seo-in-brussels-boost-local-business-visibility",
+      fr: "seo-a-bruxelles-boostez-visibilite-entreprise-locale",
+      nl: "seo-in-brussel-vergroot-zichtbaarheid-lokaal-bedrijf",
     },
     title: "SEO in Brussels: Boost the Visibility of Your Local Business",
     titles: {
@@ -539,8 +539,8 @@ Laat uw concurrenten u niet inhalen. Investeer vandaag in SEO en maak van uw web
     slug: "seo-basics-how-to-get-started",
     slugs: {
       en: "seo-basics-how-to-get-started",
-      fr: "seo-basics-how-to-get-started",
-      nl: "seo-basics-how-to-get-started",
+      fr: "bases-seo-comment-bien-debuter",
+      nl: "basisprincipes-seo-hoe-goed-beginnen",
     },
     title: "The Basics of SEO: How to Get Started?",
     titles: {
@@ -849,8 +849,8 @@ SEO kan in het begin complex lijken, maar met de juiste praktijken en wat geduld
     slug: "why-local-seo-is-crucial-for-small-businesses",
     slugs: {
       en: "why-local-seo-is-crucial-for-small-businesses",
-      fr: "why-local-seo-is-crucial-for-small-businesses",
-      nl: "why-local-seo-is-crucial-for-small-businesses",
+      fr: "pourquoi-seo-local-crucial-petites-entreprises",
+      nl: "waarom-lokale-seo-cruciaal-kleine-bedrijven",
     },
     title: "Why Local SEO is Crucial for Small Businesses",
     titles: {
@@ -1104,8 +1104,8 @@ Wat wacht je nog op om de lokale ster op Google te worden? 🚀`,
     slug: "how-seo-improves-conversion",
     slugs: {
       en: "how-seo-improves-conversion",
-      fr: "how-seo-improves-conversion",
-      nl: "how-seo-improves-conversion",
+      fr: "comment-seo-peut-ameliorer-conversion",
+      nl: "hoe-seo-conversie-verbetert",
     },
     title: "How SEO Improves Conversion",
     titles: {
@@ -1336,8 +1336,8 @@ Hulp nodig bij het optimaliseren van je site? Neem vandaag nog contact met ons o
     slug: "conversion-rate-optimization",
     slugs: {
       en: "conversion-rate-optimization",
-      fr: "conversion-rate-optimization",
-      nl: "conversion-rate-optimization",
+      fr: "optimisation-taux-conversion-strategies-donnees",
+      nl: "conversie-optimalisatie-data-gedreven-strategieen",
     },
     title: "Conversion Rate Optimization: Data Driven Strategies",
     titles: {

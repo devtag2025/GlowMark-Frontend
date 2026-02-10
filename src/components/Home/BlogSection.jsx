@@ -6,7 +6,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import Link from "next/link";
 import { blogs } from "@/data/blogs";
 import { ArrowRight, Clock } from "lucide-react";
-import { buildBlogUrl } from "@/utils/paths";
+import { buildBlogUrl, buildPageUrl } from "@/utils/paths";
 
 const containerVariants = {
   hidden: {},
@@ -109,7 +109,7 @@ const BlogSection = () => {
           })}
         </div>
 
-        <Link href={lang === "en" ? "/blog" : `/${lang}/blog`}>
+        <Link href={buildPageUrl("blog", locale)}>
           <motion.button
             whileHover={{
               scale: 1.05,
