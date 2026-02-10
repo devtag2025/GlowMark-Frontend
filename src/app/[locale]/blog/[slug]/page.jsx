@@ -2,16 +2,18 @@ import { getPostBySlug } from "@/lib/wordpress";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, Tag, Folder } from "lucide-react";
-import { blogs } from "@/data/blogs";
-import { useLanguage } from "@/i18n/LanguageProvider";
-import { resolveBlogBySlug, buildBlogUrl, buildPageUrl } from "@/utils/paths";
+import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
+import { buildPageUrl } from "@/utils/paths";
 
-export default async function BlogPostPage({ params }) {
+
+export default async function BlogPostPage(props) {
+  const params = await props.params; // ✅ IMPORTANT
   const { locale, slug } = params;
+
   const post = await getPostBySlug(slug, locale);
 
+   console.log("post ", post);
+   
   if (!post) {
     notFound();
   }
@@ -133,8 +135,10 @@ export default async function BlogPostPage({ params }) {
 }
 
 // Metadata
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params; // ✅ IMPORTANT
   const { locale, slug } = params;
+
   const post = await getPostBySlug(slug, locale);
 
   if (!post) {
@@ -146,6 +150,7 @@ export async function generateMetadata({ params }) {
     description: post.excerpt,
   };
 }
+
 
 // Remove or comment out generateStaticParams for now
 // We'll use dynamic rendering instead of SSG
