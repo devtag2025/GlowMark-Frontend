@@ -32,30 +32,32 @@ export default async function BlogPostPage({ params }) {
         {/* Hero section */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr,1fr] gap-10 mb-12">
           {/* Featured Image */}
-          <div className="relative w-full h-72 sm:h-80 lg:h-[420px] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-lg">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          {post.image && (
+            <div className="relative w-full h-72 sm:h-80 lg:h-[420px] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-lg">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                priority
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-            {/* Category */}
-            <div className="absolute top-4 left-4">
-              <span className="px-4 py-1.5 rounded-full bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 text-sm font-medium text-purple-300 uppercase">
-                {post.category}
-              </span>
-            </div>
+              {/* Category */}
+              <div className="absolute top-4 left-4">
+                <span className="px-4 py-1.5 rounded-full bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 text-sm font-medium text-purple-300 uppercase">
+                  {post.category}
+                </span>
+              </div>
 
-            {/* Title */}
-            <div className="absolute bottom-6 left-6 right-6">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-white">
-                {post.title}
-              </h1>
+              {/* Title */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-white">
+                  {post.title}
+                </h1>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Meta Info Sidebar */}
           <div className="flex flex-col gap-6">
@@ -126,23 +128,6 @@ export default async function BlogPostPage({ params }) {
   );
 }
 
-// Generate static params for all posts (optional - for SSG)
-export async function generateStaticParams() {
-  const locales = ["en", "fr", "nl"];
-  const allParams = [];
-
-  for (const locale of locales) {
-    const posts = await getAllPosts(locale);
-    const params = posts.map((post) => ({
-      locale,
-      slug: post.slug,
-    }));
-    allParams.push(...params);
-  }
-
-  return allParams;
-}
-
 // Metadata
 export async function generateMetadata({ params }) {
   const { locale, slug } = params;
@@ -157,3 +142,6 @@ export async function generateMetadata({ params }) {
     description: post.excerpt,
   };
 }
+
+// Remove or comment out generateStaticParams for now
+// We'll use dynamic rendering instead of SSG
