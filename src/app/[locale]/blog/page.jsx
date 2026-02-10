@@ -1,53 +1,54 @@
-"use client";
+import { getAllPosts } from '@/lib/wordpress';
+import BlogCard from '@/components/Blog/BlogCard';
+import BlogHeader from '@/components/Blog/BlogHeader';
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import BlogCard from "@/components/Blog/BlogCard";
-import { blogs } from "@/data/blogs";
-import { useLanguage } from "@/i18n/LanguageProvider";
-
-export default function BlogPage() {
-  const wrapperRef = useRef(null);
-  const { t, lang } = useLanguage();
-
-  const { scrollYProgress } = useScroll({
-    target: wrapperRef,
-    offset: ["start start", "end start"],
-  });
-
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+export default async function BlogPage({ params }) {
+  const { locale } = params;
+  const posts = await getAllPosts(locale);
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      {/* Spacer for header */}
+      {/* Spacer for global header */}
       <div className="h-24" />
 
-      <section
-        ref={wrapperRef}
-        className="min-h-screen max-w-7xl mx-auto px-6 py-16 md:py-24"
-      >
-        {/* Title block that moves slightly upward on scroll */}
-        <motion.div style={{ y: titleY }} className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-theme mb-4">
-            <span className="font-bold">{t("blogPage.titlePrefix")}</span>{" "}
-            <span
-              className="font-serif italic text-gradient-purple"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              {t("blogPage.titleHighlight")}
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-theme-muted max-w-2xl mx-auto">
-            {t("blogPage.description")}
-          </p>
-        </motion.div>
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        <BlogHeader locale={locale} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog, index) => (
-            <BlogCard key={blog.id} blog={blog} index={index} locale={lang} />
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-xl text-theme-muted">
+              No blog posts available yet.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post, index) => (
+              <BlogCard 
+                key={post.id} 
+                blog={post} 
+                index={index} 
+                locale={locale} 
+              />
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }) {
+  const { locale } = params;
+  
+  const titles = {
+    en: 'Blog - Latest Articles & Insights',
+    fr: 'Blog - Derniers Articles et Insights',
+    nl: 'Blog - Laatste Artikelen en Inzichten'
+  };
+
+  return {
+    title: titles[locale] || titles.en,
+    description: 'Discover our latest blog posts, insights, and expert tips.',
+  };
 }

@@ -2,7 +2,27 @@
 
 import { motion } from "framer-motion";
 
-export default function BlogHeader() {
+export default function BlogHeader({ locale = "en" }) {
+  const titles = {
+    en: {
+      prefix: "Our",
+      highlight: "Blogs",
+      desc: "Discover insights, tips, and strategies to grow your online presence",
+    },
+    fr: {
+      prefix: "Nos",
+      highlight: "Blogs",
+      desc: "Découvrez des insights, des conseils et des stratégies pour développer votre présence en ligne",
+    },
+    nl: {
+      prefix: "Onze",
+      highlight: "Blogs",
+      desc: "Ontdek inzichten, tips en strategieën om uw online aanwezigheid te laten groeien",
+    },
+  };
+
+  const t = titles[locale] || titles.en;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -10,23 +30,15 @@ export default function BlogHeader() {
       transition={{ duration: 0.6 }}
       className="text-center mb-16"
     >
-      <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-4">
-        <span className="font-bold">Our</span>{" "}
-        <span
-          className="font-serif italic text-gradient-purple"
-          style={{ fontFamily: "var(--font-playfair)" }}
-        >
-          Blogs
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-theme mb-4">
+        <span className="font-bold">{t.prefix}</span>{" "}
+        <span className="font-serif italic text-gradient-purple">
+          {t.highlight}
         </span>
       </h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-        className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto"
-      >
-        Discover insights, tips, and strategies to grow your online presence
-      </motion.p>
+      <p className="text-lg md:text-xl text-theme-muted max-w-2xl mx-auto">
+        {t.desc}
+      </p>
     </motion.div>
   );
 }
