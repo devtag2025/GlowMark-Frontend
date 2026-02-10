@@ -2,7 +2,13 @@ import { getPostBySlug } from "@/lib/wordpress";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
+import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
+import { motion } from "framer-motion";
+import { ArrowLeft, Calendar, Clock, Tag, Folder } from "lucide-react";
+import { blogs } from "@/data/blogs";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import { resolveBlogBySlug, buildBlogUrl, buildPageUrl } from "@/utils/paths";
 
 export default async function BlogPostPage({ params }) {
   const { locale, slug } = params;
@@ -21,7 +27,7 @@ export default async function BlogPostPage({ params }) {
         {/* Back button */}
         <div className="mb-8">
           <Link
-            href={`/${locale}/blog`}
+            href={buildPageUrl("blog", lang)}
             className="inline-flex items-center gap-2 text-theme-muted hover:text-theme transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

@@ -191,6 +191,28 @@ export const messages = {
         "Let our experts analyze your site and create a custom strategy to get you to the top of Google.",
       ctaButton: "Start your free audit",
     },
+    calendly: {
+      badge: "Schedule a Call",
+      titlePrefix: "Book a",
+      titleHighlight: "Phone Appointment",
+      description:
+        "Choose a convenient time and we'll personally call you to discuss your project, requirements, or any questions you may have.",
+      feature1Title: "Choose Your Time",
+      feature1Desc: "Select a convenient time slot that fits your schedule.",
+      feature2Title: "We'll Call You",
+      feature2Desc: "Our team will call you at the scheduled time.",
+      feature3Title: "No Commitment",
+      feature3Desc: "Free consultation with no obligations.",
+      buttonLabel: "Schedule a Call Now",
+      infoTitle: "What to Expect",
+      infoDesc:
+        "During the call, we'll discuss your needs, answer your questions, and explore how we can help grow your business. The consultation is completely free with no obligations.",
+      modalTitle: "Schedule Your Call",
+      modalSubtitle: "Pick a time that works best for you.",
+      privacyNote:
+        "Your information is secure and will only be used to contact you for your appointment.",
+      loading: "Loading calendar...",
+    },
     request_page: {
       title: "Request a ",
       titleHighlight: "Free Trial",
@@ -229,6 +251,24 @@ export const messages = {
       cookies: "Cookies Policy",
       top: "Back to top",
       rights: "All Rights Reserved",
+    },
+    serpixa: {
+      title: "Need to optimize",
+      titleHighlight: "your content?",
+      descriptionPrefix: "Our partner",
+      descriptionSuffix:
+        " helps you identify exactly what needs to be improved to perform better in search engines.",
+      descriptionHighlight: " Serpixa",
+      description: " Analyze. Understand. Act.",
+      badge: "SEO, without the headache",
+      btnText: "Explore Serpixa",
+      featureTitle: "Why teams love Serpixa",
+      feat1: "Highlights priority optimizations instantly",
+      feat2: "Clear, exportable SEO reports for clients",
+      feat3: "Easy to use interface (no SEO expertise required)",
+      feat4: "Available in French, Dutch, and English",
+      workframe: "Partner Framework",
+      live: "Live Optimization",
     },
   },
 
@@ -429,6 +469,31 @@ export const messages = {
         "Laissez nos experts analyser votre site et créer une stratégie sur mesure pour vous propulser en haut de Google.",
       ctaButton: "Commencer votre audit gratuit",
     },
+    calendly: {
+      badge: "Planifier un appel",
+      titlePrefix: "Réservez un",
+      titleHighlight: "rendez-vous téléphonique",
+      description:
+        "Choisissez un créneau qui vous convient et nous vous appellerons personnellement pour discuter de votre projet, de vos besoins ou de vos questions.",
+      feature1Title: "Choisissez votre horaire",
+      feature1Desc:
+        "Sélectionnez un créneau horaire pratique qui s’adapte à votre emploi du temps.",
+      feature2Title: "Nous vous appelons",
+      feature2Desc:
+        "Notre équipe vous appelle à l’heure convenue pour un échange personnalisé.",
+      feature3Title: "Sans engagement",
+      feature3Desc:
+        "Une consultation entièrement gratuite, sans aucune obligation.",
+      buttonLabel: "Planifier un appel maintenant",
+      infoTitle: "À quoi vous attendre",
+      infoDesc:
+        "Pendant l’appel, nous parlons de vos besoins, répondons à vos questions et explorons comment nous pouvons vous aider à développer votre activité. La consultation est totalement gratuite et sans engagement.",
+      modalTitle: "Planifiez votre appel",
+      modalSubtitle: "Choisissez le moment qui vous convient le mieux.",
+      privacyNote:
+        "Vos informations sont sécurisées et ne seront utilisées que pour vous contacter au sujet de votre rendez-vous.",
+      loading: "Chargement du calendrier...",
+    },
     request_page: {
       title: "Demande de ",
       titleHighlight: "Test Gratuit",
@@ -468,6 +533,25 @@ export const messages = {
       cookies: "Politique de cookies",
       top: "Retour en haut",
       rights: "Tous droits réservés",
+    },
+    serpixa: {
+      title: "Il faut optimiser",
+      titleHighlight: "votre contenu ?",
+      descriptionPrefix: "Notre partenaire",
+      descriptionSuffix:
+        " vous aide à identifier précisément les points à améliorer pour optimiser votre référencement sur les moteurs de recherche.",
+      descriptionHighlight: " Serpixa",
+      description: " Analyser. Comprendre. Agir.",
+      badge: "Le référencement naturel, sans les maux de tête",
+      btnText: "Explorez Serpixa",
+      featureTitle: "Pourquoi les équipes adorent Serpixa",
+      feat1: "Mise en évidence instantanée des optimisations prioritaires",
+      feat2: "Des rapports SEO clairs et exportables pour les clients",
+      feat3:
+        "Interface facile à utiliser (aucune expertise en référencement requise)",
+      feat4: "Disponible en français, néerlandais et anglais",
+      workframe: "Cadre de partenariat",
+      live: "Optimisation en direct",
     },
   },
 
@@ -667,6 +751,29 @@ export const messages = {
         "Laat onze experts je site analyseren en een strategie op maat maken om je naar de top van Google te brengen.",
       ctaButton: "Start je gratis audit",
     },
+    calendly: {
+      badge: "Plan een gesprek",
+      titlePrefix: "Boek een",
+      titleHighlight: "telefonische afspraak",
+      description:
+        "Kies een moment dat jou het beste uitkomt en wij bellen je persoonlijk om je project, wensen en vragen te bespreken.",
+      feature1Title: "Kies je tijd",
+      feature1Desc: "Selecteer een tijdslot dat perfect past in je agenda.",
+      feature2Title: "Wij bellen jou",
+      feature2Desc:
+        "Ons team belt je op het afgesproken tijdstip voor een persoonlijk gesprek.",
+      feature3Title: "Geen verplichtingen",
+      feature3Desc: "Een gratis consultatie, volledig zonder verplichtingen.",
+      buttonLabel: "Plan nu een gesprek",
+      infoTitle: "Wat kun je verwachten",
+      infoDesc:
+        "Tijdens het gesprek bespreken we jouw behoeften, beantwoorden we je vragen en bekijken we hoe we jouw bedrijf kunnen laten groeien. De consultatie is volledig gratis en zonder verplichtingen.",
+      modalTitle: "Plan je gesprek",
+      modalSubtitle: "Kies een tijd die voor jou het beste werkt.",
+      privacyNote:
+        "Je gegevens zijn veilig en worden alleen gebruikt om contact met je op te nemen voor je afspraak.",
+      loading: "Kalender wordt geladen...",
+    },
     request_page: {
       title: "Aanvraag voor ",
       titleHighlight: "Gratis Test",
@@ -705,6 +812,24 @@ export const messages = {
       cookies: "Cookiebeleid",
       top: "Terug naar boven",
       rights: "Alle rechten voorbehouden",
+    },
+    serpixa: {
+      title: "Moet optimaliseren",
+      titleHighlight: "jouw inhoud?",
+      descriptionPrefix: "Onze partner",
+      descriptionSuffix:
+        " Hiermee kunt u precies vaststellen wat er verbeterd moet worden om beter te presteren in zoekmachines.",
+      descriptionHighlight: " Serpixa",
+      description: " Analyseren. Begrijpen. Handelen.",
+      badge: "SEO, zonder de hoofdpijn",
+      btnText: "Ontdek Serpixa",
+      featureTitle: "Waarom teams dol zijn op Serpixa",
+      feat1: "Markeer prioriteitsoptimalisaties direct",
+      feat2: "Duidelijke, exporteerbare SEO-rapporten voor klanten",
+      feat3: "Gebruiksvriendelijke interface (geen SEO-expertise vereist)",
+      feat4: "Beschikbaar in het Frans, Nederlands en Engels.",
+      workframe: "Partnerraamwerk",
+      live: "Live optimalisatie",
     },
   },
 };

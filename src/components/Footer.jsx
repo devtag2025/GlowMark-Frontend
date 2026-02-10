@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { buildPageUrl, buildHomeUrl } from "@/utils/paths";
 
 const Footer = () => {
   const { t, lang } = useLanguage();
@@ -11,37 +12,26 @@ const Footer = () => {
   const CompanyItem = [
     {
       key: "footer.blog",
-      href: (currentLang) =>
-        currentLang === "en" ? "/blog" : `/${currentLang}/blog`,
+      href: (currentLang) => buildPageUrl("blog", currentLang),
     },
     {
       key: "footer.pricing",
-      href: (currentLang) =>
-        currentLang === "en" ? "/pricing" : `/${currentLang}/pricing`,
+      href: (currentLang) => buildPageUrl("pricing", currentLang),
     },
   ];
 
   const LegalItem = [
     {
       key: "footer.general",
-      href: (currentLang) =>
-        currentLang === "en"
-          ? "/general-conditions"
-          : `/${currentLang}/general-conditions`,
+      href: (currentLang) => buildPageUrl("generalConditions", currentLang),
     },
     {
       key: "footer.privacy",
-      href: (currentLang) =>
-        currentLang === "en"
-          ? "/privacy-policy"
-          : `/${currentLang}/privacy-policy`,
+      href: (currentLang) => buildPageUrl("privacyPolicy", currentLang),
     },
     {
       key: "footer.cookies",
-      href: (currentLang) =>
-        currentLang === "en"
-          ? "/cookies-policy"
-          : `/${currentLang}/cookies-policy`,
+      href: (currentLang) => buildPageUrl("cookiesPolicy", currentLang),
     },
   ];
 
@@ -58,7 +48,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 pt-14 pb-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
           <div className="flex items-center gap-6 text-center md:text-left">
-            <Link href="/" className="shrink-0">
+            <Link href={buildHomeUrl(lang)} className="shrink-0">
               <Image
                 src="/logo-bgremove.png"
                 alt="Logo"

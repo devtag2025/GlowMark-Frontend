@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { usePathname, useRouter } from "next/navigation";
 import { getSortedArticles } from "@/data/seo-articles";
+import { buildPageUrl, buildHomeUrl, buildSEOUrl } from "@/utils/paths";
+import { getRouteKeyFromSlug } from "@/utils/routeTranslations";
 
 const Header = () => {
   const { lang, setLang, t } = useLanguage();
@@ -30,7 +32,7 @@ const Header = () => {
   const NavigationItem = [
     {
       key: "header.home",
-      href: (currentLang) => (currentLang === "en" ? "/" : `/${currentLang}`),
+      href: (currentLang) => buildHomeUrl(currentLang),
     },
     {
       key: "header.seo",
@@ -38,21 +40,16 @@ const Header = () => {
       children: seoArticles.map((article) => ({
         slug: article.slug,
         titles: article.titles,
-        href: (currentLang) =>
-          currentLang === "en"
-            ? `/seo/${article.slug}`
-            : `/${currentLang}/seo/${article.slug}`,
+        href: (currentLang) => buildSEOUrl(currentLang, article),
       })),
     },
     {
       key: "header.blog",
-      href: (currentLang) =>
-        currentLang === "en" ? "/blog" : `/${currentLang}/blog`,
+      href: (currentLang) => buildPageUrl("blog", currentLang),
     },
     {
       key: "header.pricing",
-      href: (currentLang) =>
-        currentLang === "en" ? "/pricing" : `/${currentLang}/pricing`,
+      href: (currentLang) => buildPageUrl("pricing", currentLang),
     },
     { key: "header.faq", href: "#faq" },
     { key: "header.contact", href: "#contact" },
@@ -62,28 +59,49 @@ const Header = () => {
 
   const changeLocale = (nextLocale) => {
     setLang(nextLocale);
-    if (nextLocale === "en") {
-      if (!pathname || pathname === "/") {
-        router.push("/");
+
+    // Handle home page
+    if (!pathname || pathname === "/" || pathname === "/en") {
+      router.push(buildHomeUrl(nextLocale));
+      return;
+    }
+
+    // Extract current locale and path segments
+    const segments = pathname.split("/").filter(Boolean);
+    const hasLocalePrefix = ["en", "fr", "nl"].includes(segments[0]);
+    const currentLocale = hasLocalePrefix ? segments[0] : "en";
+
+    // Remove locale from segments if present
+    const pathSegments = hasLocalePrefix ? segments.slice(1) : segments;
+
+    // If we're on a top-level static page (e.g. pricing, privacy, cookies, request),
+    // use the route translation helpers so the slug changes with the locale:
+    // /nl/prijzen -> /fr/tarifs, etc.
+    if (pathSegments.length === 1) {
+      const currentSlug = pathSegments[0];
+      const routeKey = getRouteKeyFromSlug(currentSlug, currentLocale);
+
+      if (routeKey) {
+        router.push(buildPageUrl(routeKey, nextLocale));
         return;
       }
-      const segments = pathname.split("/").filter(Boolean);
-      if (["en", "fr", "nl"].includes(segments[0])) segments.shift();
-      const nextPath = `/${segments.join("/")}` || "/";
-      router.push(nextPath);
+    }
+
+    // For SEO articles, keep the slug as-is and let the SEO page + middleware
+    // handle canonicalization. We only swap the locale segment.
+    if (pathSegments[0] === "seo") {
+      const rest = pathSegments.slice(1).join("/");
+      router.push(`/${nextLocale}/seo/${rest}`);
       return;
     }
-    if (!pathname || pathname === "/") {
-      router.push(`/${nextLocale}`);
+
+    // Fallback: generic behavior for other paths
+    if (pathSegments.length === 0) {
+      router.push(buildHomeUrl(nextLocale));
       return;
     }
-    const segments = pathname.split("/").filter(Boolean);
-    if (["en", "fr", "nl"].includes(segments[0])) {
-      segments[0] = nextLocale;
-    } else {
-      segments.unshift(nextLocale);
-    }
-    router.push(`/${segments.join("/")}`);
+
+    router.push(`/${nextLocale}/${pathSegments.join("/")}`);
   };
 
   useEffect(() => {
@@ -105,10 +123,7 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20 md:h-24">
-          <Link
-            href={lang === "en" ? "/" : `/${lang}`}
-            className="relative z-10"
-          >
+          <Link href={buildHomeUrl(lang)} className="relative z-10">
             <Image
               src="/logo.png"
               alt="Glow Mark Agency"
@@ -157,7 +172,7 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setDesktopLangOpen(!desktopLangOpen)}
-                className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold"
+                className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold cursor-pointer"
               >
                 {LANGUAGE_LABELS[lang]}
                 <ChevronDown
@@ -192,7 +207,7 @@ const Header = () => {
 
           <div className="hidden md:block">
             <Link
-              href={lang === "en" ? "/request" : `/${lang}/request`}
+              href={buildPageUrl("request", lang)}
               className="px-6 py-3 rounded-full text-white font-bold gradient-purple transition-transform hover:scale-105 inline-block"
             >
               {t("common.bookDemo")}
@@ -290,7 +305,7 @@ const Header = () => {
             </div>
 
             <Link
-              href={lang === "en" ? "/request" : `/${lang}/request`}
+              href={buildPageUrl("request", lang)}
               className="block text-center px-6 py-4 rounded-2xl text-white font-black gradient-purple"
               onClick={() => setMobileOpen(false)}
             >
