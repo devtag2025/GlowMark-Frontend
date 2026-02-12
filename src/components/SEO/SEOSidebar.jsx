@@ -19,7 +19,6 @@ export default function SEOSidebar() {
       <ul className="space-y-1">
         {articles.map((article) => {
           const href = buildSEOUrl(lang, article);
-          // Check if current pathname includes the article's slug (any locale)
           const articleSlugs = [
             article.slug,
             article.slugs?.en,

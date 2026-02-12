@@ -2,6 +2,8 @@
 
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function SEOContentRenderer({ article }) {
   const { lang, t } = useLanguage();
@@ -11,126 +13,82 @@ export default function SEOContentRenderer({ article }) {
   const content = article.content?.[lang] || article.content?.en || "";
   const title = article.titles?.[lang] || article.titles?.en || "";
 
-  // Parse content into sections for better rendering
-  const renderContent = (text) => {
-    if (!text) return null;
-
-    const lines = text.split("\n");
-    const elements = [];
-    let currentList = [];
-
-    const flushList = () => {
-      if (currentList.length > 0) {
-        elements.push(
-          <ul key={`list-${elements.length}`} className="space-y-2 my-4 ml-4">
-            {currentList.map((item, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-theme-secondary"
-              >
-                <span className="text-purple-400 mt-1">•</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>,
-        );
-        currentList = [];
-      }
-    };
-
-    lines.forEach((line, index) => {
-      const trimmedLine = line.trim();
-
-      if (!trimmedLine) {
-        flushList();
-        return;
-      }
-
-      const listMatch = trimmedLine.match(
-        /^(?:[-•✅✔❌💡🚀💰🎯🔥🔎]|\d+\.)\s*(.+)/,
-      );
-      if (listMatch && trimmedLine.length < 150) {
-        // Check if it's a numbered header vs a list item
-        const headerMatch = trimmedLine.match(/^(\d+)\.\s+([A-Z])/);
-        if (headerMatch && trimmedLine.length < 80) {
-          flushList();
-          elements.push(
-            <h2
-              key={`h2-${index}`}
-              className="text-xl md:text-2xl font-semibold text-theme mt-10 mb-4"
-            >
-              <span className="text-gradient-purple">{headerMatch[1]}.</span>{" "}
-              {trimmedLine.slice(headerMatch[1].length + 2)}
-            </h2>,
-          );
-          return;
-        }
-        currentList.push(listMatch[1] || trimmedLine.slice(2));
-        return;
-      }
-
-      flushList();
-
-      if (index === 0) {
-        elements.push(
-          <h1
-            key={`title-${index}`}
-            className="text-3xl md:text-4xl font-bold text-theme mb-6"
-          >
-            {trimmedLine}
-          </h1>,
-        );
-        return;
-      }
-
-      if (
-        trimmedLine.endsWith("?") ||
-        (trimmedLine.length < 60 &&
-          !trimmedLine.includes(".") &&
-          trimmedLine.length > 10)
-      ) {
-        elements.push(
-          <h3
-            key={`h3-${index}`}
-            className="text-lg md:text-xl font-semibold text-theme mt-8 mb-3"
-          >
-            {trimmedLine}
-          </h3>,
-        );
-        return;
-      }
-
-      // Check for quoted text
-      if (trimmedLine.startsWith('"') || trimmedLine.startsWith("«")) {
-        elements.push(
-          <blockquote
-            key={`quote-${index}`}
-            className="border-l-4 border-purple-500 pl-4 my-6 italic text-theme-secondary"
-          >
-            {trimmedLine}
-          </blockquote>,
-        );
-        return;
-      }
-
-      elements.push(
-        <p
-          key={`p-${index}`}
-          className="text-theme-secondary leading-relaxed mb-4"
-        >
-          {trimmedLine}
-        </p>,
-      );
-    });
-
-    flushList();
-    return elements;
-  };
-
   return (
     <div className="prose prose-lg max-w-none">
       <div className="text-[15px] leading-relaxed">
-        {renderContent(content)}
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            h1: ({ node, ...props }) => (
+              <h1
+                className="text-3xl md:text-4xl font-bold text-theme mb-6"
+                {...props}
+              />
+            ),
+            h2: ({ node, ...props }) => (
+              <h2
+                className="text-xl md:text-2xl font-semibold text-theme mt-10 mb-4"
+                {...props}
+              />
+            ),
+            h3: ({ node, ...props }) => (
+              <h3
+                className="text-lg md:text-xl font-semibold text-theme mt-8 mb-3"
+                {...props}
+              />
+            ),
+            p: ({ node, ...props }) => (
+              <p
+                className="text-theme-secondary leading-relaxed mb-4"
+                {...props}
+              />
+            ),
+            strong: ({ node, ...props }) => (
+              <strong className="text-theme font-semibold" {...props} />
+            ),
+            ul: ({ node, ...props }) => (
+              <ul className="space-y-2 my-4 ml-4" {...props} />
+            ),
+            ol: ({ node, ...props }) => (
+              <ol className="space-y-2 my-4 ml-4" {...props} />
+            ),
+            li: ({ node, ...props }) => (
+              <li className="flex items-start gap-3 text-theme-secondary">
+                <span className="text-purple-400 mt-1">•</span>
+                <span {...props} />
+              </li>
+            ),
+            blockquote: ({ node, ...props }) => (
+              <blockquote
+                className="border-l-4 border-purple-500 pl-4 my-6 italic text-theme-secondary"
+                {...props}
+              />
+            ),
+            hr: () => <div className="my-10 border-t border-purple-300" />,
+            table: ({ node, ...props }) => (
+              <div className="overflow-x-auto my-8 border border-purple-200">
+                <table
+                  className="w-full border border-purple-200 rounded-xl overflow-hidden"
+                  {...props}
+                />
+              </div>
+            ),
+            th: ({ node, ...props }) => (
+              <th
+                className="border border-purple-200 px-4 py-3 text-left text-theme font-semibold"
+                {...props}
+              />
+            ),
+            td: ({ node, ...props }) => (
+              <td
+                className="border border-purple-200 px-4 py-3 text-theme-secondary"
+                {...props}
+              />
+            ),
+          }}
+        >
+          {content}
+        </ReactMarkdown>
       </div>
 
       <div className="mt-16 p-8 rounded-3xl glow-card text-center">

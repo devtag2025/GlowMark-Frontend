@@ -60,7 +60,6 @@ const Header = () => {
   const changeLocale = (nextLocale) => {
     setLang(nextLocale);
 
-    // Handle home page
     if (!pathname || pathname === "/" || pathname === "/en") {
       router.push(buildHomeUrl(nextLocale));
       return;
@@ -133,7 +132,6 @@ const Header = () => {
             />
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {NavigationItem.map((item) =>
               item.children ? (
