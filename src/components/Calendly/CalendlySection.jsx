@@ -3,12 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Phone, Calendar, CheckCircle } from "lucide-react";
-import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { buildPageUrl } from "@/utils/paths";
 
 export default function CalendlySection() {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const features = [
     {
       icon: Calendar,
@@ -83,7 +81,7 @@ export default function CalendlySection() {
           ))}
         </motion.div>
 
-        {/* Schedule Call Button - Now redirects to new page */}
+        {/* Schedule Call Button - opens Calendly directly for better performance */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -91,13 +89,15 @@ export default function CalendlySection() {
           transition={{ delay: 0.3 }}
           className="text-center"
         >
-          <Link
-            href={buildPageUrl("scheduleCall", lang)}
+          <a
+            href="https://calendly.com/glowmarkagency-sales/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
           >
             <Calendar className="w-5 h-5" />
             {t("calendly.buttonLabel")}
-          </Link>
+          </a>
         </motion.div>
 
         {/* Additional Info */}
