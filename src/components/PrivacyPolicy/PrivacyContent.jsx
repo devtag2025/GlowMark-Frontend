@@ -6,21 +6,21 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { generalConditions } from "@/data/general-conditions";
+import { privacyPolicies } from "@/data/privacy-policies";
 
-const GeneralConditionsContent = () => {
+const PrivacyPoliciesContent = () => {
   const { t, lang } = useLanguage();
 
   const content =
-    generalConditions?.[0]?.content?.[lang] ||
-    generalConditions?.[0]?.content?.en ||
+    privacyPolicies?.[0]?.content?.[lang] ||
+    privacyPolicies?.[0]?.content?.en ||
     null;
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-theme">
       <div className="h-24" />
 
-      <article className="max-w-5xl mx-auto px-6 pt-6">
+      <article className="max-w-5xl mx-auto px-6 pb-24 pt-6">
         <div className="mb-8 flex items-center gap-2 text-sm text-gray-400">
           <Link
             href={lang === "en" ? "/" : `/${lang}`}
@@ -31,7 +31,7 @@ const GeneralConditionsContent = () => {
           </Link>
         </div>
 
-        <section className="max-w-6xl mx-auto px-6 pb-24 pt-6">
+        <section className="max-w-6xl mx-auto px-6 pt-6">
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,4 +103,4 @@ const GeneralConditionsContent = () => {
   );
 };
 
-export default GeneralConditionsContent;
+export default PrivacyPoliciesContent;
