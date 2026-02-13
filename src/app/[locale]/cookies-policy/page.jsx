@@ -1,7 +1,8 @@
+import CookiesContent from "@/components/CookiePolicy/CookiesContent";
 import React from "react";
 
 const page = () => {
-  return <div>page</div>;
+  return <CookiesContent />;
 };
 
 export default page;
