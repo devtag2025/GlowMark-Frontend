@@ -1,12 +1,24 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Facebook, Instagram } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Facebook,
+  Instagram,
+  Loader2,
+} from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import api from "@/lib/api";
 
 const ContactSection = () => {
   const { t } = useLanguage();
+  const [loading, setLoading] = useState(false);
 
   const contacts = [
     {
@@ -25,6 +37,31 @@ const ContactSection = () => {
       value: "Antwerpen",
     },
   ];
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const inputClass =
+    "w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all";
+
+  const errorClass = "text-red-500 text-sm mt-1 ml-1";
+
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const response = await api.post("/form/contact", data);
+      toast.success(response.data.message);
+      reset();
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="relative py-24 overflow-hidden">
@@ -121,7 +158,7 @@ const ContactSection = () => {
             className="relative"
           >
             <div className="bg-[var(--card-bg)] backdrop-blur-3xl border border-[var(--border-color)] p-8 md:p-12 rounded-[3rem] shadow-lg">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-theme-muted ml-1">
@@ -129,10 +166,17 @@ const ContactSection = () => {
                     </label>
                     <input
                       type="text"
+                      {...register("firstname", {
+                        required: t("contact.request"),
+                      })}
                       placeholder={t("contact.formFirstNamePlaceholder")}
                       className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all"
                     />
+                    {errors.firstname && (
+                      <p className={errorClass}>{errors.firstname.message}</p>
+                    )}
                   </div>
+
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-theme-muted ml-1">
                       {t("contact.formLastName")}
@@ -140,8 +184,14 @@ const ContactSection = () => {
                     <input
                       type="text"
                       placeholder={t("contact.formLastNamePlaceholder")}
-                      className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all"
+                      className={inputClass}
+                      {...register("lastname", {
+                        required: t("contact.request"),
+                      })}
                     />
+                    {errors.lastname && (
+                      <p className={errorClass}>{errors.lastname.message}</p>
+                    )}
                   </div>
                 </div>
 
@@ -150,10 +200,16 @@ const ContactSection = () => {
                     {t("contact.formEmail")}
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     placeholder={t("contact.formEmailPlaceholder")}
-                    className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all"
+                    className={inputClass}
+                    {...register("email", {
+                      required: t("contact.request"),
+                    })}
                   />
+                  {errors.email && (
+                    <p className={errorClass}>{errors.email.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -163,23 +219,44 @@ const ContactSection = () => {
                   <textarea
                     rows="4"
                     placeholder={t("contact.formMessagePlaceholder")}
-                    className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-2xl px-6 py-4 text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:border-purple-500 transition-all resize-none"
+                    className={` resize-none ${inputClass}`}
+                    {...register("message", {
+                      required: t("contact.request"),
+                    })}
                   ></textarea>
+                  {errors.message && (
+                    <p className={errorClass}>{errors.message.message}</p>
+                  )}
                 </div>
 
                 <motion.button
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 0 20px rgba(107,32,122,0.4)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={loading}
+                  whileHover={
+                    !loading
+                      ? {
+                          scale: 1.02,
+                          boxShadow: "0 0 20px rgba(107,32,122,0.4)",
+                        }
+                      : {}
+                  }
+                  whileTap={!loading ? { scale: 0.98 } : {}}
                   className="w-full gradient-purple text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all"
                 >
-                  {t("contact.sendMessage")}
-                  <Send
-                    size={18}
-                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                  />
+                  {loading ? (
+                    <>
+                      <Loader2 className="animate-spin" size={18} />
+                      {t("contact.loadMsg")}
+                    </>
+                  ) : (
+                    <>
+                      {t("contact.sendMessage")}
+                      <Send
+                        size={18}
+                        className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                      />
+                    </>
+                  )}
                 </motion.button>
 
                 <p className="text-sm text-slate-400">

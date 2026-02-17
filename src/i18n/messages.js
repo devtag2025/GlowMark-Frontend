@@ -123,6 +123,8 @@ export const messages = {
       sendMessage: "Send Message",
       decleration: `By clicking "Submit," I declare that I have read the terms of use and privacy policy and agree to the use of data for the purposes described therein.`,
       followUs: "Follow Us",
+      request: "This field is required",
+      loadMsg: "Sending ....",
     },
     pricing: {
       title: "Pricing for",
@@ -232,6 +234,7 @@ export const messages = {
       sendMessage: "Send Message",
       decleration: `I declare that I have read the terms of use and the provisions relating to the protection of privacy and accept the use of data for the purposes described therein.`,
       request: "This field is required",
+      loadMsg: "Sending ....",
     },
     cta: {
       badge: "Grow your brand faster",
@@ -400,6 +403,8 @@ export const messages = {
       sendMessage: "Envoyer le message",
       decleration: `En cliquant sur « Envoyer », je déclare avoir pris connaissance des conditions d’utilisation et des dispositions relatives à la protection de la vie privée et accepte l’utilisation des données aux fins y décrites`,
       followUs: "Suivez nous",
+      request: "Ce champ est obligatoire",
+      loadMsg: "Envoi ....",
     },
     pricing: {
       title: "Tarifs pour un",
@@ -513,6 +518,7 @@ export const messages = {
       sendMessage: "Envoyer un message",
       decleration: `Je déclare avoir pris connaissance des conditions d’utilisation et des dispositions relatives à la protection de la vie privée et accepte l’utilisation des données aux fins y décrites.`,
       request: "Ce champ est obligatoire",
+      loadMsg: "Envoi ....",
     },
     cta: {
       badge: "Développez votre marque plus rapidement",
@@ -683,6 +689,8 @@ export const messages = {
       sendMessage: "Bericht verzenden",
       decleration: `Door op ‘Verzenden’ te klikken, verklaar ik kennis te hebben genomen van de gebruiksvoorwaarden en de bepalingen met betrekking tot de bescherming van persoonsgegevens en accepteer ik het gebruik van de gegevens voor de daarin beschreven doeleinden`,
       followUs: "Volg ons",
+      request: "dit veld is verplicht",
+      loadMsg: "Verzenden ....",
     },
     pricing: {
       title: "Prijzen voor",
@@ -793,6 +801,7 @@ export const messages = {
       sendMessage: "Bericht verzenden",
       decleration: `Ik verklaar kennis te hebben genomen van de gebruiksvoorwaarden en de bepalingen met betrekking tot de bescherming van de privacy en ga akkoord met het gebruik van de gegevens voor de beschreven doeleinden.`,
       request: "dit veld is verplicht",
+      loadMsg: "Verzenden ....",
     },
     cta: {
       badge: "Laat uw merk sneller groeien",

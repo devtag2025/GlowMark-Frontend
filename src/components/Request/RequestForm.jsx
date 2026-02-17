@@ -1,25 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Image from "next/image";
-import { Send } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import api from "@/lib/api";
 
 const RequestForm = () => {
   const { t, lang } = useLanguage();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Submitted:", data);
-    alert("Form Submitted!");
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const response = await api.post("/form/boost", data);
+      toast.success(response.data.message);
+      reset();
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const RequiredStar = () => <span className="text-red-500 ml-1">*</span>;
@@ -82,12 +94,12 @@ const RequestForm = () => {
                   type="text"
                   placeholder={t("request_page.formFirstNamePlaceholder")}
                   className={inputClass}
-                  {...register("firstName", {
+                  {...register("firstname", {
                     required: t("request_page.request"),
                   })}
                 />
-                {errors.firstName && (
-                  <p className={errorClass}>{errors.firstName.message}</p>
+                {errors.firstname && (
+                  <p className={errorClass}>{errors.firstname.message}</p>
                 )}
               </div>
 
@@ -100,12 +112,12 @@ const RequestForm = () => {
                   type="text"
                   placeholder={t("request_page.formLastNamePlaceholder")}
                   className={inputClass}
-                  {...register("lastName", {
+                  {...register("lastname", {
                     required: t("request_page.request"),
                   })}
                 />
-                {errors.lastName && (
-                  <p className={errorClass}>{errors.lastName.message}</p>
+                {errors.lastname && (
+                  <p className={errorClass}>{errors.lastname.message}</p>
                 )}
               </div>
             </div>
@@ -193,18 +205,30 @@ const RequestForm = () => {
             )}
 
             <motion.button
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 0 20px rgba(107,32,122,0.4)",
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full gradient-purple text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all"
+              type="submit"
+              whileHover={
+                !loading
+                  ? { scale: 1.02, boxShadow: "0 0 20px rgba(107,32,122,0.4)" }
+                  : {}
+              }
+              whileTap={!loading ? { scale: 0.98 } : {}}
+              className={`w-full gradient-purple text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all ${loading ? "" : "cursor-pointer"} `}
+              disabled={loading}
             >
-              {t("request_page.sendMessage")}
-              <Send
-                size={18}
-                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-              />
+              {loading ? (
+                <>
+                  <Loader2 className="animate-spin" size={18} />
+                  {t("request_page.loadMsg")}
+                </>
+              ) : (
+                <>
+                  {t("request_page.sendMessage")}
+                  <Send
+                    size={18}
+                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                  />
+                </>
+              )}
             </motion.button>
           </form>
         </div>
