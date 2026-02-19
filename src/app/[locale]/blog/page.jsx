@@ -1,12 +1,11 @@
-import { getAllPosts } from '@/lib/wordpress';
-import BlogCard from '@/components/Blog/BlogCard';
-import BlogHeader from '@/components/Blog/BlogHeader';
+import { getAllPosts } from "@/lib/wordpress";
+import BlogCard from "@/components/Blog/BlogCard";
+import BlogHeader from "@/components/Blog/BlogHeader";
 
 export default async function BlogPage({ params }) {
-  const { locale } = params;
+  const { locale } = await params;
   const posts = await getAllPosts(locale);
-  console.log("fetch all posts",posts);
-  
+  console.log("fetch all posts", posts);
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
@@ -25,11 +24,11 @@ export default async function BlogPage({ params }) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, index) => (
-              <BlogCard 
-                key={post.id} 
-                blog={post} 
-                index={index} 
-                locale={locale} 
+              <BlogCard
+                key={post.id}
+                blog={post}
+                index={index}
+                locale={locale}
               />
             ))}
           </div>
@@ -41,16 +40,16 @@ export default async function BlogPage({ params }) {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }) {
-  const { locale } = params;
-  
+  const { locale } = await params;
+
   const titles = {
-    en: 'Blog - Latest Articles & Insights',
-    fr: 'Blog - Derniers Articles et Insights',
-    nl: 'Blog - Laatste Artikelen en Inzichten'
+    en: "Blog - Latest Articles & Insights",
+    fr: "Blog - Derniers Articles et Insights",
+    nl: "Blog - Laatste Artikelen en Inzichten",
   };
 
   return {
     title: titles[locale] || titles.en,
-    description: 'Discover our latest blog posts, insights, and expert tips.',
+    description: "Discover our latest blog posts, insights, and expert tips.",
   };
 }
