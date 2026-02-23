@@ -29,11 +29,23 @@ const Header = () => {
 
   const seoArticles = getSortedArticles();
 
+  const handleAnchorClick = (id) => {
+    if (!id) return;
+
+    const isHome = pathname === "/" || pathname === `/${lang}`;
+
+    if (isHome) {
+      const element = document.getElementById(id);
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    // Navigate to home with hash
+    router.push(`${buildHomeUrl(lang)}#${id}`);
+  };
+
   const NavigationItem = [
-    {
-      key: "header.home",
-      href: (currentLang) => buildHomeUrl(currentLang),
-    },
+    { key: "header.home", href: (currentLang) => buildHomeUrl(currentLang) },
     {
       key: "header.seo",
       href: "#",
@@ -51,8 +63,16 @@ const Header = () => {
       key: "header.pricing",
       href: (currentLang) => buildPageUrl("pricing", currentLang),
     },
-    { key: "header.faq", href: "#faq" },
-    { key: "header.contact", href: "#contact" },
+    {
+      key: "header.faq",
+      href: "#faq",
+      onClick: () => handleAnchorClick("faq"),
+    },
+    {
+      key: "header.contact",
+      href: "#contact",
+      onClick: () => handleAnchorClick("contact"),
+    },
   ];
 
   const buildHref = (href) => (typeof href === "function" ? href(lang) : href);
@@ -65,36 +85,26 @@ const Header = () => {
       return;
     }
 
-    // Extract current locale and path segments
     const segments = pathname.split("/").filter(Boolean);
     const hasLocalePrefix = ["en", "fr", "nl"].includes(segments[0]);
     const currentLocale = hasLocalePrefix ? segments[0] : "en";
-
-    // Remove locale from segments if present
     const pathSegments = hasLocalePrefix ? segments.slice(1) : segments;
 
-    // If we're on a top-level static page (e.g. pricing, privacy, cookies, request),
-    // use the route translation helpers so the slug changes with the locale:
-    // /nl/prijzen -> /fr/tarifs, etc.
     if (pathSegments.length === 1) {
       const currentSlug = pathSegments[0];
       const routeKey = getRouteKeyFromSlug(currentSlug, currentLocale);
-
       if (routeKey) {
         router.push(buildPageUrl(routeKey, nextLocale));
         return;
       }
     }
 
-    // For SEO articles, keep the slug as-is and let the SEO page + middleware
-    // handle canonicalization. We only swap the locale segment.
     if (pathSegments[0] === "seo") {
       const rest = pathSegments.slice(1).join("/");
       router.push(`/${nextLocale}/seo/${rest}`);
       return;
     }
 
-    // Fallback: generic behavior for other paths
     if (pathSegments.length === 0) {
       router.push(buildHomeUrl(nextLocale));
       return;
@@ -108,6 +118,14 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash?.substring(1); // remove #
+    if (hash) {
+      const element = document.getElementById(hash);
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [pathname]);
 
   return (
     <motion.header
@@ -155,18 +173,29 @@ const Header = () => {
                   </div>
                 </div>
               ) : (
-                <Link
-                  key={item.key}
-                  href={buildHref(item.href)}
-                  className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group"
-                >
-                  {t(item.key)}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
-                </Link>
+                !item.children &&
+                (item.onClick ? (
+                  <button
+                    key={item.key}
+                    onClick={item.onClick}
+                    className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group"
+                  >
+                    {t(item.key)}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
+                  </button>
+                ) : (
+                  <Link
+                    key={item.key}
+                    href={buildHref(item.href)}
+                    className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group"
+                  >
+                    {t(item.key)}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
+                  </Link>
+                ))
               ),
             )}
 
-            {/* Language Selector */}
             <div className="relative">
               <button
                 onClick={() => setDesktopLangOpen(!desktopLangOpen)}
@@ -264,6 +293,17 @@ const Header = () => {
                     )}
                   </AnimatePresence>
                 </div>
+              ) : item.onClick ? (
+                <button
+                  key={item.key}
+                  onClick={() => {
+                    item.onClick();
+                    setMobileOpen(false);
+                  }}
+                  className="block text-theme font-bold text-lg"
+                >
+                  {t(item.key)}
+                </button>
               ) : (
                 <Link
                   key={item.key}
