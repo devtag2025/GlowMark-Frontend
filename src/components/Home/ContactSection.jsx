@@ -241,7 +241,7 @@ const ContactSection = () => {
                       : {}
                   }
                   whileTap={!loading ? { scale: 0.98 } : {}}
-                  className="w-full gradient-purple text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all"
+                  className={`w-full gradient-purple text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 group transition-all ${loading ? "" : "cursor-pointer"}`}
                 >
                   {loading ? (
                     <>
