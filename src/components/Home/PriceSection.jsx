@@ -23,7 +23,10 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="bg-[var(--background)] md:py-20 relative overflow-hidden">
+    <section
+      id="pricing"
+      className="bg-[var(--background)] md:py-20 relative overflow-hidden"
+    >
       {/* Background Glow */}
 
       <div className="max-w-7xl mx-auto px-6">
@@ -50,7 +53,10 @@ const PricingSection = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {points.map((point, i) => (
-                <div key={i} className="flex items-center gap-3 text-theme-secondary">
+                <div
+                  key={i}
+                  className="flex items-center gap-3 text-theme-secondary"
+                >
                   <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
                   <span className="text-sm md:text-base font-medium">
                     {point}
@@ -107,7 +113,13 @@ const PricingSection = () => {
                 ))}
               </div>
 
-              <button className="w-full py-4 rounded-2xl text-white font-bold gradient-purple hover:opacity-90 transition-all shadow-lg">
+              <button
+                className="w-full py-4 rounded-2xl text-white font-bold gradient-purple hover:opacity-90 transition-all shadow-lg cursor-pointer"
+                onClick={() => {
+                  const contact = document.getElementById("contact");
+                  if (contact) contact.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
                 {t("pricing.button")}
               </button>
 
