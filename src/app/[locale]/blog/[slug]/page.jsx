@@ -5,15 +5,14 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { buildPageUrl } from "@/utils/paths";
 
-
 export default async function BlogPostPage(props) {
   const params = await props.params; // ✅ IMPORTANT
   const { locale, slug } = params;
 
   const post = await getPostBySlug(slug, locale);
 
-   console.log("post ", post);
-   
+  console.log("post ", post);
+
   if (!post) {
     notFound();
   }
@@ -150,7 +149,6 @@ export async function generateMetadata(props) {
     description: post.excerpt,
   };
 }
-
 
 // Remove or comment out generateStaticParams for now
 // We'll use dynamic rendering instead of SSG
