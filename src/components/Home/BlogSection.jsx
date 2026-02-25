@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Link from "next/link";
-import { blogs } from "@/data/blogs";
 import { ArrowRight, Clock } from "lucide-react";
 import { buildBlogUrl, buildPageUrl } from "@/utils/paths";
+import { getAllPosts } from "@/lib/wordpress";
 
 const containerVariants = {
   hidden: {},
@@ -20,6 +20,16 @@ const containerVariants = {
 const BlogSection = () => {
   const { t, lang } = useLanguage();
   const locale = lang || "en";
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllPosts(locale) // ✅ locale pass kar rahe hain
+      .then(setBlogs)
+      .finally(() => setLoading(false));
+  }, [locale]); // ✅ jab bhi locale change ho, refetch ho
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <section className="relative py-10 overflow-hidden max-w-7xl mx-auto">
@@ -49,7 +59,6 @@ const BlogSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.slice(0, 3).map((blog, index) => {
             const blogLink = buildBlogUrl(locale, blog);
-
             const title = blog.titles?.[locale] || blog.title;
             const excerpt = blog.excerpts?.[locale] || blog.excerpt;
 
@@ -75,11 +84,9 @@ const BlogSection = () => {
                     src={blog.image}
                     alt={title}
                     fill
-                    className="object-cover transition-transform duration-300 *:group-hover/image:scale-110"
+                    className="object-cover transition-transform duration-300 group-hover/image:scale-110"
                   />
-
                   <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
-
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-slate-900 shadow-sm">
                     {blog.date}
                   </div>
