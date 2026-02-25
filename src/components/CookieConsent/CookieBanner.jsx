@@ -1,13 +1,16 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Cookie, X, Settings, Check, Shield } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-import { useCookieConsent } from '@/hooks/useCookieConsent';
-import { buildPageUrl } from '@/utils/paths';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Cookie, X, Settings, Check, Shield } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useCookieConsent } from "@/hooks/useCookieConsent";
+import { buildPageUrl } from "@/utils/paths";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function CookieBanner() {
+  const { t } = useLanguage();
+
   const { consent, ready, saveConsent } = useCookieConsent();
   const pathname = usePathname();
   const [showPreferences, setShowPreferences] = useState(false);
@@ -77,20 +80,18 @@ export default function CookieBanner() {
                         <Cookie className="w-6 h-6 text-white" />
                       </div>
                       <h3 className="text-xl font-bold text-theme">
-                        We Value Your Privacy
+                        {t("consent.title")}
                       </h3>
                     </div>
                     <p className="text-sm md:text-base text-theme-secondary leading-relaxed">
-                      We use cookies to enhance your browsing experience, serve
-                      personalized content, and analyze our traffic. By clicking
-                      'Accept All', you consent to our use of cookies.
+                      {t("consent.description")}
                     </p>
                     <button
                       onClick={() => setShowPreferences(true)}
                       className="mt-3 text-sm text-purple-500 hover:text-purple-600 font-medium flex items-center gap-1 transition-colors"
                     >
                       <Settings className="w-4 h-4" />
-                      Customize Preferences
+                      {t("consent.customize")}
                     </button>
                   </div>
 
@@ -100,13 +101,13 @@ export default function CookieBanner() {
                       onClick={handleRejectAll}
                       className="px-6 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-theme-secondary font-medium hover:bg-[var(--background-secondary)] transition-all"
                     >
-                      Reject All
+                      {t("consent.reject")}
                     </button>
                     <button
                       onClick={handleAcceptAll}
                       className="px-6 py-3 rounded-xl gradient-purple text-white font-bold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all"
                     >
-                      Accept All
+                      {t("consent.accept")}
                     </button>
                   </div>
                 </div>
@@ -118,7 +119,7 @@ export default function CookieBanner() {
                   <div className="flex items-center gap-2">
                     <Shield className="w-5 h-5 text-purple-500" />
                     <h3 className="text-xl font-bold text-theme">
-                      Cookie Preferences
+                      {t("consent.cookie")}
                     </h3>
                   </div>
                   <button
@@ -135,15 +136,14 @@ export default function CookieBanner() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-semibold text-theme">
-                          Necessary Cookies
+                          {t("consent.necessaryCookies")}
                         </h4>
                         <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-600 font-medium">
-                          Always Active
+                          {t("consent.cookieHighlight")}
                         </span>
                       </div>
                       <p className="text-sm text-theme-secondary">
-                        Essential for the website to function properly. These
-                        cannot be disabled.
+                        {t("consent.cookieDesc")}
                       </p>
                     </div>
                     <div className="w-12 h-6 rounded-full bg-purple-500 flex items-center justify-end px-1 cursor-not-allowed">
@@ -155,12 +155,10 @@ export default function CookieBanner() {
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-[var(--background-secondary)] border border-[var(--border-color)] hover:border-purple-500/30 transition-colors">
                     <div className="flex-1">
                       <h4 className="font-semibold text-theme mb-1">
-                        Analytics Cookies
+                        {t("consent.analytics")}
                       </h4>
                       <p className="text-sm text-theme-secondary">
-                        Help us understand how visitors interact with our
-                        website by collecting and reporting information
-                        anonymously.
+                        {t("consent.analyticsDesc")}
                       </p>
                     </div>
                     <button
@@ -180,12 +178,10 @@ export default function CookieBanner() {
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-[var(--background-secondary)] border border-[var(--border-color)] hover:border-purple-500/30 transition-colors">
                     <div className="flex-1">
                       <h4 className="font-semibold text-theme mb-1">
-                        Marketing Cookies
+                        {t("consent.marketing")}
                       </h4>
                       <p className="text-sm text-theme-secondary">
-                        Used to track visitors across websites to display
-                        relevant advertisements and measure campaign
-                        effectiveness.
+                        {t("consent.marketingDesc")}
                       </p>
                     </div>
                     <button
@@ -208,14 +204,14 @@ export default function CookieBanner() {
                     onClick={handleRejectAll}
                     className="flex-1 px-6 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-theme-secondary font-medium hover:bg-[var(--background-secondary)] transition-all"
                   >
-                    Reject All
+                    {t("consent.reject")}
                   </button>
                   <button
                     onClick={handleSavePreferences}
                     className="flex-1 px-6 py-3 rounded-xl gradient-purple text-white font-bold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2"
                   >
                     <Check className="w-4 h-4" />
-                    Save Preferences
+                    {t("consent.save")}
                   </button>
                 </div>
 
@@ -234,19 +230,19 @@ export default function CookieBanner() {
 
                     return (
                       <>
-                        Read our{" "}
+                        {t("consent.privacyDesc")}
                         <a
                           href={buildPageUrl("privacyPolicy", locale)}
                           className="text-purple-500 hover:underline"
                         >
-                          Privacy Policy
+                          {t("consent.privacy")}
                         </a>{" "}
                         and{" "}
                         <a
                           href={buildPageUrl("cookiesPolicy", locale)}
                           className="text-purple-500 hover:underline"
                         >
-                          Cookie Policy
+                          {t("consent.cookiePolicy")}
                         </a>
                       </>
                     );

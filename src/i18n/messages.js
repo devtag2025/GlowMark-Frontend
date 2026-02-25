@@ -273,6 +273,28 @@ export const messages = {
       workframe: "Partner Framework",
       live: "Live Optimization",
     },
+    consent: {
+      title: "We Value Your Privacy",
+      description: `We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking 'Accept All', you consent to our use of cookies.`,
+      customize: "Customize Preferences",
+      reject: "Reject All",
+      accept: "Accept All",
+      cookie: "Cookie Preferences",
+      necessaryCookies: "Necessary Cookies",
+      cookieHiglight: "Always Active",
+      cookieDesc:
+        "Essential for the website to function properly. These cannot be disabled.",
+      analytics: "Analytics Cookies",
+      analyticsDesc:
+        "Help us understand how visitors interact with our website by collecting and reporting information anonymously.",
+      marketing: "Marketing Cookies",
+      marketingDesc:
+        "Used to track visitors across websites to display relevant advertisements and measure campaign effectiveness.",
+      save: "Save Preferences",
+      privacyDesc: " Read our ",
+      privacy: "Privacy Policy",
+      cookiePolicy: "Cookie Policy",
+    },
   },
 
   fr: {
@@ -559,6 +581,28 @@ export const messages = {
       workframe: "Cadre de partenariat",
       live: "Optimisation en direct",
     },
+    consent: {
+      title: "Nous respectons votre vie privée",
+      description: `Nous utilisons des cookies pour améliorer votre expérience de navigation, vous proposer un contenu personnalisé et analyser notre trafic. En cliquant sur 'Tout accepter', vous consentez à l’utilisation de cookies..`,
+      customize: "Personnaliser les préférencess",
+      reject: "Tout refuser",
+      accept: "Tout accepter",
+      cookie: " Préférences relatives aux cookies",
+      necessaryCookies: "Cookies nécessaires",
+      cookieHiglight: "Toujours actif",
+      cookieDesc:
+        "Essentiels au bon fonctionnement du site web. Ils ne peuvent pas être désactivés",
+      analytics: "Cookies d’analyse",
+      analyticsDesc:
+        "Nous aident à comprendre comment les visiteurs interagissent avec notre site web en collectant et en rapportant des informations de manière anonyme.",
+      marketing: "Cookies marketing",
+      marketingDesc:
+        "Utilisés pour suivre les visiteurs sur différents sites web afin d’afficher des publicités pertinentes et de mesurer l’efficacité des campagnes.",
+      save: "Enregistrer les préférences",
+      privacyDesc: "Lire notre ",
+      privacy: "Politique de confidentialité",
+      cookiePolicy: "Politique relative aux cookies",
+    },
   },
 
   nl: {
@@ -839,6 +883,28 @@ export const messages = {
       feat4: "Beschikbaar in het Frans, Nederlands en Engels.",
       workframe: "Partnerraamwerk",
       live: "Live optimalisatie",
+    },
+    consent: {
+      title: "Wij hechten waarde aan uw privacy",
+      description: `We gebruiken cookies om uw browse-ervaring te verbeteren, gepersonaliseerde inhoud te tonen en ons verkeer te analyseren. Door op 'Alles accepteren' te klikken, stemt u in met ons gebruik van cookies.`,
+      customize: "Voorkeuren aanpassen",
+      reject: "Alles weigeren",
+      accept: "Alles accepteren",
+      cookie: "Cookievoorkeuren",
+      necessaryCookies: "Noodzakelijke cookies",
+      cookieHiglight: "Altijd actief",
+      cookieDesc:
+        "Essentieel voor de goede werking van de website. Deze kunnen niet worden uitgeschakeld.",
+      analytics: "Analytische cookies",
+      analyticsDesc:
+        "Helpt ons te begrijpen hoe bezoekers met onze website omgaan door anoniem informatie te verzamelen en te rapporteren.",
+      marketing: "Marketingcookies",
+      marketingDesc:
+        "Wordt gebruikt om bezoekers over websites te volgen om relevante advertenties weer te geven en de effectiviteit van campagnes te meten",
+      save: "Voorkeuren opslaan",
+      privacyDesc: "Lees ons privacybeleid ",
+      privacy: "Privacybeleid",
+      cookiePolicy: "Cookiebeleid",
     },
   },
 };
