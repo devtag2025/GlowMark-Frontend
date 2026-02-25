@@ -11,20 +11,17 @@ export function LanguageProvider({ children, initialLang }) {
   );
 
   useEffect(() => {
-    // If a locale comes from the URL, prefer it and sync to localStorage
-    if (initialLang && messages[initialLang]) {
-      setLang(initialLang);
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem("lang", initialLang);
-      }
+    if (typeof window === "undefined") return;
+
+    const sessionLang = sessionStorage.getItem("NEXT_LOCALE");
+    if (sessionLang && messages[sessionLang]) {
+      setLang(sessionLang);
       return;
     }
 
-    if (typeof window === "undefined") return;
-
-    const stored = window.localStorage.getItem("lang");
-    if (stored && messages[stored]) {
-      setLang(stored);
+    // Warna URL se jo aaya woh use karo
+    if (initialLang && messages[initialLang]) {
+      setLang(initialLang);
     }
   }, [initialLang]);
 
@@ -32,7 +29,7 @@ export function LanguageProvider({ children, initialLang }) {
     if (!messages[newLang]) return;
     setLang(newLang);
     if (typeof window !== "undefined") {
-      window.localStorage.setItem("lang", newLang);
+      sessionStorage.setItem("NEXT_LOCALE", newLang);
     }
   };
 
@@ -67,4 +64,3 @@ export function useLanguage() {
   }
   return ctx;
 }
-

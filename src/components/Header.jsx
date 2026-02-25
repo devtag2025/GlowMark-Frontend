@@ -40,7 +40,6 @@ const Header = () => {
       return;
     }
 
-    // Navigate to home with hash
     router.push(`${buildHomeUrl(lang)}#${id}`);
   };
 
@@ -78,6 +77,7 @@ const Header = () => {
   const buildHref = (href) => (typeof href === "function" ? href(lang) : href);
 
   const changeLocale = (nextLocale) => {
+    sessionStorage.setItem("NEXT_LOCALE", nextLocale);
     setLang(nextLocale);
 
     if (!pathname || pathname === "/" || pathname === "/en") {
@@ -120,7 +120,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const hash = window.location.hash?.substring(1); // remove #
+    const hash = window.location.hash?.substring(1);
     if (hash) {
       const element = document.getElementById(hash);
       if (element) element.scrollIntoView({ behavior: "smooth" });
