@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import CookieBanner from "@/components/CookieConsent/CookieBanner";
+import ConsentScripts from "@/components/CookieConsent/ConsentScripts";
 
 const SUPPORTED_LOCALES = ["en", "fr", "nl"];
 
@@ -13,7 +15,8 @@ export default async function LocaleLayout({ children, params }) {
       <Header />
       {children}
       <Footer />
+      <ConsentScripts />
+      <CookieBanner />
     </LanguageProvider>
   );
 }
-
