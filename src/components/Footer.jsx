@@ -47,27 +47,16 @@ const Footer = () => {
 
       <div className="max-w-6xl mx-auto px-6 pt-14 pb-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
-          <div className="flex items-center gap-6 text-center md:text-left">
-            <Link href={buildHomeUrl(lang)} className="shrink-0">
-              <Image
-                src="/logo-bgremove.png"
-                alt="Logo"
-                width={160}
-                height={160}
-              />
-            </Link>
-
-            <div>
-              <h2 className="text-2xl md:text-3xl font-semibold leading-tight">
-                {t("footer.title")}
-                <span className="text-purple-300">
-                  {t("footer.titleHighlight")}
-                </span>
-              </h2>
-              <p className="text-base text-purple-200 mt-1">
-                {t("footer.description")}
-              </p>
-            </div>
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold leading-tight text-center md:text-left">
+              {t("footer.title")}
+              <span className="text-purple-300">
+                {t("footer.titleHighlight")}
+              </span>
+            </h2>
+            <p className="text-base text-purple-200 mt-1">
+              {t("footer.description")}
+            </p>
           </div>
         </div>
 
@@ -133,7 +122,6 @@ const Footer = () => {
                 hover:-translate-y-1
               "
             >
-              {t("footer.top")}
               <ArrowUp size={14} />
             </button>
           </div>

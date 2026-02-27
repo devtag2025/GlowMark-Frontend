@@ -108,7 +108,11 @@ const FAQSection = () => {
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                    {isOpen ? (
+                      <Minus size={20} className="cursor-pointer" />
+                    ) : (
+                      <Plus size={20} className="cursor-pointer" />
+                    )}
                   </motion.div>
                 </motion.button>
 
