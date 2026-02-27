@@ -76,6 +76,25 @@ const Header = () => {
 
   const buildHref = (href) => (typeof href === "function" ? href(lang) : href);
 
+  // ✅ Helper to check if a nav item is currently active
+  const isActive = (item) => {
+    const href = typeof item.href === "function" ? item.href(lang) : item.href;
+    if (!href || href === "#" || href.startsWith("#")) return false;
+    const homeUrl = buildHomeUrl(lang);
+    if (href === homeUrl || href === "/") {
+      return pathname === homeUrl || pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
+
+  // ✅ Helper to check if any SEO child is currently active
+  const isSeoActive = (children) => {
+    return children.some((sub) => {
+      const href = buildHref(sub.href);
+      return pathname === href || pathname.startsWith(href);
+    });
+  };
+
   const changeLocale = (nextLocale) => {
     sessionStorage.setItem("NEXT_LOCALE", nextLocale);
     setLang(nextLocale);
@@ -153,10 +172,25 @@ const Header = () => {
           <nav className="hidden md:flex items-center gap-8">
             {NavigationItem.map((item) =>
               item.children ? (
+                // ✅ SEO Dropdown with active state
                 <div key={item.key} className="relative group">
-                  <button className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold transition-colors">
+                  <button
+                    className={`flex items-center gap-1 font-semibold transition-colors relative ${
+                      isSeoActive(item.children)
+                        ? "text-theme"
+                        : "text-theme-secondary hover:text-theme"
+                    }`}
+                  >
                     {t(item.key)}
                     <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                    {/* ✅ Active underline for SEO dropdown */}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 bg-purple-500 transition-all duration-300 ${
+                        isSeoActive(item.children)
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
+                      }`}
+                    />
                   </button>
                   <div className="absolute left-0 mt-3 w-72 max-h-[70vh] overflow-y-auto bg-[var(--card-bg-solid)] rounded-xl shadow-lg border border-[var(--border-color)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                     {item.children.map((sub) => (
@@ -172,27 +206,35 @@ const Header = () => {
                     ))}
                   </div>
                 </div>
+              ) : item.onClick ? (
+                // ✅ Anchor/onClick buttons (FAQ, Contact) — no persistent active underline since they're hash links
+                <button
+                  key={item.key}
+                  onClick={item.onClick}
+                  className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group cursor-pointer"
+                >
+                  {t(item.key)}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
+                </button>
               ) : (
-                !item.children &&
-                (item.onClick ? (
-                  <button
-                    key={item.key}
-                    onClick={item.onClick}
-                    className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group"
-                  >
-                    {t(item.key)}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
-                  </button>
-                ) : (
-                  <Link
-                    key={item.key}
-                    href={buildHref(item.href)}
-                    className="text-theme-secondary hover:text-theme font-semibold transition-colors relative group"
-                  >
-                    {t(item.key)}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
-                  </Link>
-                ))
+                // ✅ Regular nav links with active underline
+                <Link
+                  key={item.key}
+                  href={buildHref(item.href)}
+                  className={`font-semibold transition-colors relative group ${
+                    isActive(item)
+                      ? "text-theme"
+                      : "text-theme-secondary hover:text-theme"
+                  }`}
+                >
+                  {t(item.key)}
+                  {/* ✅ Line stays visible when active, shows on hover when not */}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-purple-500 transition-all duration-300 ${
+                      isActive(item) ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
               ),
             )}
 
@@ -263,7 +305,11 @@ const Header = () => {
                 <div key={item.key} className="space-y-4">
                   <button
                     onClick={() => setMobileSeoOpen(!mobileSeoOpen)}
-                    className="flex justify-between w-full text-theme font-bold text-lg"
+                    className={`flex justify-between w-full font-bold text-lg ${
+                      isSeoActive(item.children)
+                        ? "text-purple-500"
+                        : "text-theme"
+                    }`}
                   >
                     {t(item.key)}
                     <ChevronDown
@@ -277,18 +323,28 @@ const Header = () => {
                         animate={{ height: "auto", opacity: 1 }}
                         className="pl-4 space-y-3"
                       >
-                        {item.children.map((sub) => (
-                          <Link
-                            key={sub.slug || sub.key}
-                            href={buildHref(sub.href)}
-                            className="block text-theme-muted font-medium py-1"
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {sub.titles
-                              ? sub.titles[lang] || sub.titles.en
-                              : t(sub.key)}
-                          </Link>
-                        ))}
+                        {item.children.map((sub) => {
+                          const subHref = buildHref(sub.href);
+                          const isSubActive =
+                            pathname === subHref ||
+                            pathname.startsWith(subHref);
+                          return (
+                            <Link
+                              key={sub.slug || sub.key}
+                              href={subHref}
+                              className={`block font-medium py-1 ${
+                                isSubActive
+                                  ? "text-purple-500"
+                                  : "text-theme-muted"
+                              }`}
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {sub.titles
+                                ? sub.titles[lang] || sub.titles.en
+                                : t(sub.key)}
+                            </Link>
+                          );
+                        })}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -308,7 +364,9 @@ const Header = () => {
                 <Link
                   key={item.key}
                   href={buildHref(item.href)}
-                  className="block text-theme font-bold text-lg"
+                  className={`block font-bold text-lg ${
+                    isActive(item) ? "text-purple-500" : "text-theme"
+                  }`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {t(item.key)}
