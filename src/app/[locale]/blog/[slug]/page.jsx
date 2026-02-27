@@ -48,9 +48,11 @@ export default async function BlogPostPage(props) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-              {/* Category */}
               <div className="absolute top-4 left-4">
-                <span className="px-4 py-1.5 rounded-full bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 text-sm font-medium text-purple-300 uppercase">
+                <span
+                  className="px-4 py-1.5 rounded-full bg-purple-600
+                 backdrop-blur-sm border border-purple-500 text-sm font-medium text-white uppercase"
+                >
                   {post.category}
                 </span>
               </div>
@@ -115,7 +117,7 @@ export default async function BlogPostPage(props) {
         </div>
 
         {/* Post Content */}
-        <section className="max-w-3xl mx-auto">
+        <section className="max-w-6xl mx-auto">
           <div
             className="prose prose-lg prose-invert max-w-none
                        prose-headings:text-theme prose-headings:font-bold
