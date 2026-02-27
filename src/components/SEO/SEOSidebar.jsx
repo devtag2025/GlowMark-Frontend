@@ -12,7 +12,7 @@ export default function SEOSidebar() {
   const articles = getSortedArticles();
 
   return (
-    <nav className="glow-card rounded-2xl p-6">
+    <nav className="glow-card rounded-2xl p-6 max-h-[70vh] overflow-y-auto">
       <h3 className="text-sm font-bold text-purple-400 uppercase tracking-wider mb-4">
         {t("seo.sidebarTitle")}
       </h3>
