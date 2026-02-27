@@ -32,7 +32,7 @@ export const metadata = {
   title: "Glow Mark Webiste",
   description: "",
   icons: {
-    icon: "/logo.jpg",
+    icon: "/logo-bgremove.png",
   },
 };
 
