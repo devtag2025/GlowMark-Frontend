@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -17,9 +17,10 @@ const Header = () => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileSeoOpen, setMobileSeoOpen] = useState(false);
+  const [mobileOpenKey, setMobileOpenKey] = useState(null);
   const [mobileLangOpen, setMobileLangOpen] = useState(false);
   const [desktopLangOpen, setDesktopLangOpen] = useState(false);
+  const [desktopSeoOpen, setDesktopSeoOpen] = useState(false);
 
   const LANGUAGE_LABELS = {
     en: t("common.english"),
@@ -27,19 +28,15 @@ const Header = () => {
     nl: t("common.dutch"),
   };
 
-  const seoArticles = getSortedArticles();
+  const seoArticles = useMemo(() => getSortedArticles(), []);
 
   const handleAnchorClick = (id) => {
     if (!id) return;
-
     const isHome = pathname === "/" || pathname === `/${lang}`;
-
     if (isHome) {
-      const element = document.getElementById(id);
-      if (element) element.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       return;
     }
-
     router.push(`${buildHomeUrl(lang)}#${id}`);
   };
 
@@ -76,18 +73,15 @@ const Header = () => {
 
   const buildHref = (href) => (typeof href === "function" ? href(lang) : href);
 
-  // ✅ Helper to check if a nav item is currently active
   const isActive = (item) => {
-    const href = typeof item.href === "function" ? item.href(lang) : item.href;
+    const href = buildHref(item.href);
     if (!href || href === "#" || href.startsWith("#")) return false;
     const homeUrl = buildHomeUrl(lang);
-    if (href === homeUrl || href === "/") {
+    if (href === homeUrl || href === "/")
       return pathname === homeUrl || pathname === "/";
-    }
     return pathname.startsWith(href);
   };
 
-  // ✅ Helper to check if any SEO child is currently active
   const isSeoActive = (children) => {
     return children.some((sub) => {
       const href = buildHref(sub.href);
@@ -124,11 +118,6 @@ const Header = () => {
       return;
     }
 
-    if (pathSegments.length === 0) {
-      router.push(buildHomeUrl(nextLocale));
-      return;
-    }
-
     router.push(`/${nextLocale}/${pathSegments.join("/")}`);
   };
 
@@ -146,6 +135,18 @@ const Header = () => {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (desktopLangOpen || desktopSeoOpen) {
+      document.body.style.overflow = "hidden"; // prevent scroll
+    } else {
+      document.body.style.overflow = ""; // allow scroll
+    }
+
+    return () => {
+      document.body.style.overflow = ""; // cleanup on unmount
+    };
+  }, [desktopLangOpen, desktopSeoOpen]);
+
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
@@ -153,7 +154,7 @@ const Header = () => {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`fixed top-0 w-full z-[100] transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl bg-[var(--header-bg)] border-b border-[var(--header-border)]"
+          ? "backdrop-blur-xl bg-[var(--header-bg)] border-b border-[var(--header-border)] shadow-md"
           : "bg-transparent"
       }`}
     >
@@ -166,14 +167,19 @@ const Header = () => {
               width={100}
               height={100}
               className="rounded-lg"
+              priority
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" role="navigation">
             {NavigationItem.map((item) =>
               item.children ? (
-                // ✅ SEO Dropdown with active state
-                <div key={item.key} className="relative group">
+                <div
+                  key={item.key}
+                  className="relative"
+                  onMouseEnter={() => setDesktopSeoOpen(true)}
+                  onMouseLeave={() => setDesktopSeoOpen(false)}
+                >
                   <button
                     className={`flex items-center gap-1 font-semibold transition-colors relative ${
                       isSeoActive(item.children)
@@ -182,8 +188,9 @@ const Header = () => {
                     }`}
                   >
                     {t(item.key)}
-                    <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
-                    {/* ✅ Active underline for SEO dropdown */}
+                    <ChevronDown
+                      className={`w-4 h-4 transition ${desktopSeoOpen ? "rotate-180" : ""}`}
+                    />
                     <span
                       className={`absolute -bottom-1 left-0 h-0.5 bg-purple-500 transition-all duration-300 ${
                         isSeoActive(item.children)
@@ -192,7 +199,14 @@ const Header = () => {
                       }`}
                     />
                   </button>
-                  <div className="absolute left-0 mt-3 w-72 max-h-[70vh] overflow-y-auto bg-[var(--card-bg-solid)] rounded-xl shadow-lg border border-[var(--border-color)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+
+                  <div
+                    className="absolute left-0 mt-3 w-72 max-h-[70vh] overflow-y-auto bg-[var(--card-bg-solid)] rounded-xl shadow-lg border border-[var(--border-color)] opacity-0 invisible transition-all duration-200"
+                    style={{
+                      opacity: desktopSeoOpen ? 1 : 0,
+                      visibility: desktopSeoOpen ? "visible" : "hidden",
+                    }}
+                  >
                     {item.children.map((sub) => (
                       <Link
                         key={sub.slug || sub.key}
@@ -207,7 +221,6 @@ const Header = () => {
                   </div>
                 </div>
               ) : item.onClick ? (
-                // ✅ Anchor/onClick buttons (FAQ, Contact) — no persistent active underline since they're hash links
                 <button
                   key={item.key}
                   onClick={item.onClick}
@@ -217,7 +230,6 @@ const Header = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all group-hover:w-full" />
                 </button>
               ) : (
-                // ✅ Regular nav links with active underline
                 <Link
                   key={item.key}
                   href={buildHref(item.href)}
@@ -228,7 +240,6 @@ const Header = () => {
                   }`}
                 >
                   {t(item.key)}
-                  {/* ✅ Line stays visible when active, shows on hover when not */}
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-purple-500 transition-all duration-300 ${
                       isActive(item) ? "w-full" : "w-0 group-hover:w-full"
@@ -242,6 +253,7 @@ const Header = () => {
               <button
                 onClick={() => setDesktopLangOpen(!desktopLangOpen)}
                 className="flex items-center gap-1 text-theme-secondary hover:text-theme font-semibold cursor-pointer"
+                aria-expanded={desktopLangOpen}
               >
                 {LANGUAGE_LABELS[lang]}
                 <ChevronDown
@@ -304,20 +316,25 @@ const Header = () => {
               item.children ? (
                 <div key={item.key} className="space-y-4">
                   <button
-                    onClick={() => setMobileSeoOpen(!mobileSeoOpen)}
+                    onClick={() =>
+                      setMobileOpenKey(
+                        mobileOpenKey === item.key ? null : item.key,
+                      )
+                    }
                     className={`flex justify-between w-full font-bold text-lg ${
                       isSeoActive(item.children)
                         ? "text-purple-500"
                         : "text-theme"
                     }`}
+                    aria-expanded={mobileOpenKey === item.key}
                   >
                     {t(item.key)}
                     <ChevronDown
-                      className={`transition ${mobileSeoOpen ? "rotate-180" : ""}`}
+                      className={`transition ${mobileOpenKey === item.key ? "rotate-180" : ""}`}
                     />
                   </button>
                   <AnimatePresence>
-                    {mobileSeoOpen && (
+                    {mobileOpenKey === item.key && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
@@ -364,9 +381,7 @@ const Header = () => {
                 <Link
                   key={item.key}
                   href={buildHref(item.href)}
-                  className={`block font-bold text-lg ${
-                    isActive(item) ? "text-purple-500" : "text-theme"
-                  }`}
+                  className={`block font-bold text-lg ${isActive(item) ? "text-purple-500" : "text-theme"}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {t(item.key)}
@@ -378,6 +393,7 @@ const Header = () => {
               <button
                 onClick={() => setMobileLangOpen(!mobileLangOpen)}
                 className="flex justify-between w-full text-theme-muted font-bold uppercase tracking-widest text-xs"
+                aria-expanded={mobileLangOpen}
               >
                 {LANGUAGE_LABELS[lang]}
                 <ChevronDown className={mobileLangOpen ? "rotate-180" : ""} />
