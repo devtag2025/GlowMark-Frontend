@@ -9,8 +9,12 @@ import PriceSection from "@/components/Home/PriceSection";
 import CTASection from "@/components/Home/CTASection";
 import CalendlySection from "@/components/Calendly/CalendlySection";
 import SerpixaSection from "@/components/Home/SerpixaSection";
+import { getAllPosts } from "@/lib/wordpress";
 
-export default function Home() {
+export default async function Home({ params }) {
+  const { locale } = await params;
+  const blogs = await getAllPosts(locale || "en");
+
   return (
     <div className="min-h-screen overflow-hidden">
       <HeroSection />
@@ -22,7 +26,7 @@ export default function Home() {
       <CalendlySection />
       <SerpixaSection />
       <FAQSection />
-      <BlogSection />
+      <BlogSection blogs={blogs} />
       <ContactSection />
     </div>
   );
