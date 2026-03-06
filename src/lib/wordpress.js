@@ -70,7 +70,7 @@ export async function getPostBySlug(slug, lang = "en") {
 function transformPost(post) {
   const featuredImage =
     post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-    "/images/default-blog.jpg";
+    "/default-blog.jpg";
 
   const author = post._embedded?.author?.[0];
   const categories = post._embedded?.["wp:term"]?.[0] || [];

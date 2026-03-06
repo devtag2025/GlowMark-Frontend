@@ -83,6 +83,14 @@ function translatePath(pathname, locale) {
   return "/" + translatedSegments.join("/");
 }
 
+function detectLocale(request) {
+  const cookieLang = request.cookies.get("NEXT_LOCALE")?.value;
+  if (cookieLang && LOCALES.includes(cookieLang)) {
+    return cookieLang;
+  }
+  return detectLocaleFromHeader(request);
+}
+
 function detectLocaleFromHeader(request) {
   const acceptLang = request.headers.get("accept-language") || "";
 
@@ -136,7 +144,7 @@ export function middleware(request) {
     return NextResponse.rewrite(newUrl);
   }
 
-  const detectedLocale = detectLocaleFromHeader(request);
+  const detectedLocale = detectLocale(request);
   const translatedPath = translatePath(pathname, detectedLocale);
 
   if (detectedLocale === "en") {

@@ -97,9 +97,15 @@ const Header = () => {
 
   const changeLocale = (nextLocale) => {
     sessionStorage.setItem("NEXT_LOCALE", nextLocale);
+    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=2592000;`;
     setLang(nextLocale);
 
-    if (!pathname || pathname === "/" || pathname === "/en") {
+    if (
+      !pathname ||
+      pathname === "/" ||
+      pathname === "/en" ||
+      pathname === `/${lang}`
+    ) {
       router.push(buildHomeUrl(nextLocale));
       return;
     }
@@ -120,7 +126,8 @@ const Header = () => {
 
     if (pathSegments[0] === "seo") {
       const rest = pathSegments.slice(1).join("/");
-      router.push(`/${nextLocale}/seo/${rest}`);
+      const prefix = nextLocale === "en" ? "" : `/${nextLocale}`;
+      router.push(`${prefix}/seo/${rest}`);
       return;
     }
 
@@ -129,7 +136,8 @@ const Header = () => {
       return;
     }
 
-    router.push(`/${nextLocale}/${pathSegments.join("/")}`);
+    const prefix = nextLocale === "en" ? "" : `/${nextLocale}`;
+    router.push(`${prefix}/${pathSegments.join("/")}`);
   };
 
   useEffect(() => {
