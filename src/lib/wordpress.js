@@ -1,9 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
-/**
- * Fetch all blog posts for a specific language
- * @param {string} lang - Language code from useLanguage()
- */
 export async function getAllPosts(lang = "en") {
   try {
     const response = await fetch(
@@ -18,13 +14,15 @@ export async function getAllPosts(lang = "en") {
 
     const posts = await response.json();
 
-    // FILTER BY LINK (Option 3)
     const filteredPosts = posts.filter((post) => {
       const link = post.link || "";
       if (lang === "nl") return link.includes("/nl/");
       if (lang === "en") return link.includes("/en/");
       if (lang === "fr")
-        return !link.includes("/nl/") && !link.includes("/en/");
+        return (
+          link.includes("/fr/") ||
+          (!link.includes("/nl/") && !link.includes("/en/"))
+        );
       return true;
     });
 
@@ -35,9 +33,6 @@ export async function getAllPosts(lang = "en") {
   }
 }
 
-/**
- * Fetch a single post by slug
- */
 export async function getPostBySlug(slug, lang = "en") {
   try {
     const response = await fetch(
@@ -55,7 +50,10 @@ export async function getPostBySlug(slug, lang = "en") {
       if (lang === "nl") return link.includes("/nl/");
       if (lang === "en") return link.includes("/en/");
       if (lang === "fr")
-        return !link.includes("/nl/") && !link.includes("/en/");
+        return (
+          link.includes("/fr/") ||
+          (!link.includes("/nl/") && !link.includes("/en/"))
+        );
       return true;
     });
 

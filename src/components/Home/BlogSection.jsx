@@ -1,12 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import { buildBlogUrl, buildPageUrl } from "@/utils/paths";
-import { getAllPosts } from "@/lib/wordpress";
 
 const containerVariants = {
   hidden: {},
@@ -17,19 +15,9 @@ const containerVariants = {
   },
 };
 
-const BlogSection = () => {
+const BlogSection = ({ blogs = [] }) => {
   const { t, lang } = useLanguage();
   const locale = lang || "en";
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getAllPosts(locale) // ✅ locale pass kar rahe hain
-      .then(setBlogs)
-      .finally(() => setLoading(false));
-  }, [locale]); // ✅ jab bhi locale change ho, refetch ho
-
-  if (loading) return <div>Loading...</div>;
 
   return (
     <section className="relative py-10 overflow-hidden max-w-7xl mx-auto">
