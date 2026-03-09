@@ -3,7 +3,7 @@ const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 export async function getAllPosts(lang = "en") {
   try {
     const response = await fetch(
-      `${API_URL}/wp/v2/posts?_embed=true&per_page=100&orderby=date&order=desc`,
+      `${API_URL}/wp/v2/posts?_embed=true&per_page=100&orderby=date&order=desc&lang=${lang}`,
       { next: { revalidate: 60 } },
     );
 
@@ -36,7 +36,7 @@ export async function getAllPosts(lang = "en") {
 export async function getPostBySlug(slug, lang = "en") {
   try {
     const response = await fetch(
-      `${API_URL}/wp/v2/posts?slug=${slug}&_embed=true`,
+      `${API_URL}/wp/v2/posts?slug=${slug}&_embed=true&lang=${lang}`,
       { next: { revalidate: 60 } },
     );
 
@@ -64,13 +64,8 @@ export async function getPostBySlug(slug, lang = "en") {
   }
 }
 
-/**
- * Transform WordPress post into app format
- */
 function transformPost(post) {
-  const featuredImage =
-    post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-    "/images/default-blog.jpg";
+  const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
   const author = post._embedded?.author?.[0];
   const categories = post._embedded?.["wp:term"]?.[0] || [];
@@ -102,21 +97,16 @@ function transformPost(post) {
   };
 }
 
-/**
- * Fetch all categories for the current language
- */
 export async function getCategories(lang = "en") {
   try {
-    const response = await fetch(`${API_URL}/wp/v2/categories?per_page=100`, {
-      next: { revalidate: 3600 },
-    });
+    const response = await fetch(
+      `${API_URL}/wp/v2/categories?per_page=100&lang=${lang}`,
+      { next: { revalidate: 3600 } },
+    );
 
     if (!response.ok) return [];
 
     const categories = await response.json();
-
-    // FILTER categories by link if needed (optional)
-    // Usually Polylang handles this properly
     return categories;
   } catch (error) {
     console.error("Error fetching categories:", error);

@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
 
   images: {
@@ -13,6 +12,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "glowmarkagency.be",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cms.glowmarkagency.be",
         pathname: "/wp-content/uploads/**",
       },
     ],

@@ -18,8 +18,6 @@ export function LanguageProvider({ children, initialLang }) {
       setLang(sessionLang);
       return;
     }
-
-    // Warna URL se jo aaya woh use karo
     if (initialLang && messages[initialLang]) {
       setLang(initialLang);
     }
